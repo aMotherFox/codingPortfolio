@@ -5,3 +5,4 @@ cd #change directory
 cntrl + c clears the line
 # ls is list
 # ~ returns to home
+uwu 
