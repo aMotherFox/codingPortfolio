@@ -165,3 +165,68 @@ const pet4 = {
     name: "Bob" // you can only overwrite fields that ALREADY existed
 }
 console.log("pet4: ", pet4)
+
+
+
+
+
+//GETTER AND SETTERS
+//GETTERS: any funciton that will GET you a field is a getter
+//SETTERS: the function where you SET a new field, you're not GETTING the field, you're setting to something different
+
+const user1 ={
+    firstName: "Lucas",
+    lastName: "Costa",
+    age: 28,
+
+}
+const user2 ={
+    firstName: "Emre",
+    lastName: "Pruitt",
+    age: 28,
+
+}
+const user3 ={
+    firstName: "Victoria",
+    lastName: "Portella",
+    age: 28,
+
+}
+
+const getUserFirstName = (user) => {
+    return user.firstname
+}
+
+const lucasFirstName = getUserFirstName(user1)
+const emreFirstName = getUserFirstName(user2)
+const victoriaFirstName = getUserFirstName(user3)
+
+console.log("lucasFirstName ", lucasFirstName)
+console.log("emreFirstName ", emreFirstName)
+console.log("victoriaFirstName ", victoriaFirstName)
+
+const getUserFullName = (user) => {
+    
+    //return user.firstName + " " + user.lastName //string long
+    return `${user.firstName} ${user.lastName}` //string literal
+}
+const myFullName = getUserFullName(user1)
+console.log("myFullName ", myFullName)
+
+
+
+
+
+//setters
+
+const setUserFirstName = (user, newName) => {
+    user.firstName = newName
+    return user
+}
+const newUser1 = setUserFirstname(user1, "Luke")
+const newUser2 = setUserFirstname(user1, "Em")
+const newUser1 = setUserFirstname(user1, "Vikki")
+
+console.log("newUser1: ", newUser1)
+console.log("newUser2: ", newUser2)
+console.log("newUser3: ", newUser3)

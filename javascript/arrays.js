@@ -115,17 +115,76 @@ const finalBill3 = addItem(100, 60, 30)
 console.log("finalBill1: ", finalBill1)
 
 
-
-
-
-
-
-
-
-
-
 const numbers1 = [1, 2, 3, 4, 5]
 numbers1.forEach(numbers) => {
     number + 10
 }
 console.log("numbers plus 10: ", number)
+
+
+
+// ---------------------------------------------------ARRAYS AND OBJECTS---------------------------------------------------------------
+//nesting objects within objects
+const user = { //user is an object with 2 field; name and description
+    name: "lucas",
+    description: { //objects can have other objects as a field
+        height: "6'1",
+        ethnicity: "Brazilian",
+        //..... etc
+        skin: {
+            type: "oily",
+            color: "tan",
+            //..... etc
+        }
+    }
+
+}
+
+
+
+//individual objects can be put into an array
+const user2 ={
+    name: "Lucas",
+    age: 28,
+    email: "lucas@gmail.com",
+}
+const user3 ={
+    name: "Emre",
+    age: 28,
+    email: "emre@gmail.com",
+}
+const user4 ={
+    name: "Victoria",
+    age: 28,
+    email: "victoria@gmail.com",
+}
+const users = [users2, user3, user4] //we've turned the 3 objects into an array signed to users, each item is its own object; USERS IS AN ARRAY OF OBJECTS
+console.log("users: ", users) //becomes an array of objects
+
+
+
+
+
+
+//how to do .forEach with arrays of objects
+const users = [user, user1, user2, user3, user4]
+console.log("users: ", users)
+
+users.forEach(user => {
+    console.log("...user ", user)
+})
+
+//find all user's emails
+const users = [user, user1, user2, user3, user4]
+console.log("users: ", users)
+const userEmails = []
+
+users.forEach(theUserImInteratingOn => {
+    console.log("...theUserImInteratingOn ", theUserImInteratingOn)
+    const userEmail = theUserImInteratingOn.email
+    console.log("userEmail: ", userEmail)
+
+    userEmails.push(userEmail)
+})
+
+console.log("userEmails: ", userEmails)
