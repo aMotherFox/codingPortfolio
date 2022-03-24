@@ -157,3 +157,26 @@ console.log("Uses who need a raise", needsARaise)
 
 
 console.log("-------- ALL USERS UNDER WHO NEED A RAISE----------")
+
+
+
+
+const getTotalSpentOnSalaries = (listOfUsers) => {
+	let finalSum = 0
+	listOfUsers.forEach(theUserImIteratingOn => {
+  const userSalary = theUserImIteratingOn.salary
+  finalSum = finalSum + userSalary
+
+	// console.log("theUserImIteratingOn", theUserImIteratingOn)
+
+ 
+  
+	})
+	return finalSum
+}
+
+const salaryTotal = getTotalSpentOnSalaries(users)
+console.log("Total spent on salaries", salaryTotal)
+
+
+console.log("-------- TOTAL OF ALL SALARIES----------")
