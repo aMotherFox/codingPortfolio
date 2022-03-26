@@ -33,8 +33,8 @@ array mthods/functions:
     - .reduce
     - _.max/_.min (lodash largest/smallest) ***technically not an array method, is a lodash method
     - push (add elements to a lsit)
-    - .filter
-    - .map
+    - .filter // great if you want an array as a result that match the criteria given i.e. given a large array and returns a smaller array that matches a particular condition
+    - .map 
     - .find
     - .sort
 

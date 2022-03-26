@@ -164,8 +164,8 @@ console.log("-------- ALL USERS UNDER WHO NEED A RAISE----------")
 const getTotalSpentOnSalaries = (listOfUsers) => {
 	let finalSum = 0
 	listOfUsers.forEach(theUserImIteratingOn => {
-  const userSalary = theUserImIteratingOn.salary
-  finalSum = finalSum + userSalary
+        const userSalary = theUserImIteratingOn.salary
+        finalSum = finalSum + userSalary
 
 	// console.log("theUserImIteratingOn", theUserImIteratingOn)
 
@@ -180,3 +180,26 @@ console.log("Total spent on salaries", salaryTotal)
 
 
 console.log("-------- TOTAL OF ALL SALARIES----------")
+
+
+const usersThatLikeRed = (listOfUsers) => {
+	return listOfUsers.filter(user => user.favoriteColor === "Red")
+}
+
+const redEnthusists = usersThatLikeRed(users)
+console.log("Users that like red: ", redEnthusists)
+
+
+
+console.log("-------- USERS THAT LIKE RED----------")
+
+
+const usersThatLikeSeven = (listOfUsers) => {
+	return listOfUsers.filter(user => user.luckyNumber === 7)
+}
+const sevenEnthusists = usersThatLikeSeven(users)[0]
+console.log("Users whose lucky numbers is 7: ", sevenEnthusists)
+
+
+
+console.log("-------- USERS THAT LIKE SEVEN----------")
