@@ -138,16 +138,3 @@ console.log("result: ", result)
 
 
 
-
-
-
-
-
-
-
-
-const finalBill1 = addItem(7, 3, 2)
-const finalBill2 = addItem(11, 6, 10)
-const finalBill3 = addItem(100, 60, 30)
-
-console.log("finalBill1: ", finalBill1)

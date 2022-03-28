@@ -1,0 +1,11 @@
+h1 {
+    color: red
+}
+
+#i-am-a-div-2-id {
+    color: blue
+}
+
+.my-special-class {
+    font-size: 20pt;
+}

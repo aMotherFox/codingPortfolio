@@ -1,4 +1,4 @@
-HOW TO PUSH:
+Probably HOW TO PUSH:
 pwd
 Go to where file is located (i.e. desktop) // cd Desktop
 Check list // ls -la
