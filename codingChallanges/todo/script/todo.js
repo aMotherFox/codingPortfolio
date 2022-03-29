@@ -12,18 +12,26 @@ const item = todoItems.find(item => item.id === 1)
 console.log("item.text:", item.text)
 
 
-const todoText = document.getElementsByClassName("todo-text")
-console.log("todoText:", todoText)
-todoText[0].innerText = "Bucky"
-
-
 const rootElement = document.getElementById("main-todo-list")
 console.log("rootElement:", rootElement)
+
+const todoText = document.getElementsByClassName("todo-text")
+console.log("todoText:", todoText)
+
 
 const divElement = document.createElement("divElement")
 divElement.className="toDo"
 rootElement.appendChild(divElement)
 
-const 
 
+const inputElement = document.createElement("input")
+inputElement.className="todo-checkbox"
+inputElement.type="checkbox"
+rootElement.appendChild(inputElement)
+divElement.appendChild(inputElement)
 
+const spanElement = document.createElement("span")
+spanElement.innerHTML = item.text
+inputElement.className="todo-text"
+rootElement.appendChild(spanElement)
+divElement.appendChild(spanElement)
