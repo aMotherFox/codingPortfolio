@@ -5,7 +5,25 @@ const todoItems = [
     { id: 4, text: "Write thank-you notes", completed: false},
 ];
 console.log("todoItems: ", todoItems)
+/* const item = todoItems.find(item => item.id === 1)
+console.log(item.text)
+*/
+const item = todoItems.find(item => item.id === 1)
+console.log("item.text:", item.text)
 
-const toDoText = document.getElementsByClassName("todo-text")
-console.log("todoItems", todoItems)
-toDoText[0].innerText = "Take out trash and recycling"
+
+const todoText = document.getElementsByClassName("todo-text")
+console.log("todoText:", todoText)
+todoText[0].innerText = "Bucky"
+
+
+const rootElement = document.getElementById("main-todo-list")
+console.log("rootElement:", rootElement)
+
+const divElement = document.createElement("divElement")
+divElement.className="toDo"
+rootElement.appendChild(divElement)
+
+const 
+
+
