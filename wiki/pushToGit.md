@@ -39,3 +39,6 @@ git push
 HOW TO PULL:
 cd lucasBootcamp
 git pull
+
+HOW TO GO BACK TO THE LAST PUSH:
+git stash
