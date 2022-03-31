@@ -15,6 +15,12 @@ console.log("item3.text:", item3.text)
 const item4 = todoItems.find(item => item.id === 4)
 console.log("item4.text:", item4.text)
 
+window.onload = onPageLoad();
+
+function onPageLoad () {
+    document.querySelector(".todo-checkbox").checked = true;
+}
+
 const rootElement = document.getElementById("main-todo-list")
 console.log("rootElement:", rootElement)
 
@@ -96,3 +102,58 @@ spanElement4.innerHTML = item4.text
 spanElement4.className="todo-text"
 rootElement.appendChild(spanElement4)
 divElement4.appendChild(spanElement4)
+
+
+// ------- mark as complete
+// event.target.value
+
+
+
+
+let allCheckBox = document.querySelectorAll("main-todo-list")
+
+  allCheckBox.forEach((checkbox) => { 
+    checkbox.addEventListener('change', (event) => {
+      if (document.querySelector('.checkbox').checked === true) {
+        
+      }
+      return checkbox(".todo.complete.hidden", ".todo.complete")
+    })
+  })
+
+
+
+// function completingTast(todoVar){
+//     let taskName = todoVar.rootElement
+//     if(todoVar.checked){
+//         taskName.add("todo-complete", "todo-complete-hidden")
+//     } 
+    
+// }
+// completingTast.appendChild(rootElement)
+
+
+
+// document.getElementById("main-todo-list").onclick = function(todoItems) {
+//     const checkboxes = document.querySelectorAll("todo-checkbox");
+//     if true {
+//         todoVar.innerHTML=(todo.complete)
+//         todoVar.className=(todo.complete.hidden)
+//         rootElement.appendChild(todoVar);
+//         todoVar.appendChild(todoVar)
+//     }
+// } event.target.value
+
+
+// todoVar.addEventListener('click', event => {
+//     if (event.target.classList.contains('js-tick')) {
+//       const itemKey = event.target.parentElement.dataset.key;
+//       toggleDone(itemKey);
+//     }
+//   });
+// function markingComplete(todoVar){
+//     if todoVar.onclick = true
+//     })
+//     return ("todo-complete", "todo-complete-hidden")}
+
+
