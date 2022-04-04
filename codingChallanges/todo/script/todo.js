@@ -49,62 +49,65 @@ console.log("rootElement: ", rootElement)
 
 const step1 = document.querySelector(".todo")
 step1.setAttribute("id","delete-me")
+console.log("step1", step1)
 
 let getDeleted = document.getElementById("delete-me")
 console.log("get deleted", getDeleted)
 if (getDeleted.parentNode) {
     getDeleted.parentNode.removeChild(getDeleted)
 }
-
+console.log("getDeleted", getDeleted)
 
 ///--------- add back list ---------------
 
 
-// const list= document.getElementById("main-todo-list")
-// const lineThrough = document.getElementsByClassName(".todo-complete")
-// console.log("linethrough", lineThrough)
-// function addToDo(toDo, id, completed){
+const list= document.getElementById("main-todo-list")
+const lineThrough = document.getElementsByClassName(".todo-complete")
+console.log("linethrough", lineThrough)
+function addToDo(toDo, id, completed){
 
-//     const LINE = completed ? lineThrough : "";
+    const LINE = completed ? lineThrough : "";
 
+    const item = `
+                <div class="todo">
+                <input type="checkbox" class=".todo-checkbox"/>
+                <span class ="todo-text ${LINE}">${toDo}</span>
+                </div>
+            `
+    const position = "beforeend";
+
+    list.insertAdjacentHTML(position,item)
+}
+
+addToDo(item.text)
+addToDo(item2.text)
+addToDo(item3.text)
+addToDo(item4.text)
+
+
+
+// function checkingToDo(checkedVar){
+
+    
+
+// 	checkedVar.forEach(task =>{
+//   	if (checkedVar.checked === true) {
+//     const lineThrough = document.getElementsByClassName(".todo-complete")
+//     const lineThroughHidden = document.getElementsByClassName(".todo-complete-hidden")
+//     return checkedVar.classList.add(".todo-complete", ".todo-complete-hidden")
+//     }
+//   })
+//   const lineThrough = document.getElementsByClassName(".todo-complete")
+//     const lineThroughHidden = document.getElementsByClassName(".todo-complete-hidden")
 //     const item = `
 //                 <div class="todo">
 //                 <input type="checkbox" class=".todo-checkbox"/>
-//                 <span class ="todo-text ${LINE}">${toDo}</span>
+//                 <span class ="todo-text ${lineThrough}">${checkedVar}</span>
 //                 </div>
 //             `
 //     const position = "beforeend";
 
-//     list.insertAdjacentHTML(position,item)
+    
 // }
-
-// addToDo(item.text)
-// addToDo(item2.text)
-// addToDo(item3.text)
-// addToDo(item4.text)
-
-
-
-function checkingToDo(checkedVar){
-
-    
-
-	checkedVar.forEach(task =>{
-  	if (checkedVar.checked === true) {
-    const lineThrough = document.getElementsByClassName(".todo-complete")
-    const lineThroughHidden = document.getElementsByClassName(".todo-complete-hidden")
-    return checkedVar.classList.add(".todo-complete", ".todo-complete-hidden")
-    }
-  })
-    // const item = `
-    //             <div class="todo">
-    //             <input type="checkbox" class=".todo-checkbox"/>
-    //             <span class ="todo-text ${lineThrough}">${toDo}</span>
-    //             </div>
-    //         `
-    const position = "beforeend";
-
-    
-}
-
-const returningChecked = checkingToDo(todoItems)
+// console.log("checkingToDo", checkingToDo)
+// const returningChecked = checkingToDo(todoItems)
