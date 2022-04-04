@@ -6,73 +6,6 @@ const todoItems = [
 ];
 console.log("todoItems: ", todoItems)
 
-// const rootElement = document.getElementById("main-todo-list")
-// console.log("rootElement: ", rootElement)
-
-// const insideText = document.createElement("todo-text")
-// insideText.innerHTML = ""
-// rootElement.appendChild(insideText)
-
-// // ---------------- framework
-
-// const item = document.createElement("div")
-// item.className = "main-todo-list"
-// item.appendChild(insideText)
-// rootElement.appendChild(item)
-
-// const item2 = todoItems.find(item => item.id === 2)
-// console.log("item 2: ", item2.text)
-
-// const item3 = todoItems.find(item => item.id === 3)
-// console.log("item 3: ", item3.text)
-
-// const item4 = todoItems.find(item => item.id === 4)
-// console.log("item 4: ", item4.text)
-
-//---------------------------------------- ITEMS
-
-
-// const todoEl1 = document.createElement("div")
-// todoEl1.className = "main-todo-list" 
-// todoEl1.
-
-// function listingToDo(taskVar){
-//     taskVar.forEach(theTaskImIteratingOn =>
-
-//     )
-
-// }
-
-// const taskInput = document.getElementsByClassName("todo-list"); //new-task
-// const addButton = document.getElementsByClassName("todo-checkbox")[0]; //first button
-
-// //New Task List Item
-// const creatingNewTaskElement = function(todoVar) {
-//     //Create List Item
-//     const listItem = document.createElement("todo");
-
-//     //input (checkbox)
-//     const checkBox = document.createElement("todo-checkbox"); // checkbox
-//     //label
-//     const innerText = document.createElement("todo-text");
-//     //input (text)
-
-
-//     //Each element needs modifying
-
-//     checkBox.type = "checkbox";
-//     innerText.innerHTML = "todo-text";
-
-//     //Each element needs appending
-//     listItem.appendChild(checkBox);
-//     listItem.appendChild(innerText);
-    
-
-//     return listItem;
-// }
-// const tasksReturned = creatingNewTaskElement(todoItems)
-
-
 
 //----------------------------------- todo items
 const item = todoItems.find(item => item.id === 1)
@@ -121,8 +54,6 @@ console.log("getDeleted", getDeleted)
 
 ///--------- add back list ---------------
 
-
-const list= document.getElementById("main-todo-list")
 const lineThrough = document.getElementsByClassName(".todo-complete")
 console.log("linethrough", lineThrough)
 function addToDo(toDo, id, completed){
@@ -137,7 +68,7 @@ function addToDo(toDo, id, completed){
             `
     const position = "beforeend";
 
-    list.insertAdjacentHTML(position,item)
+    rootElement.insertAdjacentHTML(position,item)
 }
 
 addToDo(item.text)
@@ -149,8 +80,36 @@ addToDo(item4.text)
 
 
 //-------------------- checkmark when page loads
-window.onload = onPageLoad();
+// window.onload = onPageLoad();
 
-function onPageLoad () {
-    document.querySelector(".todo-checkbox").checked = true;
-} 
+// function onPageLoad () {
+//     document.querySelector(".todo-checkbox").checked = true;
+// } 
+
+// checkbox = getElementsByClassName("todo-checkbox");
+// checkbox.addEventListener
+
+// rootElement.forEach(todoVar =>
+//     const completed = todoVar.completed
+//     // if (completed === true){
+//     //     checkbox.checked
+//     }
+// )
+
+
+// ----------------------------------- create new todo
+
+const input = document.getElementById("input")
+document.addEventListener("keyup", function(event){
+    if(event.keycode === 13){
+        const toDO = input.value;
+
+        if (toDo){
+            addToDo(toDo, id, false)
+
+        todoItems.push({
+            
+        })
+        }
+    }
+})
