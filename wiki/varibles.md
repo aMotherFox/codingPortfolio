@@ -38,6 +38,7 @@ BigInt
 Symbol
 Lists (array)
 Objects
+Class
 
 
 BOOLEAN:

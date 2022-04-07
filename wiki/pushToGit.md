@@ -42,3 +42,11 @@ git pull
 
 HOW TO GO BACK TO THE LAST PUSH:
 git stash
+
+
+
+TERMINAL COMMANDS:
+-package manager (brew, volta)
+-node (handles JS)
+-yarn (yarn --version) will tell you what version you have, or if not found
+COMPUTER TERMINAL WILL NOT TELL YOU FIRECTLY IF SOMETHING IS INSTALLED, it will give you a version number
