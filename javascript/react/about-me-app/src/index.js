@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.css';
-import MyAwesomeFirstComponent from './components/MyAwesomeFirstComponent.js'
+
+import MyMainAbout from './components/MyMainAbout.js'
 
 ReactDOM.render(
-  <MyAwesomeFirstComponent />,
+  <MyMainAbout/>,
   document.getElementById('root')
 );
+
