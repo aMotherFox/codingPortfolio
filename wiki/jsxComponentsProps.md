@@ -50,4 +50,4 @@ class Welcome extends React.Component {
 
 If a component is going to be reused (like button, panel, avatar)(App, feedstory, comment), it is good to be extracted to a separate component
 
-All react components MUSt be pure functions. You should not be changing the inputs
+All react components MUST be pure functions. You should not be changing the inputs
