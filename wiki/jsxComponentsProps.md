@@ -30,7 +30,7 @@ Let you split UI into independant, reusable pieces
     * it thinks about each piece in isolation
 Conceptually, components are like JS functions
     *the accept inputs called "props" and return React elements
-
+Components can be used multiple times
 
 Define component with JS Function:
 function Welcome(props) {
@@ -51,3 +51,13 @@ class Welcome extends React.Component {
 If a component is going to be reused (like button, panel, avatar)(App, feedstory, comment), it is good to be extracted to a separate component
 
 All react components MUST be pure functions. You should not be changing the inputs
+
+
+node_modules:
+Dependancy basically means someone else's code
+    i.e. <script scr"whatever"></script> to import react
+
+
+
+JSON :JavaScript Object Notation
+    *must use " and not '
