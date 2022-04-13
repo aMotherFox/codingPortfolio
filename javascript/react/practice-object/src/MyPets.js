@@ -1,8 +1,9 @@
 import React from 'react'
+import './App.css';
 
 const MyPets = ({ pet, cutenessLevel, expenses }) => {
     return (
-        <div>
+        <div id="text">
             <p>My pet's name: {pet.name}</p>
             <p>My pet's age: {pet.age}</p>
             <p>My pet's favorit food: {pet.favoriteFood}</p>
@@ -19,3 +20,15 @@ const MyPets = ({ pet, cutenessLevel, expenses }) => {
     ) 
 }
 export default MyPets;
+
+
+
+const pets = {
+    smarts: "genius",
+    beauty: "gorgeous",
+    talent: "unmeasureable",
+}
+
+const {smarts, beauty, talent} = pets
+
+const petBrain = pets.smarts

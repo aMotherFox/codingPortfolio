@@ -1,5 +1,7 @@
 import React from 'react'
+import './App.css';
 import MyPets from './MyPets'
+
 
 
 const App = () => {
@@ -32,7 +34,7 @@ const App = () => {
 
   return (
     <>
-    <h1>These are my pets!</h1>
+    <h1 id="text">These are my pets!</h1>
     {pets.map(pet => {
       return (
         <MyPets 
@@ -42,6 +44,9 @@ const App = () => {
         />
       )
     })}
+    <p id="text"> My cutest pet is: {pets[0].name}</p>
+    <p id="text"> My ugliest and smelliest pet is: {pets[1].name}</p>
+    <p id="text"> My most un-alive pet is: {pets[2].name}</p>
     </>
   ) 
 }
