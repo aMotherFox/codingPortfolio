@@ -61,3 +61,10 @@ Dependancy basically means someone else's code
 
 JSON :JavaScript Object Notation
     *must use " and not '
+
+
+
+
+---------Props----------
+Similar to a variable
+Used to pass in values

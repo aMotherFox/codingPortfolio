@@ -230,3 +230,24 @@ const newUser1 = setUserFirstname(user1, "Vikki")
 console.log("newUser1: ", newUser1)
 console.log("newUser2: ", newUser2)
 console.log("newUser3: ", newUser3)
+
+
+
+
+
+----------------DESCRUCTURING-------------------
+A way to get fields out of an object
+
+const person = {
+    name: "Victoria",
+    age: 26,
+    favoriteColor: "pink",
+}
+
+const name2 = person.name
+console.log("name2: ", name2)      //normal way
+
+const {name, age, favoriteColor} = person
+console.log("DESCRUCTURING NAME: ", name)
+console.log("DESCRUCTURING AGE: ", age)
+console.log("DESCRUCTURING FAVORITE COLOR: ", favoriteColor)

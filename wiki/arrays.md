@@ -60,3 +60,7 @@ console.log("numbers after FINAL push: ", numbers)
 numbers.forEach(element => {
     console.log("element: ", element)
 })    
+
+
+
+
