@@ -30,23 +30,34 @@ const pets = [
 
 const MainComponent = (props) => (
   <div>
+    <div style={{ display: 'grid' }}>
     {/* <Icon
     /> */}
-    <img src='meandbuck.jpeg' alt='me and Bucky'/>
+    <img src='meandbuck.jpeg' alt='me and Bucky'className='photo'/>
+    </div>
+    <div style={{ display: 'grid' }}>
     <MyInfo
+      style={{ display: 'grid', backgroundColor: 'red', gridColumn: '2'}}
       details={details}
       // likes={likes}
       // dislikes={dislikes}
     />
+    </div>
+    <div>
     <Pets
     pets={pets}
     />
+    </div>
+    <div>
     <MyLikes
       likes={likes}
     />
+    </div>
+    <div>
     <MyDislikes
       dislikes={dislikes}
     />
+    </div>
   </div>
 )
 

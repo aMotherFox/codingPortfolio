@@ -3,7 +3,7 @@ import './App.css';
 
 const MyPets = ({ pet, cutenessLevel, expenses }) => {
     return (
-        <div id="text">
+        <div className='text'>
             <p>My pet's name: {pet.name}</p>
             <p>My pet's age: {pet.age}</p>
             <p>My pet's favorit food: {pet.favoriteFood}</p>
@@ -12,7 +12,7 @@ const MyPets = ({ pet, cutenessLevel, expenses }) => {
             <div>
                 <p>Expenses:</p>
                 {expenses.map(expense => (
-                    <p>expense: {expense}</p>
+                    <p key={expense}>expense: {expense}</p>
                 ))}
             </div>
             <hr />
