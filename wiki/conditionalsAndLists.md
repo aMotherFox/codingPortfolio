@@ -106,3 +106,7 @@ Keys help React idenify which items have changed, are added, or are removed. Key
     - keys only make sense in the context of the surrounding array
         *GOOD RULE OF THUMB: elements inside of the map() call need keys
     - keys used wthinin arrays should be unique amoung their siblings, but don't need to be globally unique
+
+
+
+A functional component HAS to return JSX
