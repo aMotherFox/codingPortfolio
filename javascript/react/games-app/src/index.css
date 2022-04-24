@@ -15,14 +15,39 @@ code {
 .header {
   font-size: 50px;
   color: blue;
+  text-align: center;
 }
 
 /* .heads-coin {
-  width: 350px;
-  height: 350px;
+  
 }
 
 .tails-coin {
-  width: 350px;
-  height: 350px;
+  
 } */
+
+#final-message {
+  font-size: 40px;
+  /* color: red; */
+  text-align: center;
+}
+
+#coin-flip {
+  display: flex;
+  justify-content: center;
+}
+
+#htwo {
+  font-size: 30px;
+  text-align: center;
+}
+
+#rps {
+  font-size: 30px;
+  text-align: center;
+}
+
+#second-game {
+  display: flex;
+  justify-content: center;
+}
