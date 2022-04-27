@@ -6,22 +6,19 @@ const App = () => {
 
   const [coinPickedMessage, setCoinPickedMessage] = useState('') //when you change a state, it will only re-render that part of them DOM
   const [messageColor, setMessageColor] = useState("blue")
+  //setting state, which now makes react re-render anytime that state variable is being use
   
   const handleCoinPicked = (coinValue) => { //coinValue is now "heads"
 
     const randomNumber = Math.floor(Math.random() * 2); //randomNumber is 0 or 1 because of math.
-    console.log("randomNumber:", randomNumber)
     const result = randomNumber === 1 ? "heads" : "tails" // ? = if, : = else
-    console.log("")
-    console.log("result", result)
     if (coinValue === result){
       setCoinPickedMessage(`You Picked ${coinValue}, CPU picked ${result}, You WON!`)
-      setMessageColor("red")
+      setMessageColor("green") //changing states, because you change states; react is triggered to re-render where the variable is being used
     } else {
       setCoinPickedMessage(`You Picked ${coinValue}, CPU picked ${result}, You LOST!`)
-      setMessageColor("blue")
+      setMessageColor("red")
     }
-    
   }
 
   //when i click a coin, tell me what coin was clicked
@@ -34,10 +31,8 @@ const App = () => {
   const [weaponPickedMessage, setWeaponPickedMessage] = useState('')
   const [messageColor2, setMessageColor2] = useState("blue")
   
-  const handleWeaponPicked = (weaponValue) => {
-    const randomNumber = Math.floor(Math.random() * 3); 
-    console.log("randomNumber:", randomNumber)
-    // const result = randomNumber === 1 ? "paper" : "rock" // ? = if, : = else
+  const handleWeaponPicked = (weaponValue) => { //weaponValue is being recieved
+    const randomNumber = Math.floor(Math.random() * 3);
     let result = randomNumber 
     if(randomNumber === 0){
       result = 'rock'
@@ -46,47 +41,62 @@ const App = () => {
     } else if (randomNumber === 2){
       result = 'scissors'
     }
+    //if my choice and the PC's choice are the same, then its a tie
+    //else if my choice is rock and PC's is paper, OR my choice is paper and PC's is scissors
+    // OR my choice is scissors and PC's is rock, then I lose
+    // OTHERWISE, I win!
 
-    
-    console.log("")
-    console.log("result", result)
-  
-  if(weaponValue === 'rock') {
-    if(result === 'rock') {
-      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, TIE!`)
-      setMessageColor2("yellow")
-    } else if (result === 'paper') {
-      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU LOSE!`)
-      setMessageColor2("red")
-    } else if (result === 'scissors') {
-      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU WIN!`)
-      setMessageColor2("green")
+  if(weaponValue === result) {
+    setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, TIE!`)
+    setMessageColor2("yellow")
+  } else if (
+      (weaponValue === 'rock' && result === 'paper') || 
+      (weaponValue === 'paper' && result === 'scissors') || 
+      (weaponValue === 'scissors' && result === 'rock') 
+      ){
+        setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU LOSE!`)
+        setMessageColor2("red")
+    } else {
+        setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU WIN!`)
+        setMessageColor2("green")
     }
-  } else if (weaponValue === 'paper') {
-    if(result === 'rock') {
-       setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU WIN!`)
-       setMessageColor2("green")
-    } else if (result === 'paper') {
-      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, TIE!`)
-      setMessageColor2("yellow")
-    } else if (result === 'scissors') {
-      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU LOSE!`)
-      setMessageColor2("red")
-    }  
-  } else if (weaponValue === 'scissors') {
-    if(result === 'rock') {
-      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU LOSE!`)
-      setMessageColor2("red")
-    } else if (result === 'paper') {
-       setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU WIN!`)
-       setMessageColor2("green")
-    } else if (result === 'scissors') {
-      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, TIE!`)
-      setMessageColor2("yellow")
-    }  
+          
+
+    // if(weaponValue === 'rock') {
+    //   if(result === 'rock') {
+    //     setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, TIE!`)
+    //     setMessageColor2("yellow") //setting state, which now makes react re-render anytime that state variable is being use
+    //   } else if (result === 'paper') {
+    //     setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU LOSE!`)
+    //     setMessageColor2("red")
+    //   } else if (result === 'scissors') {
+    //     setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU WIN!`)
+    //     setMessageColor2("green")
+    //   }
+    // } else if (weaponValue === 'paper') {
+    //   if(result === 'rock') {
+    //      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU WIN!`)
+    //      setMessageColor2("green")
+    //   } else if (result === 'paper') {
+    //     setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, TIE!`)
+    //     setMessageColor2("yellow")
+    //   } else if (result === 'scissors') {
+    //     setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU LOSE!`)
+    //     setMessageColor2("red")
+    //   }  
+    // } else if (weaponValue === 'scissors') {
+    //   if(result === 'rock') {
+    //     setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU LOSE!`)
+    //     setMessageColor2("red")
+    //   } else if (result === 'paper') {
+    //      setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, YOU WIN!`)
+    //      setMessageColor2("green")
+    //   } else if (result === 'scissors') {
+    //     setWeaponPickedMessage(`You picked ${weaponValue}, CPU picked ${result}, TIE!`)
+    //     setMessageColor2("yellow")
+    //   }  
+    // }
   }
-  
-}
   
   //--------------------------------- return --------------------------------
 
@@ -124,7 +134,7 @@ const App = () => {
             id='paper'
             />
           </div>
-          <div onClick={(e) => handleWeaponPicked("rock")}>
+          <div onClick={(e) => handleWeaponPicked("rock")}> {/* when you click on the div, the div has an on-click prop and on click, it calls the anon function, passing into it "rock" */}
             <img src="rock.png" 
             alt="rock"
             id='rock'
@@ -137,13 +147,14 @@ const App = () => {
             />
       		</div>
         </div>
-        <div style={{backgroundColor: 'purple'}} >
+        <div style={{backgroundColor: 'black'}} >
           <p id='final-message'
           style={{color: messageColor2}}>{weaponPickedMessage}</p>
         </div>
     </div>
   );
 }
-console.log("I am after the return")
 
 export default App;
+
+

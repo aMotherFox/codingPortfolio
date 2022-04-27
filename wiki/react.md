@@ -12,3 +12,17 @@ Interview Question:
 WHAT DOES THE BROWSER DO: it reads HTML and JS and translates it to UI components
 
 
+ALGORITHM: forumla or way to solve a thing
+think of algorith as function
+
+
+FORMS:
+** think of input boxes and a button
+            I.E. 
+            (first name box)
+            (last name box)
+            (submit button)
+Handling events with React is similar to handling events on DOM elements
+React events are camelCase
+When using React, you should generally not need to call addEventListener to add listeners to a DOM element after its created
+    instead, provide a listener when the element is initially rendered
