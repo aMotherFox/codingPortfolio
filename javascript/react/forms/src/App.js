@@ -26,7 +26,7 @@ const App = () => {
       firstName: typedFirstName,
       lastName: typedLastName,
       age: e.target.elements.age.value,
-      favoriteColor: e.target.elements.favoriteColor.value,
+      favoriteColor: e.target.elements.favoriteColor.value, //coming out of event
       aboutMe: e.target.elements.aboutMe.value,
       favoriteIceCream: e.target.elements.favoriteIceCream.value,
       isHungry: e.target.elements.isHungry.value,
