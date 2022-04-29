@@ -13,33 +13,89 @@ import './App.css';
 
 function App() {
 
-  const [todoItems, setTodoItems] = useState ([ //state variable with an array of objects
-    { id: 1, text: "Take out trash and recycling", completed: true},
-    { id: 2, text: "Pick up dry cleaning", completed: false},
-    { id: 3, text: "Get oil change", completed: false},
-    { id: 4, text: "Write thank-you notes", completed: false}, //fields of an object, not properties
-  ]);  
+  const [todoItems, setTodoItems] = useState (
+    [ //state variable with an array of objects
+      { id: 1, text: "Take out trash and recycling", completed: true},
+      { id: 2, text: "Pick up dry cleaning", completed: false},
+      { id: 3, text: "Get oil change", completed: false},
+      { id: 4, text: "Write thank-you notes", completed: false}, //fields of an object, not properties
+    ]
+  );  
   console.log("todoItems", todoItems)
 
 
   //-------------------------------------------
 
-  const [checkedState, setCheckedState] = useState('')
+  const [checkedState, setCheckedState] = useState(null)
 
 
-  const handleCheckedState = (item) => {
-    console.log("item", item)
-    const todoCompletion = item.completed  // not understanding, must break down, understand what passing in and what data types, ITS AN ARRAY AND NEEDS INDEXS
-    console.log("todoCompletion", todoCompletion) // completed is a BOOLEAN
-    //have to change state
+  const handleCheckedState = (clickedItem, e) => {
+    console.log("clickedItem", clickedItem)
+    // const todoCompletion = todoItems[1].completed  // not understanding, must break down, understand what passing in and what data types, ITS AN ARRAY AND NEEDS INDEXS
+    // console.log("todoCompletion", todoCompletion) // completed is a BOOLEAN
+    // let checked = e.target.checked
+    // console.log("checked", checked)
+    //-------- looping for true or false
+    // if (todoCompletion === false){
+      console.log("todoItems", todoItems)
+      const newTodoItems = todoItems.map(item => { //todo is state variable that is holding my state, initial state is an array of objects
+        // item is now id 1 on the first iteration, todoItems is an array 
+        console.log("item", item)
+        if(item.id === clickedItem.id){ //trying to find the item in my array with the ID of the item that was clicked, go back to .forEach, .map, .filter
+          return {...item, completed: true} //making a new object from item, making a copy of the item object and overriding the complete field
+        }
+        return item
+      })
+      console.log("newTodoItems", newTodoItems)
+      setTodoItems(newTodoItems)
+    // } 
 
-    // const checked = e.target.checked
+
+    //create new array of objects
+    //.find the object with id that matches todoItems id, if it matches then THAT is the one to change
+    //update state with everything that was there before, but rerender only that particular object
     
-    if (todoCompletion === false){
-      setCheckedState({
+
+    // let newTodoItems = todoItems //incorrect, get a NEW array out of todos
+    // console.log("newTodoItems", newTodoItems) //could do forEach and push, could do .map
+    //take new array and put it in setTodoItems
+    //hey my problem is X, I tried to do A, B, C, D, I researched Y and Z, its still not working so I believe the problem is related to _____
+
+    // todoItems.forEach(item => {
+    //   for (let key in item) {
+    //     console.log(`${key}: ${item[key]}`)
+    //   }
+    // })
+    // todoItems.forEach(item => {
+    //   if(item.completed === false){
+    //     // setTodoItems
+    //     newTodoItems.push(item)
+    //   }
+    // })
+
+    // if (todoCompletion === false){
+    //   const newTodoItems = todoItems
+    //   console.log("newTodoItems", newTodoItems)
+
       
-    })
-    }
+      
+      
+      
+    // } 
+
+   
+    
+    //have to change state
+    
+    // const checked = e.target.checked
+   
+
+    // const newTodoItems = todoItems
+    // console.log("newTodoItems", newTodoItems)
+    
+    // if (todoCompletion === false){
+    // // setCheckedState(newTodoItems)
+    // }
     
     //this function will allow the user to mark a list item as complete or incomplete
     //if check box is clicked, only that item is marked complete
@@ -81,7 +137,7 @@ function App() {
         <div id="main-todo-list" className="todo-list">
           {todoItems.map((item) =>
           <div className="todo" id={item.id} key={item.id}>
-            <input type="checkbox" className="todo-checkbox" onClick={(e) => handleCheckedState(item)}/>
+            <input type="checkbox" className="todo-checkbox" onClick={(e) => handleCheckedState(item, e)}/>
             <span className="todo-text">{item.text}</span>
           </div>
           )}
