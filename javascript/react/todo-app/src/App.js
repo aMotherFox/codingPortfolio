@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 //*DONE* display list of to-do items  
-//add ability to mark to-do items as complete ---- MUST BE STATE CHANGES
+//*DONE* add ability to mark to-do items as complete ---- MUST BE STATE CHANGES
 //keep the remaining to-do count up to date as items are completed or uncompleted
 //create new to-do items
 //modify completion behavior
@@ -38,7 +38,6 @@ function App() {
   );  
   // console.log("todoItems", todoItems)
 
-  
   //-------------------------------------------
 
   const [checkedState, setCheckedState] = useState(null)
@@ -65,34 +64,20 @@ function App() {
       console.log("newTodoItems", newTodoItems)
       setTodoItems(newTodoItems)
 
-    // } 
+      
 
-
-    //create new array of objects
-    //.find the object with id that matches todoItems id, if it matches then THAT is the one to change
-    //update state with everything that was there before, but rerender only that particular object
-
-
-    //have to change state
- 
-    
-    //this function will allow the user to mark a list item as complete or incomplete
-    //if check box is clicked, only that item is marked complete
-      // * complete = true
-    //if check box is NOT clicked, only that item is incomplete
-      // * incomplete = false
-    //completed items are greyed and crossed out
-      // * related css is under todo.complete
-    
-    //read the completed status on the todoItems
-    //when the event(checkbox) is triggered, 
+   
+   const uncompletedItems = newTodoItems.filter(newTodoItems => newTodoItems.completed === false)
+   const itemsRemaining = uncompletedItems.length
+   const span = document.getElementById("remaining-count")
+   span.innerHTML = itemsRemaining
+   console.log("uncompletedItems", uncompletedItems)
+   console.log("itemsRemaining", itemsRemaining)
+   console.log("span", span)
 
   }
 
   
-
-
-
 
   return (
     <div>
@@ -110,7 +95,7 @@ function App() {
           )}
         </div>
       <input type="text" placeholder="New todo"/>
-      <p><span id="remaining-count">0</span> items remain</p>
+      <p><span id="remaining-count">3</span> items remain</p>
     </div>
 
     </div>
