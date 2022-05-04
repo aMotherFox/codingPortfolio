@@ -3,7 +3,7 @@ import './App.css';
 
 //*DONE* display list of to-do items  
 //*DONE* add ability to mark to-do items as complete ---- MUST BE STATE CHANGES
-//keep the remaining to-do count up to date as items are completed or uncompleted
+//*DONE* keep the remaining to-do count up to date as items are completed or uncompleted
 //create new to-do items
 //modify completion behavior
 //toggle visibility of completed to-do items
@@ -38,39 +38,33 @@ function App() {
   );  
   // console.log("todoItems", todoItems)
 
-  //-------------------------------------------
+  //--------------------------------------------------------------------------------
 
   const [checkedState, setCheckedState] = useState(null)
-  // const [newClass, setNewClass] = useState("todo")
-
+  
   const handleCheckedState = (clickedItem, e) => {
-    
-    // console.log("clickedItem", clickedItem)
-    // console.log("e", e)
-    // const todoCompletion = todoItems[1].completed  // not understanding, must break down, understand what passing in and what data types, ITS AN ARRAY AND NEEDS INDEXS
-    // console.log("todoCompletion", todoCompletion) // completed is a BOOLEAN
-
+   
       // console.log("todoItems", todoItems)
-      const newTodoItems = todoItems.map(item => { //todo is state variable that is holding my state, initial state is an array of objects
-        // item is now id 1 on the first iteration, todoItems is an array 
+      const newTodoItems = todoItems.map(item => { 
         const trueOrFalse = clickedItem.completed
-        console.log("trueOrFalse", trueOrFalse)
-
-        console.log("item", item)
-        
-          if(item.id === clickedItem.id){ //trying to find the item in my array with the ID of the item that was clicked, go back to .forEach, .map, .filter
-          
-            return {...item, completed: true, newClass: "todo complete"} //making a new object from item, making a copy of the item object and overriding the complete field
+        if ( trueOrFalse === false ){
+        	if(item.id === clickedItem.id){ 
+            return {...item, completed: true, newClass: "todo complete"} 
           }
           return item
+        }
+        else if (trueOrFalse === true){
+        	if(item.id === clickedItem.id){ 
+            return {...item, completed: false, newClass: "todo"} 
           }
-      )
-      console.log("newTodoItems", newTodoItems)
-      setTodoItems(newTodoItems)
+          return item  
+        }
+      }
+    )
+    setTodoItems(newTodoItems)
 
-      
+    //--------------------------------------------------------------------------------
 
-   
    const uncompletedItems = newTodoItems.filter(newTodoItems => newTodoItems.completed === false)
    const itemsRemaining = uncompletedItems.length
    const span = document.getElementById("remaining-count")
@@ -81,7 +75,6 @@ function App() {
 
   }
 
-  
 
   return (
     <div>
