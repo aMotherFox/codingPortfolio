@@ -53,14 +53,18 @@ function App() {
       // console.log("todoItems", todoItems)
       const newTodoItems = todoItems.map(item => { //todo is state variable that is holding my state, initial state is an array of objects
         // item is now id 1 on the first iteration, todoItems is an array 
-        
+        const trueOrFalse = clickedItem.completed
+        console.log("trueOrFalse", trueOrFalse)
+
         console.log("item", item)
-        if(item.id === clickedItem.id){ //trying to find the item in my array with the ID of the item that was clicked, go back to .forEach, .map, .filter
-         
-          return {...item, completed: true, newClass: "todo complete"} //making a new object from item, making a copy of the item object and overriding the complete field
-        }
-        return item
-      })
+        
+          if(item.id === clickedItem.id){ //trying to find the item in my array with the ID of the item that was clicked, go back to .forEach, .map, .filter
+          
+            return {...item, completed: true, newClass: "todo complete"} //making a new object from item, making a copy of the item object and overriding the complete field
+          }
+          return item
+          }
+      )
       console.log("newTodoItems", newTodoItems)
       setTodoItems(newTodoItems)
 
