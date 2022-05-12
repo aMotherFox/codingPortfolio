@@ -1,0 +1,219 @@
+/* rem stands for root em; a unit of measurement that represents the font size of the root element 
+i.e. 1rem = font size of the html element, most browsers default this vale to 16px
+using rem can help with consistency of font size and spacing throughout the UI */
+
+html{
+  font-size: 92.5%;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0%;
+  font: 1rem helvetica;
+  height: 100vh;
+}
+
+.App {
+  display: grid;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.Main{
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 12px;
+}
+
+
+/* Sidebar Area */
+
+.Sidebar-Area{
+  width: 20%;
+  display: grid;
+  height: 40rem;
+  justify-content: center;
+}
+
+.Sidebar-Area > div{
+  margin-top: 15px;
+}
+
+.Icons{
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.Icons > div{
+  margin: 0 12px;
+}
+
+.Icons :hover{
+  color: red;
+}
+
+.button{
+  background-color: #1DA1F2;
+  color: white;
+  width: 100%;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+/* Main Area */
+
+.Main-Area{
+  width: 50%;
+}
+
+.Home{
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+  align-items: center;
+  background-color: white;
+
+}
+
+.home2{
+  font-size: 1.2rem;
+  font-weight: 600;
+  
+}
+
+.Create-post{
+  height: 6rem;
+  display: grid;
+  background-color: white;
+  border: 1px grey solid;
+  padding: .5rem;
+}
+
+.Add-text{
+  display: flex;
+  align-items: center;
+}
+
+input[type="Post"]{
+  height: 2rem;
+  border: none;
+}
+
+input::placeholder{
+  font-size: 1rem;
+
+}
+
+.Buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.Icons{
+  display: flex;
+}
+
+.Icon > div {
+  padding: 0 12px;
+}
+
+.buttons-create{
+  background-color: #1DA1F2;
+  border: none;
+  height: 2rem;
+  padding: 0 18px;
+  border-radius: 1rem;
+  font-size: 1rem;
+  color: white;
+}
+
+.posted-feed{
+  border: 1px grey solid;
+}
+
+.User-posts{
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem;
+}
+
+.User-content{
+  display: flex;
+  align-items: center;
+}
+
+.User-content > div{
+  padding: 0 2px;
+}
+
+.Username{
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.User-at{
+  font-size: .8rem;
+}
+
+
+
+
+/* Left Sidebar Area */
+
+.Left-Sidebar-Area{
+  width: 30%;
+  height: 40rem;
+  display: grid;
+  background-color: blue;
+}
+
+/* Button */
+
+
+
+
+
+
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */

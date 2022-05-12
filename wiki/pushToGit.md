@@ -16,14 +16,14 @@ git push
     git status
     git add .
     git status
-    git commit -m"added notes"
+    git commit -m "added notes"
     git status
     git push
 
 
 pwd
 cd Desktop
-ls -la
+ls -las
 cd codingPortfolio
 ls -la
 git add .

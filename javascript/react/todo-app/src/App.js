@@ -38,11 +38,11 @@ function App() {
   );  
   // console.log("todoItems", todoItems)
 
-  //--------------------------------------------------------------------------------
+  //------------------------------listing TODOs and marking complete --------------------------------------------------
 
   const [checkedState, setCheckedState] = useState(null)
   
-  const handleCheckedState = (clickedItem, e) => {
+  const handleCheckedState = (clickedItem) => {
    
       // console.log("todoItems", todoItems)
       const newTodoItems = todoItems.map(item => { 
@@ -50,8 +50,9 @@ function App() {
         if ( trueOrFalse === false ){
         	if(item.id === clickedItem.id){ 
             return {...item, completed: true, newClass: "todo complete"} 
+          } else {
+            return item //doing a .map, MUST return after an iteration, EVEN if unchanged
           }
-          return item
         }
         else if (trueOrFalse === true){
         	if(item.id === clickedItem.id){ 
@@ -63,7 +64,7 @@ function App() {
     )
     setTodoItems(newTodoItems)
 
-    //--------------------------------------------------------------------------------
+    //-------------------------------remaining count-------------------------------------------------
 
    const uncompletedItems = newTodoItems.filter(newTodoItems => newTodoItems.completed === false)
    const itemsRemaining = uncompletedItems.length
@@ -72,6 +73,22 @@ function App() {
    console.log("uncompletedItems", uncompletedItems)
    console.log("itemsRemaining", itemsRemaining)
    console.log("span", span)
+
+
+   //---------------------------------adding new todos------------------------------------
+   
+  }
+
+  const [value, setValue] = useState("")
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log("e", e)
+    console.log("INSIDE THE SUBMIT")
+    // e.target.form.value 
+    console.log("e.target.form ", e.target.form )
+
+    const endOfList = todoItems[todoItems.length - 1]
+    console.log("endOfList", endOfList)
 
   }
 
@@ -86,12 +103,16 @@ function App() {
         <div id="main-todo-list" className="todo-list">
           {todoItems.map((item) =>
           <div className={item.newClass} id={item.id} key={item.id}>
-            <input checked={item.completed} type="checkbox" className="todo-checkbox" onChange={(e) => handleCheckedState(item, e)}/>
+            <input checked={item.completed} type="checkbox" className="todo-checkbox" onChange={(e) => handleCheckedState(item)}/>
             <span className="todo-text">{item.text}</span>
           </div>
           )}
         </div>
-      <input type="text" placeholder="New todo"/>
+
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input type="text" placeholder="New todo" value={value} onChange={e => setValue(e.target.value)}/>
+      </form>
+    
       <p><span id="remaining-count">3</span> items remain</p>
     </div>
 
@@ -102,3 +123,4 @@ function App() {
 //redundant to pass in todoItems on line 85, pass in which was clicked instead
 
 export default App;
+//review array functions like .map esp with arrays of objects, review react rules esp states
