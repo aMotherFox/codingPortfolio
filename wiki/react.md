@@ -26,3 +26,6 @@ Handling events with React is similar to handling events on DOM elements
 React events are camelCase
 When using React, you should generally not need to call addEventListener to add listeners to a DOM element after its created
     instead, provide a listener when the element is initially rendered
+
+
+DEPENDANCIES:
