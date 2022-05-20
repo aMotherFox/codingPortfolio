@@ -160,3 +160,45 @@ function App() {
 } 
 
 export default App;
+
+
+
+
+Emre's Twitter
+
+// - Show (3) pre-existing tweets (from different users)
+//   - Show user icon
+//   - Show user name
+//   - Show user tag
+//   - Show tweet
+//   - Show likes
+// - Tweet
+//   - Add char limit (200)
+//   - Show the new tweet on the bottom of the tweets
+//   - New tweet should show all 'standard' information
+//     - user icon, user name, user tag, tweet
+// - Retweet
+//   - Show the retweeted tweet on the bottom of the page
+//   - Show the "origin" tweeter user
+//   - Show the "new" tweeter user information (Retweeted by Emre)
+// - Like tweets
+//   - Like count should go up
+//   - Disliking a tweet should lower count 
+// - Give the user a proper validation message
+//   - if they try putting in a tweet of over 200 chars, let them know that's not allowed
+//   - dont allow user to input an empty tweet
+//   - allow but REMOVE empty spaces around a tweet
+//     - ex: `          this is a tweet.        `
+//     - should be come `this is a tweet.`
+
+// Stretch goal:
+
+// - Delete tweets
+// - Edit tweets
+// - Allow comments
+//   - comments would show under the specific tweet
+//   - comments should be 'editable'
+//   - comments should be deletable
+// - Only allow ALL OF THE ABOVE for the tweet's owner (aka you can only add/edit/delete your own tweets)
+// - Tweet a picture
+//   - all features mentioned above should also work here
