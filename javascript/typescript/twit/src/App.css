@@ -155,6 +155,20 @@ input::placeholder{
   font-size: .8rem;
 }
 
+.Tweet-text{
+  padding: .5rem;
+}
+
+.Post-image{
+  padding: .5rem;
+}
+
+.Comment-section{
+  display: flex;
+  justify-content: space-around;
+  height: 2rem;
+  align-items: center;
+}
 
 
 

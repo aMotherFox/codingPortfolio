@@ -5,7 +5,7 @@ import {BiHomeCircle} from 'react-icons/bi'
 import {BiHash} from 'react-icons/bi'
 import {BiBell} from 'react-icons/bi'
 import {MdBookmarkBorder, MdMailOutline} from 'react-icons/md'
-import {FaUserCircle, FaEllipsisH} from 'react-icons/fa'
+import {FaUserCircle, FaEllipsisH, FaRegHeart, FaRetweet, FaRegComment} from 'react-icons/fa'
 import {BsCardText} from 'react-icons/bs'
 
 type Tweet =
@@ -16,6 +16,7 @@ type Tweet =
     photo: string | undefined,
     username: string,
     usertag: string,
+    likes: number,
   }
 
 const initialTweets: Tweet[] = [
@@ -26,6 +27,7 @@ const initialTweets: Tweet[] = [
   photo: "/images/post.jpg",
   username: "Bucky Boy",
   usertag: "@BucktownFunk",
+  likes: 350000,
   },
   {
     id: 2,
@@ -34,6 +36,7 @@ const initialTweets: Tweet[] = [
     photo: undefined, 
     username: "OG Furbabie",
     usertag: "@HankTheTank",
+    likes: 211,
   },
   {
     id: 3,
@@ -42,6 +45,7 @@ const initialTweets: Tweet[] = [
     photo: undefined,
     username: "Sigma Grindset",
     usertag: "@EyeOfTheTiger",
+    likes: 4,
   }
 ]
 console.log("initialTweets", initialTweets)
@@ -165,6 +169,22 @@ function App() {
             <div className="Post-image">
               {item.photo && <img src={item.photo} alt="post" style={{width: "100%", height: "42rem", objectFit: "fill"}}/>}
             </div>
+            <br></br>
+            <div className="Comment-section">
+              <div className="Comment">
+                <FaRegComment fontSize="1.4rem"/>
+              </div>
+              <div className="Comment">
+                <FaRetweet fontSize="1.4rem"/>
+              </div>
+              <div className="Comment">
+                <FaRegHeart fontSize="1.4rem"/>
+                <div className="Likes">
+                {item.likes}
+                </div>
+                <br></br>
+              </div>
+            </div>
           </div>
         )}
 
@@ -183,5 +203,6 @@ function App() {
 } 
 
 export default App;
+
 
 // && is; if the thing is true, show the thing, if not, then don't show

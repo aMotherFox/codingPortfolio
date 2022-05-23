@@ -164,7 +164,7 @@ export default App;
 
 
 
-Emre's Twitter
+// Emre's Twitter
 
 // - Show (3) pre-existing tweets (from different users)
 //   - Show user icon
