@@ -45,21 +45,88 @@ const initialTweets: Tweet[] = [
     photo: undefined,
     username: "Sigma Grindset",
     usertag: "@EyeOfTheTiger",
-    likes: 4,
+    likes: 3,
   }
 ]
 console.log("initialTweets", initialTweets)
 console.log("array of objects?", Array.isArray(initialTweets))
 
+type InputValues = {
+  tweetText: {value: string},
+  tweetUser: {value: string},
+  tweetAt: {value: string},
+} & EventTarget
+
 
 function App() {
 
-  console.log("I am inside the funciton")
-  
   const [ourTweets, setOurTweets] = useState<Tweet[]>(initialTweets)
+  console.log("ourTweets", ourTweets)
   
 
+  const handleSubmit = (e: React.ChangeEvent<any>) => {
+    // console.log("I'm typing.....", e.target.value)
+    console.log("I've been clicked")
+    e.preventDefault();
 
+    // const targetedField = e.target as InputValues
+    // let tweetText = targetedField.tweetText.value;
+    // // let tweetUser = targetedField.tweetUser.value;
+    // // let tweetAt = targetedField.tweetAt.value;
+    // const firstInArray = ourTweets[0]
+
+    // setOurTweets(
+    //   [
+    //     {
+    //       id: firstInArray.id + 1,
+    //       text: tweetText,
+    //       pfp: "/images/profile.jpg",
+    //       photo: undefined,
+    //       username: "Bucky Boy",
+    //       usertag: "@BucktownFunk",
+    //       likes: 0,
+    //     },
+    //     ...ourTweets
+    //   ]
+    // )
+    // tweetText=""
+
+
+    // const newTweets = {
+    //   id: 4,
+    //   text: e.target.value,
+    //   pfp: "/images/profile.jpg",
+    //   photo: undefined,
+    //   username: "Bucky Boy",
+    //   usertag: "@BucktownFunk",
+    //   likes: 0,
+    // }
+    // console.log("newTweets", newTweets)
+
+    // const spreadTweet = [
+    //   ...ourTweets,
+    //   newTweets
+    // ]
+    // console.log("spreadTweet", spreadTweet)
+
+    // setOurTweets(spreadTweet)
+
+
+    // setOurTweets(
+    //   [
+    //     {
+    //       id: 4,
+    //       text: e.target.value,
+    //       pfp: "/images/profile.jpg",
+    //       photo: undefined,
+    //       username: "Bucky Boy",
+    //       usertag: "@BucktownFunk",
+    //       likes: 0,
+    //     },
+    //     ...ourTweets,
+    //   ]
+    // )
+  }
 
 
 
@@ -128,7 +195,7 @@ function App() {
               <div className="Profile">
                 <img src="/images/profile.jpg" alt="profile" style={{height: "35px", width: "35px", borderRadius: "50%"}}/>
               </div>
-              <input type="Post" placeholder="Sup Dawgs"/> {/*WHERE WE ADD TEXT, ONCHANGE*/}
+              <input type="Post" placeholder="Sup Dawgs"  onChange={handleSubmit}/> {/*WHERE WE ADD TEXT, ONCHANGE*/}
             </div>
             <div className="Buttons">
             <div className="Icons">
@@ -146,47 +213,51 @@ function App() {
               </div>
             </div>
             <div className="Tweets">
-              <button className="button"> {/*ONCLICK HERE*/}
-                Tweet
-              </button>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <button className="button"> {/*ONCLICK HERE*/}
+                  Tweet
+                </button>
+              </form>
             </div>
           </div>
         </div>
 
-        {initialTweets.map((item) =>
-          <div className="posted-feed" key={item.id}>
-            <div className="User-posts">
-              <div className="User-content">
-                <img src={item.pfp} alt="pfp" style={{height: "30px", width: "30px", borderRadius: "50%"}}/>
-                <div className="Username">{item.username}</div>
-                <div className="User-at">{item.usertag}</div>
-              </div>
-            </div>
-            <div className="Tweet-text">
-            {item.text}
-            </div>
-            <br></br>
-            <div className="Post-image">
-              {item.photo && <img src={item.photo} alt="post" style={{width: "100%", height: "42rem", objectFit: "fill"}}/>}
-            </div>
-            <br></br>
-            <div className="Comment-section">
-              <div className="Comment">
-                <FaRegComment fontSize="1.4rem"/>
-              </div>
-              <div className="Comment">
-                <FaRetweet fontSize="1.4rem"/>
-              </div>
-              <div className="Comment">
-                <FaRegHeart fontSize="1.4rem"/>
-                <div className="Likes">
-                {item.likes}
+        
+          {initialTweets.map((item) =>
+            <div className="posted-feed" key={item.id}>
+              <div className="User-posts">
+                <div className="User-content">
+                  <img src={item.pfp} alt="pfp" style={{height: "30px", width: "30px", borderRadius: "50%"}}/>
+                  <div className="Username">{item.username}</div>
+                  <div className="User-at">{item.usertag}</div>
                 </div>
-                <br></br>
+              </div>
+              <div className="Tweet-text">
+              {item.text}
+              </div>
+              <br></br>
+              <div className="Post-image">
+                {item.photo && <img src={item.photo} alt="post" style={{width: "100%", height: "42rem", objectFit: "fill"}}/>}
+              </div>
+              <br></br>
+              <div className="Comment-section">
+                <div className="Comment">
+                  <FaRegComment fontSize="1.4rem"/>
+                </div>
+                <div className="Comment">
+                  <FaRetweet fontSize="1.4rem"/>
+                </div>
+                <div className="Comment">
+                  <FaRegHeart fontSize="1.4rem"/>
+                  <div className="Likes">
+                  {item.likes}
+                  </div>
+                  <br></br>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        
 
       </div>
 

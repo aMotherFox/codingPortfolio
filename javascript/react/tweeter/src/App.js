@@ -166,14 +166,8 @@ export default App;
 
 // Emre's Twitter
 
-// - Show (3) pre-existing tweets (from different users)
-//   - Show user icon
-//   - Show user name
-//   - Show user tag
-//   - Show tweet
-//   - Show likes
+
 // - Tweet
-//   - Add char limit (200)
 //   - Show the new tweet on the bottom of the tweets
 //   - New tweet should show all 'standard' information
 //     - user icon, user name, user tag, tweet
@@ -193,6 +187,7 @@ export default App;
 
 // Stretch goal:
 
+//  - Add char limit (200)
 // - Delete tweets
 // - Edit tweets
 // - Allow comments

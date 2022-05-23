@@ -170,6 +170,14 @@ input::placeholder{
   align-items: center;
 }
 
+.Likes{
+  display: flex;
+  justify-content: space-around;
+  height: 2rem;
+  align-items: center;
+  font-size: .8rem;
+}
+
 
 
 /* Left Sidebar Area */
