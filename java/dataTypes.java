@@ -8,6 +8,7 @@ import java.util.List;
 // everything in Java MUST be inside a class and method
 // javac dataTypes.java 
 // java (class name without .class)
+// "public" is an access modifier used for classes, attributes, methods, and constructors maing them accessible by any other class
 
 class DataTypes{
 

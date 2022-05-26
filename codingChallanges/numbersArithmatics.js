@@ -1,4 +1,4 @@
-/*
+/* class MathNum
 Find the largest and smallest number in a list 
 Assume the list size is X - you can't hard code it...
 Assume the items in the list are NOT in order
