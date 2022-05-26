@@ -1,3 +1,4 @@
+package codingChallanges;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,6 +50,41 @@ public class MathNum{
         for (Integer number : numbers) {
             sum = sum + number;
         }
+
+    }
+     List<Integer> numbers2 = List.of(1,2,3);
+        
+        // System.out.println(numbers2); <----- wont print a number from ^^^^ line 52
+        //its because you instantiated an object, so when you sout an object it will give you the location
+        //of that object on your computer, it wont actually print out the field. 
+        //but if you try to sout numbers2[index] 
+        System.out.println("numbers2: %s".formatted(numbers2));
+
+        Integer firstNumber = numbers2.get(0); //<------- this is how you get the first index of the array when you have a List<Integer> !!!!!!!!!!
+        Integer sum = 0;
+        Integer subtraction = 0;
+        Integer multiplication = 0;
+        Integer division = 0;
+
+        for (Integer number : numbers2) { 
+            sum = sum + number;
+
+            if (firstNumber == number) {
+                subtraction = number;
+                multiplication = number;
+                division = number;
+            } else {
+                subtraction = subtraction - number;
+                multiplication = multiplication * number;
+                division = division / number;
+            }
+        }
+        System.out.println("sum " + sum);
+        System.out.println("subtraction " + subtraction);
+        System.out.println("multiplication " + multiplication);
+        System.out.println("division " + division);
+
+        
 
     }
 
