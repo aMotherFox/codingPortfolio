@@ -1,14 +1,29 @@
-package codingChallanges;
 
 public class GradingScale {
     public static void main(String[] args) {
         System.out.println("Hello from the grading scale");
+        Integer result = giveNumber(100); //calling the method and passing in
+        System.out.println("result: " + result);
+        sayHello();
 
-        MyGradingScaleClass.caluclateGrade(99);
+        System.out.println("------calling MyGradingScaleClass----------");
+        MyGradingScaleClass.calculateGrade(99);
 
-        // public static Integer caluclateGrade(Integer grade) {;
-        //     return grade;
-        // }
+    }
+
+    public static void sayHello(){
+        System.out.println("Hello from sayHello");
+    }
+
+
+    public static Integer giveNumber(Integer grade) { //function definition, recieves ()
+            System.out.println("Hello from calculateGrade");
+            Integer result = grade;
+            return result;
+    }
+
+        // MyGradingScaleClass.caluclateGrade(99);
+
 
         //want to call the function and pass in the values
         //sysout the result
@@ -35,7 +50,7 @@ public class GradingScale {
         //     return "not a grade";
         // }
         
-    }
+    
 
     // public static String letterGrade(Integer grade) {
     //     String excellent = "A, excellent";

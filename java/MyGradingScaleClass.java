@@ -1,9 +1,13 @@
-package codingChallanges;
 
 public class MyGradingScaleClass {
 
-    public static String caluclateGrade(Integer grade) {
+    public static void calculateGrade(Integer grade) {
+        //will not compile and run bc it doesn't have a main class
+        //when file executes it looks for main method
+        //Integer grade
 
+        System.out.println("grading");
+        
         // String excellent = "A, excellent";
         // String good = "B";
         // String average = "C";
