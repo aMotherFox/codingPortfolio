@@ -1,3 +1,5 @@
+package codingChallanges.GradingScale;
+import MyGradingScaleClass;
 
 public class GradingScale {
     public static void main(String[] args) {

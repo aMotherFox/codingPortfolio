@@ -1,4 +1,4 @@
-package codingChallanges;
+package codingChallanges.Arithmatic;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
