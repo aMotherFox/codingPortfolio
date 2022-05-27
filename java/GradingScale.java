@@ -7,8 +7,16 @@ public class GradingScale {
         sayHello();
 
         System.out.println("------calling MyGradingScaleClass----------");
-        MyGradingScaleClass.calculateGrade(99);
-
+        String gradeA = MyGradingScaleClass.calculateGrade(99);
+        System.out.println("99 gives you: " + gradeA);
+        String gradeB = MyGradingScaleClass.calculateGrade(89);
+        System.out.println("89 gives you: " + gradeB);
+        String gradeC = MyGradingScaleClass.calculateGrade(79);
+        System.out.println("79 gives you: " + gradeC);
+        String gradeD = MyGradingScaleClass.calculateGrade(69);
+        System.out.println("69 gives you: " + gradeD);
+        String gradeF = MyGradingScaleClass.calculateGrade(9);
+        System.out.println("9 gives you: " + gradeF);
     }
 
     public static void sayHello(){
@@ -22,54 +30,5 @@ public class GradingScale {
             return result;
     }
 
-        // MyGradingScaleClass.caluclateGrade(99);
 
-
-        //want to call the function and pass in the values
-        //sysout the result
-
-        // Integer result = caluclateGrade(99)
-        // System.out.println("Your grade is: " + result);
-
-        // String excellent = "A, excellent";
-        // String good = "B";
-        // String average = "C";
-        // String belowAve = "D";
-        // String fail = "F";
-        // if (grade > 90 && grade < 101) {
-        //     return excellent;
-        // } else if (grade > 80 && grade < 89) {
-        //     return good;
-        // } else if (grade > 70 && grade < 79) {
-        //     return average;
-        // } else if (grade > 60 && grade < 69) {
-        //     return belowAve;
-        // } else if (grade > 50 && grade < 59) {
-        //     return fail;
-        // } else {
-        //     return "not a grade";
-        // }
-        
-    
-
-    // public static String letterGrade(Integer grade) {
-    //     String excellent = "A, excellent";
-    //     String good = "B";
-    //     String average = "C";
-    //     String belowAve = "D";
-    //     String fail = "F";
-    //     if (grade > 90 && grade < 101) {
-    //         return excellent;
-    //     } else if (grade > 80 && grade < 89) {
-    //         return good;
-    //     } else if (grade > 70 && grade < 79) {
-    //         return average;
-    //     } else if (grade > 60 && grade < 69) {
-    //         return belowAve;
-    //     } else if (grade > 50 && grade < 59) {
-    //         return fail;
-    //     } else {
-    //         return "not a grade";
-    //     }
-    // }
 }

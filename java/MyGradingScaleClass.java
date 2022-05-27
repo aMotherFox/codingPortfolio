@@ -1,35 +1,27 @@
 
 public class MyGradingScaleClass {
 
-    public static void calculateGrade(Integer grade) {
+    public static String calculateGrade(Integer grade) {
         //will not compile and run bc it doesn't have a main class
         //when file executes it looks for main method
         //Integer grade
 
         System.out.println("grading");
-        
-        // String excellent = "A, excellent";
-        // String good = "B";
-        // String average = "C";
-        // String belowAve = "D";
-        // String fail = "F";
 
-
-        for (Integer grade){
-            if (grade > 90 && grade < 101) {
+            if (grade > 89 && grade < 101) {
                 return "A - excellent";
-            } else if (grade > 80 && grade < 89) {
+            } else if (grade > 79 && grade < 90) {
                 return "B - good";
-            } else if (grade > 70 && grade < 79) {
+            } else if (grade > 69 && grade < 80) {
                 return "C - average";
-            } else if (grade > 60 && grade < 69) {
+            } else if (grade > 59 && grade < 70) {
                 return "D - below average";
-            } else if (grade > 50 && grade < 59) {
+            } else if (grade > 0 && grade < 60) {
                 return "F - fail";
             } else {
                 return "not a grade";
             }
-        }
+
     }
     
 }
