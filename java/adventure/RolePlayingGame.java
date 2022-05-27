@@ -38,7 +38,7 @@ public class RolePlayingGame {
         System.out.println(" 'Hello, " + userName + "' the fairy giggles. ");
         System.out.print(" You ask Victoria if there is anything she needs from you. ");
         System.out.print(" 'I'm on my way to the midsummer picnic in the Korok Forest! All the bunnies, mice, squirrels, and fawns are waiting for me to arrive and use my magic to summon the fireflies for the band's performance' Victoria said proudly. ");
-        System.out.print(" 'I heard you're a kind hearted person who would help a little fairy like me. Is that true?' ");
+        System.out.print(" 'I heard you're a kind hearted person who would help a little fairy like me. Is that true?' (true/false)");
 
         Boolean willHelp = scanner.nextBoolean(); //stage 2
         if (willHelp == true){
@@ -51,12 +51,13 @@ public class RolePlayingGame {
         System.out.print(" Unsure if you've actually made it out of the Great Hyrule Forest, you come to a path split in 3 directions. 'Which way should we go? Path 1, 2, or 3?', Victoria asks. ");
 
         Integer userNumberPick = scanner.nextInt(); //stage 3
-        if (userNumberPick == 1) {
-            System.out.println(" You wander down the darkening winding path, a moss covered sign hiding the words 'Lost Woods' ");
-            System.exit(1);
-        } else {
-            System.out.println(" You wander down the bright scenic path, stopping to admire the shrines you pass. ");
-        }
+        RolePlayClass.decidePath(userNumberPick);
+        // if (userNumberPick == 1) {
+        //     System.out.println(" You wander down the darkening winding path, a moss covered sign hiding the words 'Lost Woods' ");
+        //     System.exit(1);
+        // } else {
+        //     System.out.println(" You wander down the bright scenic path, stopping to admire the shrines you pass. ");
+        // }
         System.out.println(" 'You can tell we're in Korok Forest because of the shrines!' Victoria said cheerfully. ");
         System.out.println(" She led you to a forest clearing and there sat a pie cart that seemed sized for a child. ");
         System.out.println(" Victoria knocked on the wooden counter and up popped a racoon. 'Victoria!' the racoon said and hugged his fairy friend.  ");
@@ -67,18 +68,19 @@ public class RolePlayingGame {
         System.out.println(" Victoria praises your choice of pie flavor. She buys one of each except for " + pieFlavor + " which she buys two. You pack the pies away into your satchel and continue your journey as Victoria perches again on your shoulder. ");
         System.out.println(" Victoria seems perfectly content, calling hellos to the butterflies as you both pass them by on the forest path. But you have noticed the forest noises have slowly gotten quieter and quieter. ");
         System.out.println(" Suddenly, it is still and silent. You open your mouth to ask Victoria if she senses anything strange, when from the shadows; A GIANT BROWN WOLF JUMPS OUT AT YOU!!! ");
-        System.out.println(" You have a split second to make a decision!! Fight or flight!! Is it true or false that you are a fighter? ");
+        System.out.println(" You have a split second to make a decision!! Fight or flight!! Is it true or false that you are a fighter? (true/false)");
 
         //scanner here for fighting boolean, choice called fightOrFlight
         Boolean fightOrFlight = scanner.nextBoolean(); //stage 5
-        if (fightOrFlight == true){
-            System.out.println(" You lunge at the wolf and... it falls back screaming. 'What are you doing?!', Victoria yelled, 'That is Hyrule's sweetheart, Bucky!'.  ");
-            System.out.println(" Now that he is in the light you can see the familiar puppy face of the famous dog celebrity, Bucky! He may be the size of a pony, but he's a worldwide known idol and every village sells stuffed animals of him! ");
-            System.out.println(" Victoria stares at you blankly. 'I didn't know you were so violent," + userName + ". Maybe you shouldn't come to the party.' Victoria flutters to Bucky's back and she rides him like a pony off into the forest. Everything goes black. ");
-            System.exit(1);
-        } else {
-            System.out.println(" 'Don't run!', Victoria yelled, 'That's my friend, Bucky!' ");
-        }
+        RolePlayClass.decideFight(fightOrFlight);
+        // if (fightOrFlight == true){
+        //     System.out.println(" You lunge at the wolf and... it falls back screaming. 'What are you doing?!', Victoria yelled, 'That is Hyrule's sweetheart, Bucky!'.  ");
+        //     System.out.println(" Now that he is in the light you can see the familiar puppy face of the famous dog celebrity, Bucky! He may be the size of a pony, but he's a worldwide known idol and every village sells stuffed animals of him! ");
+        //     System.out.println(" Victoria stares at you blankly. 'I didn't know you were so violent," + userName + ". Maybe you shouldn't come to the party.' Victoria flutters to Bucky's back and she rides him like a pony off into the forest. Everything goes black. ");
+        //     System.exit(1);
+        // } else {
+        //     System.out.println(" 'Don't run!', Victoria yelled, 'That's my friend, Bucky!' ");
+        // }
         System.out.println(" Now that he is in the light you can see the familiar puppy face of the famous dog celebrity, Bucky! He may be the size of a pony, but he's a worldwide known idol and every village sells stuffed animals of him! He's known as Hyrule's Sweetheart!");
         System.out.println(" You apologize profousely for scaring Bucky, but being the most pure-hearted creature in all the lands, Bucky gracefully forgives you. ");
         System.out.println(" It turns out, Bucky is also going to the midsummer picnic! Not only that, but he is the lead performer that Victoria's firefly show will light the way for! ");
@@ -95,9 +97,9 @@ public class RolePlayingGame {
         System.out.println(" 'NOT EVERYONE!!' a voice roared out. You turned to look as the party filled with screams of terror, and in the tree branches you saw him; King of the Tigers, Rocky!! ");
         System.out.println(" Rocky was the size of a slightly large house cat but his cruelty and misogyny was known throughout the lands! And he had a special grudge against Bucky. ");
         System.out.println(" 'Leave Bucky alone!' Victoria cried, but Rocky barred his teeth. 'Bucky, your time has come. I will never forgive you.' ");
-        System.out.println(" Bucky, as gentle as his heart was, was also the bravest in the land and he stood tall in response. 'My brother, stop this feud. Mother feeds me more because I am 75lbs and you are 13lbs. Also, you are 7 years old, and have 15 girlfriends who are less than 3 years old. It's unbecoming for the Emre family name.'  ");
+        System.out.println(" Bucky, as gentle as his heart was, was also the bravest in the land and he stood tall in response. 'My brother, stop this feud. Mother feeds me more because I am 75lbs and you are 13lbs. Also, you are 7 years old, and have 15 feline girlfriends who are less than 3 years old. It's unbecoming for the Emre family name.'  ");
         System.out.println(" 'You sit on your ivory throne and lecture me! No longer! This is your end!' ");
-        System.out.println(" Rocky lunges from the trees towards Bucky!! With only a second to decide, will you intervene? Yes or No ? ");  
+        System.out.println(" Rocky lunges from the trees towards Bucky!! With only a second to decide, will you intervene? (Yes/No) ");  
         
         //scanner here for String, choice called saveBucky
         String saveBucky = scanner.nextLine(); //stage 7
@@ -110,7 +112,7 @@ public class RolePlayingGame {
         }
         System.out.println(" 'How?? How have you disarmed me??' Rocky hissed. ");
         System.out.println(" Victoria flutters forward. 'I believe my magic can cure him! Let me try!' She implored ");
-        System.out.println(" Do you think it's true Rocky can be reformed? ");
+        System.out.println(" Do you think it's true Rocky can be reformed? (true/false)");
 
         //scanner here for Rocky boolean, choice called saveRocky
         Boolean saveRocky = scanner.nextBoolean(); //stage 8
@@ -122,6 +124,14 @@ public class RolePlayingGame {
             System.out.println(" Victoria sprinkles her fairy glitter onto Rocky. You cannot help but notice how stylish and talented she looks while doing it. ");
         }
         System.out.println(" Rocky begins glowing before his fur returns to it's normal grey color. Victoria had done it! She cured Rocky of his misogyny! ");
+        System.out.println(" Will you accept Rocky's apology? (Yes/No)");
+
+        String rockyApology = scanner.nextLine(); //stage 9
+        if (rockyApology == "No"){
+            System.out.println(" You suggest to Rocky that before he re-joins society as a productive member, first he should get some therapy. Maybe he can come to the next annual midsummer picnic.  ");
+        } else {
+            System.out.println(" The more the merrier! Now that Rocky is free from the shackles of the patriarchy, he's ready to be a productive member of society! ");
+        }
 
 
     }
@@ -130,3 +140,5 @@ public class RolePlayingGame {
 
     // }
 }
+
+//java objects and how to instantiate objects; constructors, getters, setters, and data models
