@@ -5,6 +5,7 @@ class Guest {
     String firstName;
     String lastName;
     Integer age;
+    Boolean isHungry;
 
     //creating a constructor aka method
     //not static or void
@@ -16,19 +17,23 @@ class Guest {
     }
 
     //creating all args constructor
-    public Guest(String firstName, String lastName, Integer age) { //taking in 3 arguments
+    public Guest(String firstName, String lastName, Integer age, Boolean isHungry) { //taking in 3 arguments
         //NOT the same as the first Guest fields
         //must ASSIGN these arguments to the first Guest fields
         this.firstName = firstName; //this is the first Guest
         this.lastName = lastName;
         this.age = age;
-
+        this.isHungry = isHungry;
     }
 
     // methods = actions
     // for an instance of Guest, we can call this action
     public void eat(String food) {
         System.out.println(this.firstName + " is eating: " + food);
+    }
+
+    public void hobby(String activity) {
+        System.out.println(this.firstName + " likes to: " + activity);
     }
 
     
