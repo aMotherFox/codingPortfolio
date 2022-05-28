@@ -126,12 +126,21 @@ public class RolePlayingGame {
         System.out.println(" Rocky begins glowing before his fur returns to it's normal grey color. Victoria had done it! She cured Rocky of his misogyny! ");
         System.out.println(" Will you accept Rocky's apology? (Yes/No)");
 
+        // String rockyApology = scanner.nextLine(); //stage 9
+        // if (rockyApology == "No"){
+        //     System.out.println(" You suggest to Rocky that before he re-joins society as a productive member, first he should get some therapy. Maybe he can come to the next annual midsummer picnic.  ");
+        // } else {
+        //     System.out.println(" The more the merrier! Now that Rocky is free from the shackles of the patriarchy, he's ready to be a productive member of society! ");
+        // }
+
         String rockyApology = scanner.nextLine(); //stage 9
-        if (rockyApology == "No"){
-            System.out.println(" You suggest to Rocky that before he re-joins society as a productive member, first he should get some therapy. Maybe he can come to the next annual midsummer picnic.  ");
-        } else {
-            System.out.println(" The more the merrier! Now that Rocky is free from the shackles of the patriarchy, he's ready to be a productive member of society! ");
-        }
+        RolePlayClass.sorryRocky(rockyApology);
+        // if (rockyApology == "No"){
+        //     System.out.println(" You suggest to Rocky that before he re-joins society as a productive member, first he should get some therapy. Maybe he can come to the next annual midsummer picnic.  ");
+        //     System.exit(1);
+        // } else {
+        //     System.out.println(" The more the merrier! Now that Rocky is free from the shackles of the patriarchy, he's ready to be a productive member of society! ");
+        // }
 
 
     }

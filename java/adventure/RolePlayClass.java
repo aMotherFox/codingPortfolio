@@ -13,8 +13,6 @@ public class RolePlayClass {
 
     }
 
-    
-
     public static void decideFight(Boolean fightOrFlight) {
         //Boolean fightOrFlight = scanner.nextBoolean();
         //RolePlayClass.decideFight(fightOrFlight);
@@ -26,6 +24,19 @@ public class RolePlayClass {
             System.exit(1);
         } else {
             System.out.println(" 'Don't run!', Victoria yelled, 'That's my friend, Bucky!' ");
+        }
+
+    }
+
+    public static void sorryRocky(String rockyApology) {
+        //String rockyApology = scanner.nextLine();
+        //RolePlayClass.sorryRocky(rockyApology);
+
+        if (rockyApology == "No"){
+            System.out.println(" You suggest to Rocky that before he re-joins society as a productive member, first he should get some therapy. Maybe he can come to the next annual midsummer picnic.  ");
+            System.exit(1);
+        } else {
+            System.out.println(" The more the merrier! Now that Rocky is free from the shackles of the patriarchy, he's ready to be a productive member of society! ");
         }
 
     }
