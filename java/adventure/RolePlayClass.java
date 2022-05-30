@@ -41,6 +41,27 @@ public class RolePlayClass {
 
     }
 
+    public static void eatPie(String pieFlavor) {
+        //String rockyApology = scanner.nextLine();
+        //RolePlayClass.sorryRocky(rockyApology);
+
+        if (pieFlavor == "apple"){
+            System.out.println(" Victoria praises your choice of pie flavor. She buys one of each except for " + pieFlavor + " which she buys two. You pack the pies away into your satchel and continue your journey as Victoria perches again on your shoulder. "); 
+        } else if (pieFlavor == "peach") {
+            System.out.println(" Victoria praises your choice of pie flavor. She buys one of each except for " + pieFlavor + " which she buys two. You pack the pies away into your satchel and continue your journey as Victoria perches again on your shoulder. ");               
+        } else if (pieFlavor == "pumpkin") {
+            System.out.println(" Victoria praises your choice of pie flavor. She buys one of each except for " + pieFlavor + " which she buys two. You pack the pies away into your satchel and continue your journey as Victoria perches again on your shoulder. ");               
+        } else if (pieFlavor == "cherry") {
+            System.out.println(" Victoria praises your choice of pie flavor. She buys one of each except for " + pieFlavor + " which she buys two. You pack the pies away into your satchel and continue your journey as Victoria perches again on your shoulder. ");               
+        } else {
+            System.out.println(" Victoria and Scout stare at you like a weirdo. 'I don't... sell that flavor' Scout said. Things become so awkward you decide to leave. ");
+            System.exit(1);
+        }
+
+    }
+
     
     
 }
+
+//RolePlayClass.eatPie(pieFlavor);
