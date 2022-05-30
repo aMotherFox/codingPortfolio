@@ -28,6 +28,7 @@ public class Party {
         guest1.hobby("salsa dance");
         guest1.pickle(5);
 
+
         System.out.println("--------DEFAULT CONSTRUCTOR----------");
         Guest guest2 = new Guest(); //instanciating new guest with constructor of GUEST
         guest2.firstName = "Sasha";
@@ -137,9 +138,45 @@ public class Party {
         guest8.hobby("pee outside litterbox");
         guest8.pickle(1000);
 
+        Guest guest9 = new Guest(); //instanciating new guest with constructor of GUEST
+        guest9.firstName = "Anya";
+        guest9.lastName = "Forger";
+        guest9.age = 4;
+        guest9.isHungry = true;
+        guest9.favoriteColor = "pink";
+        guest9.plushies = true;
+        System.out.println("guest9: " + guest9);
+        System.out.println("guest9 first name: " +  guest9.firstName);
+        System.out.println("guest9 last name: " +  guest9.lastName);
+        System.out.println("guest9 age: " +  guest9.age);
+        System.out.println("Is guest9 hungry: " + guest9.isHungry);
+        System.out.println("favorite color: " + guest9.favoriteColor);
+        //System.out.println("does guest9 have plushies: " + guest9.plushies);
+        guest9.eat("peanuts");
+        guest9.hobby("watching TV");
+        guest9.pickle(4);
+
+        Guest guest10 = new Guest(); //instanciating new guest with constructor of GUEST
+        guest10.firstName = "Yor";
+        guest10.lastName = "Forger";
+        guest10.age = 28;
+        guest10.isHungry = false;
+        guest10.favoriteColor = "red";
+        guest10.plushies = true;
+        System.out.println("guest10: " + guest10);
+        System.out.println("guest10 first name: " +  guest10.firstName);
+        System.out.println("guest10 last name: " +  guest10.lastName);
+        System.out.println("guest10 age: " +  guest10.age);
+        System.out.println("Is guest10 hungry: " + guest10.isHungry);
+        System.out.println("favorite color: " + guest10.favoriteColor);
+        //System.out.println("does guest10 have plushies: " + guest10.plushies);
+        guest10.eat("noodles");
+        guest10.hobby("doing hair");
+        guest10.pickle(1);
+
 
         System.out.println("--------LIST OF GUESTS----------");
-        List<Guest> guests = List.of(guest1, guest2, guest3, guest4, guest5, guest6, guest7, guest8);
+        List<Guest> guests = List.of(guest1, guest2, guest3, guest4, guest5, guest6, guest7, guest8, guest9);
         guests.forEach(guest -> {
             System.out.println("the following guest has just walked in..." + guest.firstName + " " + guest.lastName );
         });
@@ -149,12 +186,12 @@ public class Party {
             System.out.println("a boy..." + boy.firstName + " " + boy.lastName );
         });
 
-        List<Guest> girls = List.of(guest2, guest3, guest8);
+        List<Guest> girls = List.of(guest2, guest3, guest8, guest9);
         girls.forEach(girl -> {
             System.out.println("a girl..." + girl.firstName + " " + girl.lastName );
         });
 
-        List<Guest> plushOwners = List.of(guest1, guest2, guest3, guest4, guest5, guest6, guest7, guest8);
+        List<Guest> plushOwners = List.of(guest1, guest2, guest3, guest4, guest5, guest6, guest7, guest8, guest9);
         plushOwners.forEach(owner -> {
             if ( owner.plushies == true){
             System.out.println("the following guest has plushies..." + owner.firstName + " " + owner.lastName );

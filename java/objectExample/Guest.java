@@ -28,6 +28,8 @@ class Guest {
         this.isHungry = isHungry;
         this.favoriteColor = favoriteColor;
         this.plushies = plushies;
+
+        
     }
 
     // methods = actions
@@ -43,6 +45,8 @@ class Guest {
     public void pickle(Integer ownPickles) {
         System.out.println(this.firstName + " has: " + ownPickles + " pickles");
     }
+
+
 
     
 }
