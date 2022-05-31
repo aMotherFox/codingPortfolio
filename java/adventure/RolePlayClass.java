@@ -24,7 +24,9 @@ public class RolePlayClass {
             System.exit(1);
         } else {
             System.out.println(" 'Don't run!', Victoria yelled, 'That's my friend, Bucky!' ");
-        }
+        } //if method doesn't take in variabe or return result, you prob don't need that method
+        // methods should be acting dynamically 
+        //defeats purpose if not reusable
 
     }
 
@@ -39,7 +41,7 @@ public class RolePlayClass {
             System.out.println(" The more the merrier! Now that Rocky is free from the shackles of the patriarchy, he's ready to be a productive member of society! ");
         }
 
-    }
+    } //methods are doing things but are not returning anything, would be nice to return some
 
     public static void eatPie(String pieFlavor) {
         //String rockyApology = scanner.nextLine();
@@ -59,6 +61,8 @@ public class RolePlayClass {
         }
 
     }
+
+
 
     
     

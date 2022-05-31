@@ -59,7 +59,8 @@ public class RolePlayingGame {
         System.out.println(" Victoria asks you to pick a pie flavor; will it be apple, pumpkin, cherry, or peach? ");
 
         //scanner here for pie flavor, choice called pieFlavor
-        String pieFlavor = scanner.nextLine(); //stage 4
+        String pieFlavor = scanner.next(); //stage 4
+        //scanner.nextLine(); //scanner works here but not for pieFlavor
         System.out.println("You picked " + pieFlavor + "! ");
         System.out.println(" Victoria praises your choice. She buys one of each except for " + pieFlavor + " which she buys two. You pack the pies away into your satchel and continue your journey as Victoria perches again on your shoulder. ");
         System.out.println(" Victoria seems perfectly content, calling hellos to the butterflies as you both pass them by on the forest path. But you have noticed the forest noises have slowly gotten quieter and quieter. You become on-edge, as it would be horrible if something bad happened to the fairest fairy in all the land. ");
@@ -91,6 +92,7 @@ public class RolePlayingGame {
         
         //scanner here for String, choice called saveBucky
         String saveBucky = scanner.nextLine(); //stage 7
+        scanner.nextLine(); //scanner works here but not for saveBucky
         if (saveBucky == "No"){
             System.out.println(" You do not save Bucky, but he is also the most powerful in the land. Mid-air he disarms Rocky and pulls him into a bear hug, vowing to not fight his brother.  ");
             System.out.println(" The crowd cheered as Rocky cried 'NOOOOO' and the party continued. Everyone partied late into the night and all was well. ");
@@ -139,11 +141,11 @@ public class RolePlayingGame {
         }
         System.out.println("As all good things must, the party comes to an end. Victoria's large, sparkly eyes peer up at you demurely as you try to say goodbye. It is increadibly hard as you know you may never meet someone as pure and beautiful as her again. She senses your hesitation and gives your thumb a big hug. She then looks at you, and gives you a wink and finger heart. Your vision begins to darken as her magic transports you home. ");
         
+
+
     }
 
-    // private static void something() {
 
-    // }
 }
 
 //java objects and how to instantiate objects; constructors, getters, setters, and data models

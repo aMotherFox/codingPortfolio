@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Party {
     
@@ -178,7 +179,8 @@ public class Party {
         System.out.println("--------LIST OF GUESTS----------");
         List<Guest> guests = List.of(guest1, guest2, guest3, guest4, guest5, guest6, guest7, guest8, guest9);
         guests.forEach(guest -> {
-            System.out.println("the following guest has just walked in..." + guest.firstName + " " + guest.lastName );
+            System.out.println("the following guest has just walked in..." 
+            + guest.firstName + " " + guest.lastName );
         });
 
         List<Guest> boys = List.of(guest1, guest4, guest5, guest6, guest7);
@@ -194,11 +196,19 @@ public class Party {
         List<Guest> plushOwners = List.of(guest1, guest2, guest3, guest4, guest5, guest6, guest7, guest8, guest9);
         plushOwners.forEach(owner -> {
             if ( owner.plushies == true){
-            System.out.println("the following guest has plushies..." + owner.firstName + " " + owner.lastName );
+            System.out.println("the following guest has plushies..." 
+            + owner.firstName + " " + owner.lastName );
             }
+        }); //could use .filter/.stream
+        List<Guest> filteredPlushOwners = plushOwners.stream().filter(owner -> 
+            owner.plushies == true
+        ).collect(Collectors.toList());
+        filteredPlushOwners.forEach(owner -> {
+            System.out.println("owner: " + owner.firstName);
         });
-
-    }
+        
+    } //anytime you click ., you're either calling the property or method
+    //properties do NOT need to call (), they are exisiting fields already and pull from the code
 
 }
 
@@ -207,3 +217,11 @@ public class Party {
 
 //FOR MONDAY: add at least another 5 fields to Guests and at least 3 more methods
 //Create at least 10 instances of the objects and changing the values and doing lots of sysouts
+
+//FOR TUESDAY:
+//read about java classes getter and setters
+// create a house model class that has getters and setters
+//creat another class that willinstanciate the house model 5 times
+//calling the new getters and setters methods you learn
+//add a property of owners to the house model, which should be a list of owner datatype
+//one object has a list of other objects in it
