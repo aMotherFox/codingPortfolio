@@ -22,8 +22,14 @@ class UserModel {
         this.salary = salary;
         this.favoriteColor = favoriteColor;
         this.luckyNumber = luckyNumber;
-
+        this.owners = owners;
         
+    }
+    
+
+    //GETTER; getting ages
+    public String getAges() {
+        return color;
     }
 
 }
