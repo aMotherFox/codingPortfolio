@@ -1,3 +1,5 @@
+import java.util.List;
+
 /*
 Create 5 different user objects
 - each with at least 5 different fields
@@ -29,24 +31,29 @@ Input for all of them: list of objects (list of users)
 
 public class User {
 
+    public static void main(String[] args) {
+
     System.out.println("Let's see the users");
 
     UserModel user1 = new UserModel("Victoria", 26, 100000, "pink", 7); 
-    System.out.println("user1: ", user1);
+    System.out.println("user1: " + user1);
 
     UserModel user2 = new UserModel("Emre", 28, 100000, "black", 3); 
-    System.out.println("user2: ", user2);
+    System.out.println("user2: " + user2);
 
     UserModel user3 = new UserModel("Bucky", 3, 10000, "blue", 5); 
-    System.out.println("user3: ", user3);
+    System.out.println("user3: " + user3);
     
     UserModel user4 = new UserModel("Rocky", 3, 1000, "purple", 4); 
-    System.out.println("user4: ", user4);
+    System.out.println("user4: " + user4);
 
     UserModel user5 = new UserModel("Mika", 24, 100000, "red", 11); 
-    System.out.println("user5: ", user5);
+    System.out.println("user5: " + user5);
 
-    List<UserModel> users = List.of(user1, user2, user3, user4, user5);
+    //List<UserModel> users = List.of(user1, user2, user3, user4, user5);
+        
+    }
+
 
     
 }

@@ -1,3 +1,5 @@
+import java.util.List;
+
 class UserModel {
     
     private String name;
@@ -5,6 +7,7 @@ class UserModel {
     private Integer salary;
     private String favoriteColor;
     private Integer luckyNumber;
+    //List<UserModel> users
 
 
     public UserModel() {
@@ -14,7 +17,7 @@ class UserModel {
     }
 
     
-    public HouseModel(String name, Integer age, Integer salary, String favoriteColor, Integer luckyNumber, List<Owner> owners) { 
+    public UserModel(String name, Integer age, Integer salary, String favoriteColor, Integer luckyNumber) { 
         //all args constructor
         
         this.name = name; 
@@ -22,14 +25,30 @@ class UserModel {
         this.salary = salary;
         this.favoriteColor = favoriteColor;
         this.luckyNumber = luckyNumber;
-        this.owners = owners;
+        //this.users = users;
         
     }
     
 
     //GETTER; getting ages
-    public String getAges() {
-        return color;
-    }
+    // public String getAges() {
+    //     return color;
+    // }
+
+    // const getUsersRetiringSoon = (listOfUsers) => {
+    //     listOfUsers.forEach(theUserImIteratingOn => {
+    
+    //     // console.log("theUserImIteratingOn", theUserImIteratingOn)
+    //     const userAge = theUserImIteratingOn.age
+    //   // console.log("userAge", userAge)
+      
+    //   if (userAge > 59){
+    //       listOfUsersRetiringSoon.push(theUserImIteratingOn)
+    //   }
+      
+      
+    // })
+    // return listOfUsersRetiringSoon
+    // }
 
 }
