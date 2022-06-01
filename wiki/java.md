@@ -41,3 +41,31 @@ in Java, a constructor is a SPECIAL METHOD used to initialize objects. The const
 Constructors are similar to void in that they cannot return; must match name of the class or will not work
 
 
+
+SETTERS AND GETTERS: 
+For each instance variable, a getter method returns its value while a setter method sets/updates its value
+Getters and Setters allow you to control how important variables are accessed and updated in your code
+
+public class Vehicle {
+  private String color;
+
+  // Getter
+  public String getColor() {
+    return color;
+  }
+
+  // Setter
+  public void setColor(String c) {
+    this.color = c;
+  }
+}
+
+Once the getter and setter have been defined, we use it in our main
+
+public static void main(String[] args) {
+  Vehicle v1 = new Vehicle();
+  v1.setColor("Red");
+  System.out.println(v1.getColor());
+}
+
+// Outputs "Red"
