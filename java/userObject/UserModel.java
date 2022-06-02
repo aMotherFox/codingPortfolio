@@ -1,4 +1,4 @@
-import java.util.List;
+//import java.util.List;
 
 class UserModel {
     
@@ -7,7 +7,7 @@ class UserModel {
     private Integer salary;
     private String favoriteColor;
     private Integer luckyNumber;
-    //List<UserModel> users
+    //
 
 
     public UserModel() {
@@ -25,30 +25,61 @@ class UserModel {
         this.salary = salary;
         this.favoriteColor = favoriteColor;
         this.luckyNumber = luckyNumber;
-        //this.users = users;
+        
         
     }
     
 
-    //GETTER; getting ages
-    // public String getAges() {
-    //     return color;
-    // }
+    //GETTING name
+    public String getName() {
+        return this.name;
+    }
+    //SETTING name
+    public void setName(String name) {
+        this.name = name; //setting the name through the all args constructor
+    }
 
-    // const getUsersRetiringSoon = (listOfUsers) => {
-    //     listOfUsers.forEach(theUserImIteratingOn => {
+
+
+    //GETTING age
+    public Integer getAge() {
+        return this.age;
+    }
+    //SETTING age
+    public void setAge(Integer age) {
+        this.age = age; //setting the age through the all args constructor
+    }
+
+
+
+    //GETTING salary
+    public Integer getSalary() {
+        return this.salary;
+    }
+    //SETTING salary
+    public void setSalary(Integer salary) {
+        this.salary = salary; //setting the salary through the all args constructor
+    }
+
+
+    //GETTING favorite color
+    public String getFavoriteColor() {
+        return this.favoriteColor;
+    }
+    //SETTING favorite color
+    public void setFavoriteColor(String favoriteColor) {
+        this.favoriteColor = favoriteColor; //setting the name through the all args constructor
+    }
+
+
     
-    //     // console.log("theUserImIteratingOn", theUserImIteratingOn)
-    //     const userAge = theUserImIteratingOn.age
-    //   // console.log("userAge", userAge)
-      
-    //   if (userAge > 59){
-    //       listOfUsersRetiringSoon.push(theUserImIteratingOn)
-    //   }
-      
-      
-    // })
-    // return listOfUsersRetiringSoon
-    // }
+    //GETTING lucky number
+    public Integer getLuckyNumber() {
+        return this.luckyNumber;
+    }
+    //SETTING luckyNumber
+    public void setLuckyNumber(Integer luckyNumber) {
+        this.luckyNumber = luckyNumber; //setting the age through the all args constructor
+    }
 
 }

@@ -8,6 +8,8 @@ class HouseModel {
     Integer levels;
     private List<Owner> owners; //create owner object, create an owner model with own fields
     //create getters and setters for this
+    //add a list of object to an object
+    //NEED ANOTHER FILE
          
 
 //one more poprerty but this d
