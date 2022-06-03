@@ -36,7 +36,7 @@ An object is created using the keyword 'new'
 
 CONSTRUCTORS:
 Object Oriented Programming NEEDS constructors
-in Java, a constructor is a SPECIAL METHOD used to initialize objects. The constructor is called when an object of a class is created
+in Java, a constructor is a SPECIAL METHOD used to instanciate objects. The constructor is called when an object of a class is created
     * can be used to set intial values for object attributes
 Constructors are similar to void in that they cannot return; must match name of the class or will not work
 

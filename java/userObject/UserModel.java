@@ -82,4 +82,14 @@ class UserModel {
         this.luckyNumber = luckyNumber; //setting the age through the all args constructor
     }
 
+    public String toString() {
+        return "name: " + name
+        + ", age: " + age 
+        + ", salary: " + salary 
+        + ", favorite color: " + favoriteColor
+        + ", lucky number: " + luckyNumber;
+    }
+
+
+
 }

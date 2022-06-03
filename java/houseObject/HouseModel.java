@@ -3,9 +3,9 @@ class HouseModel {
 //models will always have getters and setters
 
     private String color;
-    Integer year;
-    Boolean backYard;
-    Integer levels;
+    private Integer year;
+    private Boolean backYard;
+    private Integer levels;
     private List<Owner> owners; //create owner object, create an owner model with own fields
     //create getters and setters for this
     //add a list of object to an object

@@ -30,6 +30,8 @@ public class HouseClass {//object class aka model
         //house1.set FINISH FROM HERE
 
 
+
+
     
 }
 

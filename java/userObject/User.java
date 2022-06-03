@@ -12,23 +12,23 @@ Create 5 different user objects
 Create a function for each of the following problems:
 (each function must be called once per usual)
 
-1.) Give a list of all the users (entire object) who are about to retire (older than 59)
+1.) ****DONE Give a list of all the users (entire object) who are about to retire (older than 59)
 
-2.) Give a list of all the users who are not allowed to drink (younger than 21)
+2.) ****DONE Give a list of all the users who are not allowed to drink (younger than 21)
 
-3.) Give a list of users that are underpaid (makes less than 30,000)
+3.) ****DONE Give a list of users that are underpaid (makes less than 30,000)
 
 4.) Give total $ spent on employee salaries per year (total salaries)
 
-5.) Give total amount of people who like "red" (output is a number)
+5.) ****DONE Give total amount of people who like "red" (output is a number)
 
-6.) Give first (and only) person who's lucky number is 7 (output is an object)
+6.) ****DONE Give first (and only) person who's lucky number is 7 (output is an object)
 
 Input for all of them: list of objects (list of users)
 
 */
 
-
+//what is an object: an object is an instance of a class
 
 public class User {
 
@@ -36,7 +36,7 @@ public class User {
 
     System.out.println("Let's see the users");
 
-    UserModel user1 = new UserModel("Victoria", 26, 100000, "pink", 7); 
+    UserModel user1 = new UserModel("Victoria", 26, 100000, "pink", 7); //instanciating UserModel class, using all args constructor, gives me a UserModel object
     System.out.println("name: " + user1.getName());
     System.out.println("age: " + user1.getAge());
     System.out.println("salary: " + user1.getSalary());
@@ -59,7 +59,7 @@ public class User {
     System.out.println("favorite color: " + user3.getFavoriteColor());
     System.out.println("lucky number: " + user3.getLuckyNumber());
     
-    UserModel user4 = new UserModel("Rocky", 3, 1000, "purple", 4); 
+    UserModel user4 = new UserModel("Rocky", 300, 1000, "purple", 4); 
     System.out.println("user4: " + user4);
     System.out.println("name: " + user4.getName());
     System.out.println("age: " + user4.getAge());
@@ -75,28 +75,73 @@ public class User {
     System.out.println("favorite color: " + user5.getFavoriteColor());
     System.out.println("lucky number: " + user5.getLuckyNumber());
 
+
+
     //making a list of the users
     List<UserModel> users = List.of(user1, user2, user3, user4, user5);
-    UserModel firstUser = users[0];
+    //UserModel firstUser = users[0];
+    UserModel firstUser = users.get(0);
     String firstUserName = firstUser.getName();
-    users[0].getName();
-    List<UserModel> retiringSoon = users.stream().filter(user -> user.getAge() == 26).collect(Collectors.toList());
-    System.out.println("retiringSoon" + retiringSoon.toString());
+    System.out.println("firstUserName: " + firstUserName);
+    //users[0].getName();
+
+    //RETIRING SOON
+    List<UserModel> retiringSoon = users.stream().filter(user -> user.getAge() >= 60).collect(Collectors.toList());
+    System.out.println("retiringSoon: " + retiringSoon.toString());
 
     retiringSoon.forEach(user -> { 
         System.out.println("user: " + user.getName());
     });
 
     
-    // List <UserModel> retiringSoon = users.stream().filter(user -> {
-    //     if(user.getAge() == 26){
-    //         return user;
-    //     }
-    // }).collect(Collectors.toList());
+    //CANNOT DRINK
+    List<UserModel> notDrinking = users.stream().filter(user -> user.getAge() <= 20).collect(Collectors.toList());
+    System.out.println("notDrinking: " + notDrinking.toString());
 
-    // retiringSoon.forEach(user -> {
-    //     System.out.println("user: " + user.getAge());
-    // })
+    notDrinking.forEach(user -> { 
+        System.out.println("user: " + user.getName());
+    });
+
+    
+
+    //UNDERPAID
+    List<UserModel> areUnderpaid = users.stream().filter(user -> user.getSalary() <= 30000).collect(Collectors.toList());
+    System.out.println("areUnderpaid: " + areUnderpaid.toString());
+
+    areUnderpaid.forEach(user -> { 
+        System.out.println("user: " + user.getName());
+    });
+
+
+    //LUCKY NUMBER
+    List<UserModel> hasLuckyNumber = users.stream().filter(user -> user.getLuckyNumber() == 7).collect(Collectors.toList());
+    System.out.println("hasLuckyNumber: " + hasLuckyNumber.toString());
+
+    hasLuckyNumber.forEach(user -> { 
+        System.out.println("user: " + user.getName());
+    });
+
+
+
+
+    //TOTAL SALARIES
+    List<UserModel> getTotalSpetnOnSalaries = users.stream().filter(user -> user.getSalary() >= 1).collect(Collectors.toList());
+    System.out.println("getTotalSpetnOnSalaries: " + getTotalSpetnOnSalaries.toString());
+
+    getTotalSpetnOnSalaries.forEach(user -> {
+
+    });
+
+
+
+    //LIKES RED
+    List<UserModel> likesRed = users.stream().filter(user -> user.getFavoriteColor() == "red").collect(Collectors.toList());
+    System.out.println("likesRed: " + likesRed.toString());
+
+    likesRed.forEach(user -> { 
+        System.out.println("user: " + user.getName());
+    });
+
         
     }
 
