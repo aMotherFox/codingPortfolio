@@ -33,6 +33,6 @@ public class HouseClass {//object class aka model
 
 
     
-}
+    }
 
 }
