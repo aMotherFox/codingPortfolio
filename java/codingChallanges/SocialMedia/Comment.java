@@ -4,6 +4,8 @@ public class Comment {
 
     private Integer id;
     private String text;
+    private Integer postId; //foreign key that points to post.id primary key
+    private Integer userId; //foreign key that points to user.id primary key, tells us who commented
 
     public Comment() {
         //NO ARGS CONSTRUCTOR
@@ -11,10 +13,13 @@ public class Comment {
         //every property is null until you set the fields
     }
 
-    public Comment(Integer id, String text) {
+    public Comment(Integer id, String text, Integer postId, Integer userId) {
         //ALL ARGS CONSTRUCTOR
         this.id = id;
         this.text = text;
+        this.postId = postId;
+        this.userId = userId;
     }
 
+    // TODO: getters and setters, toString
 }

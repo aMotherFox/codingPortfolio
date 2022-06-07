@@ -2,7 +2,7 @@ public class User {
 
     //User with fields: id, firstName, lastName, email
 
-    private Integer id;
+    private Integer id; //PRIMARY KEY- unique id/key of the object that should not be shared
     private String firstName;
     private String lastName;
     private String email;
@@ -45,6 +45,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    //email getting and setting
+    public String getEmail() {
+        return this.email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    // TODO: add toString
     
 }

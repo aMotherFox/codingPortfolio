@@ -1,10 +1,12 @@
+import javax.swing.plaf.basic.BasicInternalFrameUI.InternalFramePropertyChangeListener;
+
 public class Post {
     
     //Post with fields: id, text **add userID to help group and organize
 
-    private Integer id;
+    private Integer id; //HAS to be unique, primary id/key
     private String text;
-    private String userId;
+    private Integer userId; //foreign key, reusable, FILTER to get correct posts 
 
     public Post() {
         //NO ARGS CONSTRUCTOR
@@ -12,10 +14,12 @@ public class Post {
         //every property is null until you set the fields
     }
 
-    public Post(Integer id, String text, String userId) {
+    public Post(Integer id, String text, Integer userId) {
         //ALL ARGS CONSTRUCTOR
         this.id = id;
         this.text = text;
         this.userId = userId;
     }
+
+    // TODO: getters and setters, toString
 }

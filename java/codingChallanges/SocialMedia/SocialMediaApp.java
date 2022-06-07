@@ -4,13 +4,32 @@ public class SocialMediaApp {
     public static void main(String[] args) {
 
         System.out.println("--------------CREATE LIST OF 3 USERS--------------------");
+        //one to many relationship; one user can make many posts
+        //one to one; one user to one post
 
         User user1 = new User(1, "Bucky", "Barnes", "BucktownFunk@gmail.com"); //instanciating new object with datatype User, passing into all args constructor on User.java
         User user2 = new User(2, "Rocky", "Balboa", "CatzRule@gmail.com");
-        User user3 = new User(2, "Hank", "Noodle", "HankTheTank@gmail.com");
+        User user3 = new User(3, "Hank", "Noodle", "HankTheTank@gmail.com");
 
-        List<User> users = List.of(user1, user2, user3);
+        List<User> users = List.of(user1, user2, user3); //list of users
         System.out.println("These are our uses: " + users);
+
+        System.out.println("--------------CREATE POSTS--------------------");
+
+        // TODO: don't hardcode foreign keys
+        Post post1 = new Post(1, "Who wants peanutbutter", 1); //instanciating new object with datatype Post, passing into all args constructor on Post.java
+        Post post2 = new Post(2, "I deserve 500 girlfriends", 2); //user2.getId
+        Post post3 = new Post(3, "The dogs are stinking up the house", 2);
+        Post post4 = new Post(4, "pull up bro", 3);
+        Post post5 = new Post(5, "I'm mom's favorite", 3);
+        Post post6 = new Post(6, "who wants to fight", 3);
+
+        List<Post> posts = List.of(post1, post2, post3, post4, post5, post6); //list of posts
+        System.out.println("These are our posts: " + posts);
+
+        System.out.println("--------------CREATE COMMENTS--------------------");
+
+        Comment comment1 = new Comment(1, "you're still hungry?", 1, 2); //comment id 1, with text, left on post1 (1), and left by Rocky (2)
         
     }
 }
