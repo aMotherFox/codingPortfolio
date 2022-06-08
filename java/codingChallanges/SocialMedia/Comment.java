@@ -21,7 +21,7 @@ public class Comment {
         this.userId = userId;
     }
 
-    // TODO: getters and setters, toString
+
 
     //id getting and setting
     public Integer getId() {
@@ -45,6 +45,23 @@ public class Comment {
     }
     public void setPostId(Integer postId) {
         this.postId = postId;
+    }
+
+
+    //userId getting and setting
+    public Integer getUserId() {
+        return this.userId;
+    }
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+
+    public String toString() {
+        return "User: {id: " + id
+        + ", text: " + text
+        + ", postId: " + postId
+        + ", userId: " + userId + "}";
     }
 
 }

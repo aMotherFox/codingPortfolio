@@ -21,5 +21,35 @@ public class Post {
         this.userId = userId;
     }
 
-    // TODO: getters and setters, toString
+
+
+    //id getting and setting
+    public Integer getId() {
+        return this.id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    //firstName getting and setting
+    public String getText() {
+        return this.text;
+    }
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    //lastName getting and setting
+    public Integer getUserId() {
+        return this.userId;
+    }
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String toString() {
+        return "User: {id: " + id
+        + ", text: " + text
+        + ", userId: " + userId + "}";
+    }
 }
