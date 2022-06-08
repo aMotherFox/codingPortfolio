@@ -22,4 +22,29 @@ public class Comment {
     }
 
     // TODO: getters and setters, toString
+
+    //id getting and setting
+    public Integer getId() {
+        return this.id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    //text getting and setting
+    public String getText() {
+        return this.text;
+    }
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    //postId getting and setting
+    public Integer getPostId() {
+        return this.postId;
+    }
+    public void setPostId(Integer postId) {
+        this.postId = postId;
+    }
+
 }
