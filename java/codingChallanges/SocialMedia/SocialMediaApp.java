@@ -33,7 +33,7 @@ public class SocialMediaApp {
         Comment comment3 = new Comment(3, "you must treat them like queens", post2.getId(), user1.getId()); //post2 by Bucky
         Comment comment4 = new Comment(4, "you're the stinky one", post3.getId(), user3.getId()); //post3 by Hank
         Comment comment5 = new Comment(5, "violence is't the awnser!", post4.getId(), user1.getId()); //post4 by Bucky
-        Comment comment6 = new Comment(6, "i'll rock your shet!", post4.getId(), user2.getId()); //post4 by Hank
+        Comment comment6 = new Comment(6, "i'll rock your shet!", post4.getId(), user2.getId()); //post4 by Rocky
         Comment comment7 = new Comment(7, "i'm literally outside fite me", post5.getId(), user2.getId()); //post5 by Rocky
         Comment comment8 = new Comment(8, "that's not nice to say!", post5.getId(), user1.getId()); //post5 by Bucky
         Comment comment9 = new Comment(9, "I'll bury you bro", post6.getId(), user2.getId()); //post6 by Rocky
@@ -65,11 +65,46 @@ public class SocialMediaApp {
         //display those comments
 
         posts.forEach(post -> { //iterating through posts
-            List<Comment> commentsFromPosts = gettingPostComments(comments, post.getId()); 
-            System.out.println("post number: " + post.getId() + ", the comments: " + commentsFromPosts);
+            List<Comment> commentsFromPosts = gettingPostComments(comments, post.getId());
+            Integer totalCommentsOnPosts = commentsFromPosts.size(); //size method, returns number of elements in a listarray; sizing commentsFromPosts
+            System.out.println("post id: " + post.getId() + ", the comments: " + commentsFromPosts + ", total comments: " + totalCommentsOnPosts);
         });
+
+
+        System.out.println("-----------------show what comments each user made-----------------");
+
+        List<Comment> commentsFrom1 = gettingUsersComments(comments, user1.getId());
+        Integer totalComments1 = commentsFrom1.size();
+        System.out.println("user1 total comments given: " + totalComments1 + ", the comments: " + commentsFrom1);
+
+        List<Comment> commentsFrom2 = gettingUsersComments(comments, user2.getId());
+        Integer totalComments2 = commentsFrom2.size();
+        System.out.println("user2 total comments given: " + totalComments2 + ", the comments: " + commentsFrom2);
         
         
+        List<Comment> commentsFrom3 = gettingUsersComments(comments, user3.getId());
+        Integer totalComments3 = commentsFrom3.size();
+        System.out.println("user3 total comments given: " + totalComments3 + ", the comments: " + commentsFrom3);
+
+        // TODO: make into forEach loop
+
+        System.out.println("-----------------show what comments each user recieved-----------------");
+        //check each user's posts and shwo what comments were recieved
+        //must group user's posts together- iterate each user's posts?
+        // recievedComments1.forEach(post -> { //must now target comments in the posts
+        //     List<Comment> commentsOnUser1 = recievingUserComments()
+        // });
+
+        recievedComments.forEach(comment -> {
+            //passing in the posts and comments
+            //if user.getId() == 1 && post.getId() == 1 , those are the comments recieved by user 1
+            //if user.getId() == 2 && post.getId() == 2 or 3 , those are the comments recieved by user 2
+            //if user.getId() == 3 && post.getId() == 4 or 5 or 6 , those are the comments recieved by user 3
+        });
+
+
+
+
     }
 
 
@@ -85,14 +120,31 @@ public class SocialMediaApp {
     private static List<Comment> gettingPostComments(List<Comment> comments, Integer postId) { //passing in list of comments and the comment's postIds
         //filter through comments and pick out correlated comments via postIds
         List<Comment> eachPostsComments = comments.stream().filter(comment -> comment.getPostId() == postId).collect(Collectors.toList()); 
+        //iterating through list of comments, only keep comments whos post ID who matches post ID that I passed in
         //filtering passed in comment with list of comments
         return eachPostsComments; //if the postID matches the comment we pass in, it will be returned in a list
 
     }
 
     //create method to filter out all the comments a user made on any post
+    private static List<Comment> gettingUsersComments(List<Comment> comments, Integer userId) {
+        //filter through ALL comments and assign to list depending on who made the comments (userId)
+        List<Comment> eachUsersSentComments = comments.stream().filter(comment -> comment.getUserId() == userId).collect(Collectors.toList());
+        return eachUsersSentComments; //if userId matches the userId of the comment we pass in, it will be returned in a list
+    }
 
     //create method to filter out all the comments a user reiceved on any of their posts
+    //have to look at the POSTS for each user and count how many comments are on it
+    // private static List<Post> recievingUserComments(List<Post> posts, Integer userId) {
+    //     List<Post> eachUsersRecievedComments = posts.stream().filter(post -> posts.getUserId() == userId).collect(Collectors.toList());
+    //     return eachUsersRecievedComments;//can only have one return
+    // }
+
+    private static List<Comment> recievingUserComments(List<Comment> comments, Integer userId) {
+        List<Comment> eachUsersRecievedComments = comments.stream().filter(comment -> comment.getPostId() == postId).collect(Collectors.toList());
+        //iterating through list of comments, only keep comments whos post ID who matches post ID that I passed in
+        return eachUsersRecievedComments; 
+    }
 
     //create method to filter out all the posts each user commented on
 }
