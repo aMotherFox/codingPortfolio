@@ -64,4 +64,7 @@ public class Comment {
         + ", userId: " + userId + "}";
     }
 
+	public static void forEach(Object object) {
+	}
+
 }

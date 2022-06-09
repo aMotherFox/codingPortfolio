@@ -91,16 +91,31 @@ public class SocialMediaApp {
         System.out.println("-----------------show what comments each user recieved-----------------");
         //check each user's posts and shwo what comments were recieved
         //must group user's posts together- iterate each user's posts?
-        // recievedComments1.forEach(post -> { //must now target comments in the posts
-        //     List<Comment> commentsOnUser1 = recievingUserComments()
-        // });
 
-        recievedComments.forEach(comment -> {
+
+        //recievedComments.forEach(comment -> {
             //passing in the posts and comments
-            //if user.getId() == 1 && post.getId() == 1 , those are the comments recieved by user 1
-            //if user.getId() == 2 && post.getId() == 2 or 3 , those are the comments recieved by user 2
-            //if user.getId() == 3 && post.getId() == 4 or 5 or 6 , those are the comments recieved by user 3
+            //if post.getId() == 1 && comment.getPostId() == 1 , those are the comments recieved by user 1
+            //if post.getId() == 2 && comment.getPostId() == 2 or 3 , those are the comments recieved by user 2
+            //if post.getId() == 3 && comment.getPostId() == 4 or 5 or 6 , those are the comments recieved by user 3
+       // });
+
+       postsFrom1.forEach(post -> {
+            List<Comment> postsFrom1Comments = gettingPostComments(comments, post.getId());
+            System.out.println("Every comment recieved by user1: " + postsFrom1Comments);
+       });
+
+       postsFrom2.forEach(post -> {
+        List<Comment> postsFrom2Comments = gettingPostComments(comments, post.getId());
+        System.out.println("Every comment recieved by user2: " + postsFrom2Comments);
+
         });
+
+        postsFrom3.forEach(post -> {
+            List<Comment> postsFrom3Comments = gettingPostComments(comments, post.getId());
+            System.out.println("Every comment recieved by user3: " + postsFrom3Comments);
+    
+            });
 
 
 
@@ -135,16 +150,7 @@ public class SocialMediaApp {
 
     //create method to filter out all the comments a user reiceved on any of their posts
     //have to look at the POSTS for each user and count how many comments are on it
-    // private static List<Post> recievingUserComments(List<Post> posts, Integer userId) {
-    //     List<Post> eachUsersRecievedComments = posts.stream().filter(post -> posts.getUserId() == userId).collect(Collectors.toList());
-    //     return eachUsersRecievedComments;//can only have one return
-    // }
 
-    private static List<Comment> recievingUserComments(List<Comment> comments, Integer userId) {
-        List<Comment> eachUsersRecievedComments = comments.stream().filter(comment -> comment.getPostId() == postId).collect(Collectors.toList());
-        //iterating through list of comments, only keep comments whos post ID who matches post ID that I passed in
-        return eachUsersRecievedComments; 
-    }
 
     //create method to filter out all the posts each user commented on
 }

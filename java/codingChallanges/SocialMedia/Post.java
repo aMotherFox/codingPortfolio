@@ -1,5 +1,3 @@
-import javax.swing.plaf.basic.BasicInternalFrameUI.InternalFramePropertyChangeListener;
-
 public class Post {
     
     //Post with fields: id, text **add userID to help group and organize
