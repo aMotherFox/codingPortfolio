@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
 
@@ -93,31 +94,60 @@ public class SocialMediaApp {
         //must group user's posts together- iterate each user's posts?
 
 
-        //recievedComments.forEach(comment -> {
-            //passing in the posts and comments
-            //if post.getId() == 1 && comment.getPostId() == 1 , those are the comments recieved by user 1
-            //if post.getId() == 2 && comment.getPostId() == 2 or 3 , those are the comments recieved by user 2
-            //if post.getId() == 3 && comment.getPostId() == 4 or 5 or 6 , those are the comments recieved by user 3
-       // });
-
-       postsFrom1.forEach(post -> {
-            List<Comment> postsFrom1Comments = gettingPostComments(comments, post.getId());
-            System.out.println("Every comment recieved by user1: " + postsFrom1Comments);
+       postsFrom1.forEach(post -> { //iterating through list made earlier, already is only user 1's posts
+            List<Comment> postsFrom1Comments = gettingPostComments(comments, post.getId()); //reusing the gettingPostComments method
+            System.out.println("Every comment recieved by user1: " + postsFrom1Comments); //this is sysouting every loop, works because only 1 post
        });
 
+
+       //new list first
+       List<Comment> commentsRecieved2 = new ArrayList<>();
        postsFrom2.forEach(post -> {
         List<Comment> postsFrom2Comments = gettingPostComments(comments, post.getId());
-        System.out.println("Every comment recieved by user2: " + postsFrom2Comments);
+        commentsRecieved2.addAll(postsFrom2Comments);
+        //System.out.println("Every comment recieved by user2: " + postsFrom2Comments); 
+        //need to sysout postsFrom2Comments but not in loop
+        //addAll can take all elements from one list and add it to another list - listDest.addAll(listSource);
+        //make new list of all comments and sysout that list? List<String> listA = new ArrayList<>();
 
         });
-
-        postsFrom3.forEach(post -> {
-            List<Comment> postsFrom3Comments = gettingPostComments(comments, post.getId());
-            System.out.println("Every comment recieved by user3: " + postsFrom3Comments);
-    
-            });
+        System.out.println("All the comments user 2 recieved: " + commentsRecieved2);
 
 
+        List<Comment> commentsRecieved3 = new ArrayList<>(); //creating new arraylist and assigning the result of our iteration to it
+       postsFrom3.forEach(post -> {
+        List<Comment> postsFrom3Comments = gettingPostComments(comments, post.getId());
+        commentsRecieved3.addAll(postsFrom3Comments); //adds all elements to the new list
+
+        });
+        System.out.println("All the comments user 3 recieved: " + commentsRecieved3);
+
+
+
+        System.out.println("-----------------show what posts each user commented on-----------------");
+       
+        //pass in more than 2 properties into the method??
+        
+        //look at models and think of how they relate to eachother
+        //how do you know that a user recieved a comment? - the comment's postId tells us which post was commented on, and the post's userId tells us the user who created the post
+        //comment postId(on comment) -> userId(on post) -> user(on user)
+        //any comment that has the postId depending on the user, you can find all the comments a user recieved
+        //how do you know what post was commented on by a specific user? BECAUSE OF THE COMMENT'S USERID
+        //i.e. user1 recieved a comment on post1 from user2 - user1.getId(), post1.getId(), user2.getId()
+
+        //new list of posts
+        //iterate through comments
+
+        List<Post> postsCommentedOnBy1 = new ArrayList<>(); //creating new arraylist and assigning the result of our iteration to it; assign posts here
+        commentsFrom1.forEach(comment -> { 
+            //the comment's postID tells us what post it is on; the post's userId tells us who commented; the user's id tells us the user who posted
+            //comments ONLY made by user 1
+            //method gettingUserPosts
+            List<Post> commentedPostsbyUser1 = gettingUserPosts(); //this method gives us the posts of a single user; WHO wrote the post
+        });
+
+
+ 
 
 
     }
@@ -125,7 +155,7 @@ public class SocialMediaApp {
 
     //create method to filter out a user's posts
     private static List<Post> gettingUserPosts(List<Post> posts, Integer userId) { //passing in the list of posts and the post's userIds
-        //filter through posts and pick out correct posts via userId
+        //filter through posts and pick out correct posts via userId - userId tells us WHO wrote the post
         List<Post> eachUsersPosts = posts.stream().filter(post -> post.getUserId() == userId).collect(Collectors.toList()); //putting posts into a list
         return eachUsersPosts; //returning posts that == the id of what we passed in
 
@@ -148,11 +178,12 @@ public class SocialMediaApp {
         return eachUsersSentComments; //if userId matches the userId of the comment we pass in, it will be returned in a list
     }
 
-    //create method to filter out all the comments a user reiceved on any of their posts
-    //have to look at the POSTS for each user and count how many comments are on it
-
 
     //create method to filter out all the posts each user commented on
+    // private static List<Post> gettingAllPostsUserCommentedOn(List<Post> posts) {
+
+    // }
+
 }
 
 
