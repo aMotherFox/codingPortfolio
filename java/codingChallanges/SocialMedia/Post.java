@@ -46,7 +46,7 @@ public class Post {
     }
 
     public String toString() {
-        return "User: {id: " + id
+        return "Post: {id: " + id
         + ", text: " + text
         + ", userId: " + userId + "}";
     }
