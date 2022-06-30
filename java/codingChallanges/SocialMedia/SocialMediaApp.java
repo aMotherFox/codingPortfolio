@@ -10,7 +10,7 @@ public class SocialMediaApp {
         //one to many relationship; one user can make many posts
         //one to one; one user to one post
 
-        User user1 = new User(1, "Bucky", "Barnes", "BucktownFunk@gmail.com"); //instanciating new object with datatype User, passing into all args constructor on User.java
+        User user1 = new User(1, "Bucky", "Barnes", "BucktownFunk@gmail.com"); //instanciating new object with datatype User, passing into all args constructor on UserObject.java
         User user2 = new User(2, "Rocky", "Balboa", "CatzRule@gmail.com");
         User user3 = new User(3, "Hank", "Noodle", "HankTheTank@gmail.com");
 

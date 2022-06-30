@@ -1,4 +1,6 @@
-//import java.rmi.server.UnicastRemoteObject;
+package userObject;//import java.rmi.server.UnicastRemoteObject;
+import userObject.UserObject;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +39,7 @@ public class ListsAndObjects {
 
     System.out.println("-------------------------GETTING USER INFO------------------------------");
 
-    User user1 = new User("Victoria", 26, 100000, "pink", 7); //instanciating UserModel class, using all args constructor, gives me a UserModel object
+    UserObject user1 = new UserObject("Victoria", 26, 100000, "pink", 7); //instanciating UserModel class, using all args constructor, gives me a UserModel object
     System.out.println("user1: " + user1);
     // System.out.println("name: " + user1.getName());
     // System.out.println("age: " + user1.getAge());
@@ -45,7 +47,7 @@ public class ListsAndObjects {
     // System.out.println("favorite color: " + user1.getFavoriteColor());
     // System.out.println("lucky number: " + user1.getLuckyNumber());
 
-    User user2 = new User("Emre", 28, 100000, "black", 3); //instanciating UserModel class, using all args constructor, gives me a UserModel object
+    UserObject user2 = new UserObject("Emre", 28, 100000, "black", 3); //instanciating UserModel class, using all args constructor, gives me a UserModel object
     System.out.println("user2: " + user2);
     // System.out.println("name: " + user2.getName());
     // System.out.println("age: " + user2.getAge());
@@ -53,15 +55,15 @@ public class ListsAndObjects {
     // System.out.println("favorite color: " + user2.getFavoriteColor());
     // System.out.println("lucky number: " + user2.getLuckyNumber());
 
-    User user3 = new User("Bucky", 3, 10000, "blue", 5); //instanciating UserModel class, using all args constructor, gives me a UserModel object
+    UserObject user3 = new UserObject("Bucky", 3, 10000, "blue", 5); //instanciating UserModel class, using all args constructor, gives me a UserModel object
     System.out.println("user3: " + user3);
     // System.out.println("name: " + user3.getName());
     // System.out.println("age: " + user3.getAge());
     // System.out.println("salary: " + user3.getSalary());
     // System.out.println("favorite color: " + user3.getFavoriteColor());
     // System.out.println("lucky number: " + user3.getLuckyNumber());
-    
-    User user4 = new User("Rocky", 300, 1000, "purple", 4); //instanciating UserModel class, using all args constructor, gives me a UserModel object
+
+    UserObject user4 = new UserObject("Rocky", 300, 1000, "purple", 4); //instanciating UserModel class, using all args constructor, gives me a UserModel object
     System.out.println("user4: " + user4);
     // System.out.println("name: " + user4.getName());
     // System.out.println("age: " + user4.getAge());
@@ -69,7 +71,7 @@ public class ListsAndObjects {
     // System.out.println("favorite color: " + user4.getFavoriteColor());
     // System.out.println("lucky number: " + user4.getLuckyNumber());
 
-    User user5 = new User("Mika", 24, 100000, "red", 11); //instanciating UserModel class, using all args constructor, gives me a UserModel object
+    UserObject user5 = new UserObject("Mika", 24, 100000, "red", 11); //instanciating UserModel class, using all args constructor, gives me a UserModel object
     System.out.println("user5: " + user5);
     // System.out.println("name: " + user5.getName());
     // System.out.println("age: " + user5.getAge());
@@ -77,25 +79,25 @@ public class ListsAndObjects {
     // System.out.println("favorite color: " + user5.getFavoriteColor());
     // System.out.println("lucky number: " + user5.getLuckyNumber());
 
-    List<User> users = List.of(user1, user2, user3, user4, user5);
+    List<UserObject> users = List.of(user1, user2, user3, user4, user5);
 
-    List<User> ourTotalRetirees = retiringSoonMethod(users); //calling the method and passing in users, retunring and assigning to ourTotalRetirees
+    List<UserObject> ourTotalRetirees = retiringSoonMethod(users); //calling the method and passing in users, retunring and assigning to ourTotalRetirees
     System.out.println("Those retiring soon: " + ourTotalRetirees);
 
 
-    List<User> ourUnderageEmployees = notDrinkingMethod(users); //calling the method and passing in users, retunring and assigning to ourUnderageEmployees
+    List<UserObject> ourUnderageEmployees = notDrinkingMethod(users); //calling the method and passing in users, retunring and assigning to ourUnderageEmployees
     System.out.println("Those too young to drink: " + ourUnderageEmployees); 
     
 
-    List<User> ourUnderpaidEmployees = areUnderpaidMethod(users); //calling the method and passing in users, retunring and assigning to ourUnderpaidEmployees
-    System.out.println("Those who are underpaid: " + ourUnderpaidEmployees); 
+    List<UserObject> ourUnderpaidEmployees = areUnderpaidMethod(users); //calling the method and passing in users, retunring and assigning to ourUnderpaidEmployees
+    System.out.println("Those who are underpaid: " + ourUnderpaidEmployees);
 
 
-    User hasLuckySeven = hasLuckyNumberMethod(users);
+    UserObject hasLuckySeven = hasLuckyNumberMethod(users);
     System.out.println("Those who's lucky number is 7': " + hasLuckySeven);
     
 
-    List<User> redEnjoyers = likesRedMethod(users);
+    List<UserObject> redEnjoyers = likesRedMethod(users);
     System.out.println("Those who's lucky number is 7': " + redEnjoyers);
 
     Integer ourTotalSalaries = getTotalSpetnOnSalariesMethod(users);
@@ -178,41 +180,41 @@ public class ListsAndObjects {
     }
 
     //making private methods outside of the main
-    private static List<User> retiringSoonMethod(List<User> users) {
+    private static List<UserObject> retiringSoonMethod(List<UserObject> users) {
         System.out.println("-------------------------RETIRING SOON METHOD------------------------------");
-        List<User> retiringSoon = users.stream().filter(user -> user.getAge() >= 60).collect(Collectors.toList());
+        List<UserObject> retiringSoon = users.stream().filter(user -> user.getAge() >= 60).collect(Collectors.toList());
         return retiringSoon;
     }
 
 
-    private static List<User> notDrinkingMethod(List<User> users) {
+    private static List<UserObject> notDrinkingMethod(List<UserObject> users) {
         System.out.println("-------------------------CANNOT DRINK METHOD------------------------------");
-        List<User> notDrinking = users.stream().filter(user -> user.getAge() <= 20).collect(Collectors.toList());
+        List<UserObject> notDrinking = users.stream().filter(user -> user.getAge() <= 20).collect(Collectors.toList());
         return notDrinking;
     }
 
-    private static List<User> areUnderpaidMethod(List<User> users) {
+    private static List<UserObject> areUnderpaidMethod(List<UserObject> users) {
         System.out.println("-------------------------UNDERPAID METHOD------------------------------");
-        List<User> areUnderpaid = users.stream().filter(user -> user.getSalary() <= 30000).collect(Collectors.toList());
+        List<UserObject> areUnderpaid = users.stream().filter(user -> user.getSalary() <= 30000).collect(Collectors.toList());
         return areUnderpaid;
     }
 
-    private static User hasLuckyNumberMethod(List<User> users) {
+    private static UserObject hasLuckyNumberMethod(List<UserObject> users) {
         System.out.println("-------------------------LUCKY NUMBER METHOD------------------------------");
-        User hasLuckyNumber = users.stream().filter(user -> user.getLuckyNumber() == 7).findAny().orElse(null);
+        UserObject hasLuckyNumber = users.stream().filter(user -> user.getLuckyNumber() == 7).findAny().orElse(null);
         return hasLuckyNumber;
     }
 
-    private static List<User> likesRedMethod(List<User> users) {
+    private static List<UserObject> likesRedMethod(List<UserObject> users) {
         System.out.println("-------------------------LIKES RED METHOD------------------------------");
-        List<User> likesRed = users.stream().filter(user -> user.getFavoriteColor() == "red").collect(Collectors.toList());
+        List<UserObject> likesRed = users.stream().filter(user -> user.getFavoriteColor() == "red").collect(Collectors.toList());
         return likesRed;
     }
 
-    private static Integer getTotalSpetnOnSalariesMethod(List<User> users) {
+    private static Integer getTotalSpetnOnSalariesMethod(List<UserObject> users) {
         System.out.println("-------------------------TOTAL SALARIES METHOD------------------------------");
         Integer totalSalaries = 0;
-        for(User user : users) {
+        for(UserObject user : users) {
             totalSalaries = totalSalaries + user.getSalary();
         }
         return totalSalaries;

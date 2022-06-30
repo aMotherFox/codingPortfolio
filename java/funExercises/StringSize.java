@@ -1,3 +1,5 @@
+package funExercises;
+
 import java.util.Scanner;
 
 // must ask for user input

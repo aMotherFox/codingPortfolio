@@ -1,3 +1,7 @@
+package houseObject;
+
+import java.util.List;
+
 class HouseModel {
 
 //models will always have getters and setters

@@ -1,5 +1,5 @@
 package codingChallanges.GradingScale;
-import MyGradingScaleClass;
+import MyGradingScaleClass.java;
 
 public class GradingScale {
     public static void main(String[] args) {

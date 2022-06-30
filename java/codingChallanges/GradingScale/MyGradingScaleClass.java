@@ -1,3 +1,4 @@
+package codingChallanges.GradingScale;
 
 public class MyGradingScaleClass {
 

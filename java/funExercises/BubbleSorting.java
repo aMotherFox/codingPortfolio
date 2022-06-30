@@ -1,3 +1,5 @@
+package funExercises;
+
 public class BubbleSorting {
     public static void main(String[] args) {
         System.out.println("----------------USE BUBBLE SORT TO LIST IN NUMERICAL ORDER----------------");

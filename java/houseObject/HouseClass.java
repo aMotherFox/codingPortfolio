@@ -1,3 +1,5 @@
+package houseObject;
+
 public class HouseClass {//object class aka model
     //a getter method returns its value while a setter method sets/updates its value
 
@@ -12,7 +14,7 @@ public class HouseClass {//object class aka model
         //HouseModel is the datatype
         //HouseModel house1 = new HouseModel(); //instanciating our no args constructor
 
-        HouseModel house1 = new HouseModel("blue", 1988, true, 2); //passing into all args constructor on HouseModel.java
+        HouseModel house1 = new HouseModel("blue", 1988, true, 2, owners); //passing into all args constructor on HouseModel.java
         house1.setHouseColor("pink"); //overriding blue and SETTING to pink
         System.out.println("house1 color: " +  house1.getHouseColor()); //GETTING house color
         System.out.println("house1 built in: " +  house1.year);

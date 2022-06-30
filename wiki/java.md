@@ -69,3 +69,14 @@ public static void main(String[] args) {
 }
 
 // Outputs "Red"
+
+
+
+
+
+
+--------------------------------SPRING BOOT--------------------------------------
+SPRING IS A FRAMEWORK THAT CAN BE USED WITH JAVA AND OTHER LANGUAGES LIKE KOTLIN AND GROOVY
+spring boot initalizer is similar to yarn react create app
+
+annotations are anything with an @ sign in front of it; functions from the framework

@@ -1,3 +1,5 @@
+package houseObject;
+
 class OwnerModel {
 
     List<Owner> owners;
