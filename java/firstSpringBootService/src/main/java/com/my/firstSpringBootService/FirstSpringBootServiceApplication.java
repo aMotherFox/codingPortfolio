@@ -9,8 +9,10 @@ import java.util.Scanner;
 @SpringBootApplication
 public class FirstSpringBootServiceApplication {
 
+	//have to restart server after you make ANY CHANGES
+
 	public static void main(String[] args) {
-//		SpringApplication.run(FirstSpringBootServiceApplication.class, args);
+		SpringApplication.run(FirstSpringBootServiceApplication.class, args);
 
 		System.out.println("Hello World");
 
@@ -42,12 +44,12 @@ public class FirstSpringBootServiceApplication {
 
 		String myCarMake = myCar.getMake();
 		System.out.println("myCar Make: " + myCarMake);
-		myCar.setColor("Hot Red");
+		myCar.setColor("Spicy Red");
 		System.out.println("myCar color: " + myCar.getColor());
 
 
 
-		getStringReverse();
+//		getStringReverse();
 
 	}
 
