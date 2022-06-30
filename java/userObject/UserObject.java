@@ -1,6 +1,6 @@
-//import java.util.List;
+package userObject;//import java.util.List;
 
-class User {
+public class UserObject {
     
     //models have properties, constructors, getters, setters, and toStrings
     //any methods would be RELATED to the propertie; i.e. this.age
@@ -13,14 +13,14 @@ class User {
     //
 
 
-    public User() {
+    public UserObject() {
         //no args constructor
         //difference between no args and all args: no args returns an empty object for you to fill
         //every property is null until you set the fields
     }
 
     
-    public User(String name, Integer age, Integer salary, String favoriteColor, Integer luckyNumber) { 
+    public UserObject(String name, Integer age, Integer salary, String favoriteColor, Integer luckyNumber) {
         //all args constructor
         
         this.name = name; 
