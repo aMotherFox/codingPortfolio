@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="114964d2-bb9f-4b17-9863-4d05ac5b23f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../myFirstSpringBootProject/src/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codingChallanges/Arithmatic/MathNum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../codingChallanges/Arithmatic/MathNum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codingChallanges/GradingScale/GradingScale.java" beforeDir="false" afterPath="$PROJECT_DIR$/../codingChallanges/GradingScale/GradingScale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codingChallanges/GradingScale/MyGradingScaleClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../codingChallanges/GradingScale/MyGradingScaleClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codingChallanges/SocialMedia/SocialMediaApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../codingChallanges/SocialMedia/SocialMediaApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codingChallanges/SocialMedia2/SocialMediaApp2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../codingChallanges/SocialMedia2/SocialMediaApp2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../funExercises/BubbleSorting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../funExercises/BubbleSorting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../funExercises/StringSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/../funExercises/StringSize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../houseObject/HouseClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../houseObject/HouseClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../houseObject/HouseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../houseObject/HouseModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../houseObject/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../houseObject/Owner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../houseObject/OwnerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../houseObject/OwnerModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../userObject/ListsAndObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/../userObject/ListsAndObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../userObject/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../userObject/UserObject.java" afterDir="false" />
-    </list>
+    <list default="true" id="114964d2-bb9f-4b17-9863-4d05ac5b23f9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,16 +42,6 @@
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="myFirstSpringProject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
