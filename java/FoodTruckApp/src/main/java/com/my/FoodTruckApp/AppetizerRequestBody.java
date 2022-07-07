@@ -1,5 +1,8 @@
 package com.my.FoodTruckApp;
-import lombok.*;
+//import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 //GENERATE IS A FEATURE OF INTELLIJ
 

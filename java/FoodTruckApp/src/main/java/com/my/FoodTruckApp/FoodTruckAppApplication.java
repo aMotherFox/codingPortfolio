@@ -24,5 +24,7 @@ public class FoodTruckAppApplication {
 - Create a POST endpoint to create an appetizer
 - Create a GET all, GET by id endpoints
 - Create a PUT endpoint to update an existing appetizer
- ex: update the appetizer.price
+ ex: update all fields in an appetizer (but the ID)
+- Create a PATCH endpoint to update an existing appetizer's field - ANY field
+ex: update ONLY the price, or update BOTh the price AND the title
  */
