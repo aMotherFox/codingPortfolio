@@ -1,7 +1,7 @@
 package com.my.FoodTruckApp;
-//import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,20 +46,19 @@ public class AppetizerController {
 
 
 
-//    @PutMapping("/appetizers/{id}")
-//    public AppetizerModel changePrice(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
-//
-//        Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
-//
-//        if (optionalAppetizerById.isPresent()) {
-//            AppetizerModel foundAppetizer = optionalAppetizerById.get();
-//            foundAppetizer.setPrice(requestBody.getPrice());
-//            // trying to return the found appetizer with the updated price
-//            return foundAppetizer;
-//        } //if the Optional does not exist, throw the error code not found.
-//        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//
-//    }
+    @PutMapping("/appetizers/{id}")
+    public AppetizerModel changePrice(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+
+        Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
+
+        if (optionalAppetizerById.isPresent()) {
+            AppetizerModel foundAppetizer = optionalAppetizerById.get();
+            foundAppetizer.setPrice(requestBody.getPrice());
+            return foundAppetizer;
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+    }
 
 }
 
