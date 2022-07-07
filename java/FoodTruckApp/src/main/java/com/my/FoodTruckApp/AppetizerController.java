@@ -12,11 +12,6 @@ public class AppetizerController {
     AppetizerModel appetizer2 = new AppetizerModel(2, "medium", "sweet", "breakfast", 6);
     ArrayList<AppetizerModel> appetizers = new ArrayList<>(Arrays.asList(appetizer1, appetizer2));
 
-//    @GetMapping("/app") //get appetizer
-//    public String getAppetizer() {
-//        System.out.println("These are the appetizers: ");
-//        return "hi ";
-//    }
 
     @GetMapping("/appetizers") //GET ALL APPS IN LIST
     public List<AppetizerModel> getListOfAppetizers() {
@@ -50,5 +45,9 @@ public class AppetizerController {
 
     @PutMapping("/appetizers/")
     public AppetizerModel puttingAppetizer(@PathVariable)
+        //.get() is an item by index, NOT by id
 
 }
+
+//RESTFUL APIS have conventions/patterns we abide by; i.e. RESTFUL APIS will return and recieve JSON
+//naming scheme is RESTFUL API, the URI should be self explanitory; appetizer -> "/appetizers/"
