@@ -165,6 +165,8 @@ public class MyFirstController {
 
 
     //--------------------POST API----------------------
+    //API = endpoint
+    //an API is like a function/method
     //endpoint's purpose is NOT to put out stuff for you to see on the browser;
     //the purpose is to handle/manipulate data and return you that data
     //the job to show you the stuff is the front end, not the back end
@@ -265,7 +267,7 @@ public class MyFirstController {
     }
 
     @PostMapping("/request")
-    public String requestingBody(@RequestBody String requestedString) {
+    public String requestingBody(@RequestBody String requestedString) { //requestedString is the key
         System.out.println("printing the request body: " + requestedString);
         return "this is the requested body";
     }
@@ -308,4 +310,14 @@ Optional Elements:
 
 @RequestBody is used to map the HttpRequest body to transfer or domain object, enabling automatic deserialization
 AKA the annotation tells Spring to deserialize a request body into an object, and the object is passed as a handler method parameter
+
+
+
+HTTP REQUESTS:
+Response Status Codes-
+    100-199 = informational responses
+    200-299 = successful response
+    300-399 = redirection messages
+    400-499 = client error response
+    500-599 = server error response
  */
