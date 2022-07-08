@@ -47,20 +47,57 @@ public class AppetizerController {
 
 
     @PutMapping("/appetizers/{id}")
-    public AppetizerModel changePrice(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+    public AppetizerModel changeObject(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
 
         Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
 
-        if (optionalAppetizerById.isPresent()) {
+        if (optionalAppetizerById.isPresent()) { //ensures we are entering object that exists
             AppetizerModel foundAppetizer = optionalAppetizerById.get();
             foundAppetizer.setPrice(requestBody.getPrice());
+            foundAppetizer.setFlavor(requestBody.getFlavor());
+            foundAppetizer.setPairedMeal(requestBody.getPairedMeal());
+            foundAppetizer.setSize(requestBody.getSize());
+            //if field is NULL, throw exception
+            if (requestBody.getPrice() == null) {
+                System.out.println("The price is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            } if (requestBody.getFlavor() == null) {
+                System.out.println("The flavor is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            } if (requestBody.getPairedMeal() == null) {
+                System.out.println("The meal is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            } if (requestBody.getSize() == null) {
+                System.out.println("The size is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            }
             return foundAppetizer;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
     }
 
+   @PatchMapping("/appetizers/{id}")
+    public AppetizerModel changeField(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+       Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
+
+       if (optionalAppetizerById.isPresent()) { //ensures we are entering object that exists
+           AppetizerModel foundAppetizer = optionalAppetizerById.get();
+           foundAppetizer.setPrice(requestBody.getPrice());
+           foundAppetizer.setFlavor(requestBody.getFlavor());
+           foundAppetizer.setPairedMeal(requestBody.getPairedMeal());
+           foundAppetizer.setSize(requestBody.getSize());
+           //if field is NULL, do not update field to NULL
+           return foundAppetizer;
+       }
+       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+   }
 }
+
+// TODO: Change put to allow you to change all fields except for ID
+// TODO: create a Patch that allows you to change a specific field
+// TODO: PUT should require you to update the entire object, not just the field
 
 //RESTFUL APIS have conventions/patterns we abide by; i.e. RESTFUL APIS will return and recieve JSON
 //naming scheme is RESTFUL API, the URI should be self explanitory; appetizer -> "/appetizers/"
