@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@RestController //API CALL, have to go to POSTMAN and call this API; recieving the API calls is the main job of the controller; creates endpoints with URLS
 public class AppetizerController {
     AppetizerModel appetizer1 = new AppetizerModel(1, "small", "spicy", "dinner", 4);
     AppetizerModel appetizer2 = new AppetizerModel(2, "medium", "sweet", "breakfast", 6);
@@ -36,7 +36,7 @@ public class AppetizerController {
         );
         appetizers.add(appetizer); //adding new appetizer to list
         return appetizer;
-    }
+    } //code after API call is BUSINESS LOGIC; the logic that your write; everything inside method belongs in SERVICE
 
     //------------------------get appetizer by ID-------------------------------------------
     @GetMapping("/appetizers/{id}")
@@ -127,6 +127,10 @@ public class AppetizerController {
 // TODO: create a Patch that allows you to change a specific field
 // TODO: PUT should require you to update the entire object, not just the field
 
+//TODO: create appetizer SERVICE called AppetizerService
+//TODO: put business logic in service
+//TODO: call method from without code, get the return value and return it (where dependency injection comes in)
+
 //RESTFUL APIS have conventions/patterns we abide by; i.e. RESTFUL APIS will return and recieve JSON
 //will use HTTP methods
 //naming scheme is RESTFUL API, the URI should be self explanitory; appetizer -> "/appetizers/"
@@ -139,4 +143,26 @@ public class AppetizerController {
 Dependency Injection:
 An instance of a class managed by the Spring container
 Spring IOC manages all containers
+
+in OOP, objects we build are dependant on other objects
+    i.e. PCs are build from different parts build by different companies; monitor from x, harddrive from y, graphics card by z
+loose coupling vs tight coupling; refers to how easy is it to switch these 'parts' aka how intertwined the parts are. loose coupling lets you test COMPONENTS of code, tight coupling is so interdependant that you need to test code together
+    loose coupling: one object is not totally dependant upon another object; it can be replaced (replace samsung harddrive with gtx harddrive)
+    TIGHT COUPLING: HardDrive object1 = new HitachiHardDrive(); (laptop object is dependant on laptop object)
+    we want to INJECT harddrive object into laptop class
+    ***USE DEPENDANCY INJECTION CONTAINER- it can create objects for you and INJECT them into your class
+    example: you can make a class of HitachiHardDrive or SamsungHardDrive, and @Component to make it a dependant, it becomes a component of spring framework which can be generated
+    example: can use @Autowired to make new object and connect it to the component
+
+    @Component
+    class HitachiHD implements HardDrive
+    { ......
+    ......
+    }
+
+    class Laptop
+    {
+    @Autowired
+    HardDrive Object1;
+    }
  */
