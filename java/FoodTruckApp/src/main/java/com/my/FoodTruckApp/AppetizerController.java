@@ -101,3 +101,12 @@ public class AppetizerController {
 
 //RESTFUL APIS have conventions/patterns we abide by; i.e. RESTFUL APIS will return and recieve JSON
 //naming scheme is RESTFUL API, the URI should be self explanitory; appetizer -> "/appetizers/"
+
+
+
+
+/*
+Dependency Injection:
+An instance of a class managed by the Spring container
+Spring IOC manages all containers
+ */
