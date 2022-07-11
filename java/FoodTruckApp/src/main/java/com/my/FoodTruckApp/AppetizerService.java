@@ -84,4 +84,43 @@ public class AppetizerService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         // throwing exception if no item by id exists
     }
+    //---------------------------------------------------------------------------------------------------------------------------------
+       public AppetizerModel changeField(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+       Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
+       //find appetizer by ID
+
+       if (optionalAppetizerById.isPresent()) { //isPresent ensures we are entering object that exists, if the ID (ID we found above) exists, it will be plugged in here
+           AppetizerModel foundAppetizer = optionalAppetizerById.get();
+           if (requestBody.getPrice() == null) { //only GETTING price to check if null, not setting it
+               System.out.println("before change" + foundAppetizer);
+               return foundAppetizer;
+           }
+           foundAppetizer.setPrice(requestBody.getPrice()); //price was NOT NULL so moved to this ELSE, which is where we set price
+           System.out.println("after change" + foundAppetizer);
+
+           if (requestBody.getFlavor() == null) {//only GETTING flavor to check if null, not setting it
+               System.out.println("before change" + foundAppetizer);
+               return foundAppetizer;
+           }
+           foundAppetizer.setFlavor(requestBody.getFlavor());//flavor was NOT NULL so moved to this ELSE, which is where we set price
+           System.out.println("after change" + foundAppetizer);
+
+           if (requestBody.getSize() == null) {//only GETTING size to check if null, not setting it
+               System.out.println("before change" + foundAppetizer);
+               return foundAppetizer;
+           }
+           foundAppetizer.setSize(requestBody.getSize());//size was NOT NULL so moved to this ELSE, which is where we set price
+           System.out.println("after change" + foundAppetizer);
+
+           if (requestBody.getPairedMeal() == null) {//only GETTING pairedMeal to check if null, not setting it
+               System.out.println("before change" + foundAppetizer);
+               return foundAppetizer;
+           }
+           foundAppetizer.setPairedMeal(requestBody.getPairedMeal());//pairedMeal was NOT NULL so moved to this ELSE, which is where we set price
+           System.out.println("after change" + foundAppetizer);
+           return foundAppetizer;
+       }
+       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+       // throwing exception if no item by id exists
+   }
 }

@@ -112,6 +112,10 @@ public class AppetizerController {
 //    }
 //
 //    //------------------------PATCHMAPPING one or multiple fields-------------------------------------------
+    @PatchMapping("/appetizers/{id}")
+    public AppetizerModel changeField(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+        return appetizerService.changeField(requestBody, id);
+    }
 //   @PatchMapping("/appetizers/{id}")
 //    public AppetizerModel changeField(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
 //       Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
