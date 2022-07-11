@@ -89,8 +89,11 @@ public class AppetizerService {
        Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
        //find appetizer by ID
 
+           //we want to find the optional appetizer
+           //figure out if field is set to null
            //IF field == null, do not change field
            //else, set field
+           //cannot return or loop will stop
 
        if (optionalAppetizerById.isPresent()) { //isPresent ensures we are entering object that exists, if the ID (ID we found above) exists, it will be plugged in here
            AppetizerModel foundAppetizer = optionalAppetizerById.get();
