@@ -89,11 +89,14 @@ public class AppetizerService {
        Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
        //find appetizer by ID
 
+           //IF field == null, do not change field
+           //else, set field
+
        if (optionalAppetizerById.isPresent()) { //isPresent ensures we are entering object that exists, if the ID (ID we found above) exists, it will be plugged in here
            AppetizerModel foundAppetizer = optionalAppetizerById.get();
            if (requestBody.getPrice() == null) { //only GETTING price to check if null, not setting it
                System.out.println("before change" + foundAppetizer);
-               return foundAppetizer;
+               return foundAppetizer; //this is incorrect because it stops the code when the field is null, so rest of fields don't run
            }
            foundAppetizer.setPrice(requestBody.getPrice()); //price was NOT NULL so moved to this ELSE, which is where we set price
            System.out.println("after change" + foundAppetizer);
