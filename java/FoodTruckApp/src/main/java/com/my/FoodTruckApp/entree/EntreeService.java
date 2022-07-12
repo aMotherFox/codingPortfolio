@@ -1,6 +1,5 @@
 package com.my.FoodTruckApp.entree;
 import com.my.FoodTruckApp.appetizer.Appetizer;
-import com.my.FoodTruckApp.appetizer.AppetizerRequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -76,6 +75,49 @@ public class EntreeService {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
             }
             return foundEntree; //if app existed AND all field requirements were met
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        // throwing exception if no item by id exists
+    }
+    public Entree changeField(@RequestBody Entree requestBody, @PathVariable Integer id) {
+        ArrayList<Entree> entrees = entreeRepository.getAllEntrees();
+        Optional<Entree> optionalEntreeById = entrees.stream().filter(entree -> entree.getId().equals(id)).findFirst();
+
+        //figure out if field is set to null
+        //IF field == null, do not change field
+        //else, set field
+        //cannot return or loop will stop
+
+        if (optionalEntreeById.isPresent()) { //isPresent ensures we are entering object that exists, if the ID (ID we found above) exists, it will be plugged in here
+            Entree foundEntree = optionalEntreeById.get();
+            if (requestBody.getPrice() == null) { //only GETTING price to check if null, not setting it
+                System.out.println("before change" + foundEntree);
+                return foundEntree; //this is incorrect because it stops the code when the field is null, so rest of fields don't run
+            }
+            foundEntree.setPrice(requestBody.getPrice()); //price was NOT NULL so moved to this ELSE, which is where we set price
+            System.out.println("after change" + foundEntree);
+
+            if (requestBody.getFlavor() == null) {//only GETTING flavor to check if null, not setting it
+                System.out.println("before change" + foundEntree);
+                return foundEntree;
+            }
+            foundEntree.setFlavor(requestBody.getFlavor());//flavor was NOT NULL so moved to this ELSE, which is where we set price
+            System.out.println("after change" + foundEntree);
+
+            if (requestBody.getSize() == null) {//only GETTING size to check if null, not setting it
+                System.out.println("before change" + foundEntree);
+                return foundEntree;
+            }
+            foundEntree.setSize(requestBody.getSize());//size was NOT NULL so moved to this ELSE, which is where we set price
+            System.out.println("after change" + foundEntree);
+
+            if (requestBody.getPairedMeal() == null) {//only GETTING pairedMeal to check if null, not setting it
+                System.out.println("before change" + foundEntree);
+                return foundEntree;
+            }
+            foundEntree.setPairedMeal(requestBody.getPairedMeal());//pairedMeal was NOT NULL so moved to this ELSE, which is where we set price
+            System.out.println("after change" + foundEntree);
+            return foundEntree;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         // throwing exception if no item by id exists

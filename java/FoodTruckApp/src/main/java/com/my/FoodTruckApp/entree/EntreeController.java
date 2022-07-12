@@ -37,4 +37,9 @@ public class EntreeController {
     public Entree changeObject(@RequestBody Entree requestBody, @PathVariable Integer id) {
         return entreeService.changeObject(requestBody, id);
     }
+    //------------------------PATCHMAPPING one or multiple fields-------------------------------------------
+    @PatchMapping("/entrees/{id}")
+    public Entree changeField(@RequestBody Entree requestBody, @PathVariable Integer id) {
+        return entreeService.changeField(requestBody, id);
+    }
 }
