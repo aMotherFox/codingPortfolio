@@ -1,7 +1,5 @@
-package com.my.FoodTruckApp;
+package com.my.FoodTruckApp.appetizer;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 
 @Service
@@ -31,18 +28,18 @@ public class AppetizerService {
 //    } THIS IS THE ALL ARGS CONSTRUCTOR, NO LONGER NEEDED BECAUSE OF @AllArgsConstructor
 
     //---------------------------------------------------------------------------------------------------------------------------------
-    public ArrayList<AppetizerModel> getListOfAppetizers() {
-        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
+    public ArrayList<Appetizer> getListOfAppetizers() {
+        ArrayList<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
         System.out.println("These are the appetizers: " + appetizers);
         return appetizers;
     }
     //---------------------------------------------------------------------------------------------------------------------------------
-    public AppetizerModel createAppetizer(@RequestBody AppetizerRequestBody appRequestBody) {
-        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
+    public Appetizer createAppetizer(@RequestBody AppetizerRequestBody appRequestBody) {
+        ArrayList<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
         System.out.println("Creating an appetizer with requestBody: " + appRequestBody);
         Integer id = appetizers.get(appetizers.size() - 1).getId() + 1; //getting the ID # of the last object in the list and adding +1 to it so it becomes the next ID
 
-        AppetizerModel appetizer = new AppetizerModel(
+        Appetizer appetizer = new Appetizer(
                 id, //+1 from last ID in list to become new ID
                 appRequestBody.getAppSize(),
                 appRequestBody.getAppFlavor(),
@@ -53,21 +50,21 @@ public class AppetizerService {
         return appetizer;
     }
     //---------------------------------------------------------------------------------------------------------------------------------
-    public Optional<AppetizerModel> getAppById(@PathVariable Integer id) {
-        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
+    public Optional<Appetizer> getAppById(@PathVariable Integer id) {
+        ArrayList<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
         System.out.println("getting app by id: " + id);
-        Optional<AppetizerModel> appetizerById = appetizers.stream().filter(appetizer -> appetizer.getId() == id).findFirst();
+        Optional<Appetizer> appetizerById = appetizers.stream().filter(appetizer -> appetizer.getId() == id).findFirst();
         return appetizerById;
     } //TODO: make 404 error instead of optional, 404 goes on controller
     //---------------------------------------------------------------------------------------------------------------------------------
-    public AppetizerModel changeObject(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
-        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
+    public Appetizer changeObject(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
+        ArrayList<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
 
-        Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
+        Optional<Appetizer> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
         //find appetizer by ID
 
         if (optionalAppetizerById.isPresent()) { //isPresent ensures we are entering object that exists, if the ID (ID we found above) exists, it will be plugged in here
-            AppetizerModel foundAppetizer = optionalAppetizerById.get();
+            Appetizer foundAppetizer = optionalAppetizerById.get();
             foundAppetizer.setPrice(requestBody.getPrice());
             foundAppetizer.setFlavor(requestBody.getFlavor());
             foundAppetizer.setPairedMeal(requestBody.getPairedMeal());
@@ -93,9 +90,9 @@ public class AppetizerService {
         // throwing exception if no item by id exists
     }
     //---------------------------------------------------------------------------------------------------------------------------------
-       public AppetizerModel changeField(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
-        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
-           Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
+       public Appetizer changeField(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
+        ArrayList<Appetizer> appetizers = appetizerRepository.getAllAppetizers();
+           Optional<Appetizer> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
            //find appetizer by ID
 
                //we want to find the optional appetizer
@@ -105,7 +102,7 @@ public class AppetizerService {
                //cannot return or loop will stop
 
            if (optionalAppetizerById.isPresent()) { //isPresent ensures we are entering object that exists, if the ID (ID we found above) exists, it will be plugged in here
-               AppetizerModel foundAppetizer = optionalAppetizerById.get();
+               Appetizer foundAppetizer = optionalAppetizerById.get();
                if (requestBody.getPrice() == null) { //only GETTING price to check if null, not setting it
                    System.out.println("before change" + foundAppetizer);
                    return foundAppetizer; //this is incorrect because it stops the code when the field is null, so rest of fields don't run

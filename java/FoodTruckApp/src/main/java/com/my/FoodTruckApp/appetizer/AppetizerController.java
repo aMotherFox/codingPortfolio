@@ -1,14 +1,9 @@
-package com.my.FoodTruckApp;
-import lombok.AllArgsConstructor;
+package com.my.FoodTruckApp.appetizer;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 
 @RestController //API CALL, have to go to POSTMAN and call this API; recieving the API calls is the main job of the controller; creates endpoints with URLS
@@ -27,7 +22,7 @@ public class AppetizerController {
 //    }
 
     @GetMapping("/appetizers") //GET ALL APPS IN LIST
-    public ArrayList<AppetizerModel> getListOfAppetizers() {
+    public ArrayList<Appetizer> getListOfAppetizers() {
         return appetizerService.getListOfAppetizers(); //getting instance of the service and calling the method
     }
 //
@@ -39,7 +34,7 @@ public class AppetizerController {
 //
 //    //------------------------create an appetizer through POST and add to list-------------------------------------------
     @PostMapping("/appetizers")
-    public AppetizerModel createAppetizer(@RequestBody AppetizerRequestBody appRequestBody) {
+    public Appetizer createAppetizer(@RequestBody AppetizerRequestBody appRequestBody) {
         return appetizerService.createAppetizer(appRequestBody); //appRequestBody is the raw JSON we input on PostMan
     }
 //    public AppetizerModel createAppetizer(@RequestBody AppetizerRequestBody appRequestBody) {
@@ -59,7 +54,7 @@ public class AppetizerController {
 //
 //    //------------------------get appetizer by ID-------------------------------------------
     @GetMapping("/appetizers/{id}")
-    public AppetizerModel getAppById(@PathVariable Integer id) {
+    public Appetizer getAppById(@PathVariable Integer id) {
         return appetizerService.getAppById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
@@ -73,7 +68,7 @@ public class AppetizerController {
 //
 //    //------------------------PUTMAPPING must enter all fields-------------------------------------------
     @PutMapping("/appetizers/{id}")
-    public AppetizerModel changeObject(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+    public Appetizer changeObject(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
         return appetizerService.changeObject(requestBody, id);
     }
 //    @PutMapping("/appetizers/{id}")
@@ -111,7 +106,7 @@ public class AppetizerController {
 //
 //    //------------------------PATCHMAPPING one or multiple fields-------------------------------------------
     @PatchMapping("/appetizers/{id}")
-    public AppetizerModel changeField(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+    public Appetizer changeField(@RequestBody Appetizer requestBody, @PathVariable Integer id) {
         return appetizerService.changeField(requestBody, id);
     }
 //   @PatchMapping("/appetizers/{id}")
