@@ -1,6 +1,8 @@
 package com.my.FoodTruckApp;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,27 +14,31 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @Service
-@Data //has all the getters, setters, and toString built in
-
+@RequiredArgsConstructor
 public class AppetizerService {
+//    AppetizerModel appetizer1 = new AppetizerModel(1, "small", "spicy", "dinner", 4);
+//    AppetizerModel appetizer2 = new AppetizerModel(2, "medium", "sweet", "breakfast", 6);
+//    ArrayList<AppetizerModel> appetizers = new ArrayList<>(Arrays.asList(appetizer1, appetizer2));
+    private final AppetizerRepository appetizerRepository; //creating a NULL appetizerRepository, just a field
+    //final means cannot be changed, only instantiated once
+    //picked up by @RequiredArgsConstructor
 
-    public static String testingDependancyInjectionMethod() {
-        System.out.println("This is the appetizer service");
-        String testResult = "appetizer service";
-        return testResult;
-    } // TESTING THE GET IN POSTMAN
-
-    AppetizerModel appetizer1 = new AppetizerModel(1, "small", "spicy", "dinner", 4);
-    AppetizerModel appetizer2 = new AppetizerModel(2, "medium", "sweet", "breakfast", 6);
-    ArrayList<AppetizerModel> appetizers = new ArrayList<>(Arrays.asList(appetizer1, appetizer2));
+//    public AppetizerService(AppetizerRepository appetizerRepository) {
+//        //constructor
+//        this.appetizerRepository = appetizerRepository; //how it knows which appetizerRepository its using, orange is recieved, white is the class field
+//        //ASSIGNING what I recieved from the constructor
+//        //service now REQUIRES appetizerRepository
+//    } THIS IS THE ALL ARGS CONSTRUCTOR, NO LONGER NEEDED BECAUSE OF @AllArgsConstructor
 
     //---------------------------------------------------------------------------------------------------------------------------------
     public ArrayList<AppetizerModel> getListOfAppetizers() {
+        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
         System.out.println("These are the appetizers: " + appetizers);
         return appetizers;
     }
     //---------------------------------------------------------------------------------------------------------------------------------
     public AppetizerModel createAppetizer(@RequestBody AppetizerRequestBody appRequestBody) {
+        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
         System.out.println("Creating an appetizer with requestBody: " + appRequestBody);
         Integer id = appetizers.get(appetizers.size() - 1).getId() + 1; //getting the ID # of the last object in the list and adding +1 to it so it becomes the next ID
 
@@ -48,12 +54,14 @@ public class AppetizerService {
     }
     //---------------------------------------------------------------------------------------------------------------------------------
     public Optional<AppetizerModel> getAppById(@PathVariable Integer id) {
+        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
         System.out.println("getting app by id: " + id);
         Optional<AppetizerModel> appetizerById = appetizers.stream().filter(appetizer -> appetizer.getId() == id).findFirst();
         return appetizerById;
-    }
+    } //TODO: make 404 error instead of optional, 404 goes on controller
     //---------------------------------------------------------------------------------------------------------------------------------
-        public AppetizerModel changeObject(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+    public AppetizerModel changeObject(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
+        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
 
         Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
         //find appetizer by ID
@@ -86,47 +94,48 @@ public class AppetizerService {
     }
     //---------------------------------------------------------------------------------------------------------------------------------
        public AppetizerModel changeField(@RequestBody AppetizerModel requestBody, @PathVariable Integer id) {
-       Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
-       //find appetizer by ID
+        ArrayList<AppetizerModel> appetizers = appetizerRepository.getAllAppetizers();
+           Optional<AppetizerModel> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst();
+           //find appetizer by ID
 
-           //we want to find the optional appetizer
-           //figure out if field is set to null
-           //IF field == null, do not change field
-           //else, set field
-           //cannot return or loop will stop
+               //we want to find the optional appetizer
+               //figure out if field is set to null
+               //IF field == null, do not change field
+               //else, set field
+               //cannot return or loop will stop
 
-       if (optionalAppetizerById.isPresent()) { //isPresent ensures we are entering object that exists, if the ID (ID we found above) exists, it will be plugged in here
-           AppetizerModel foundAppetizer = optionalAppetizerById.get();
-           if (requestBody.getPrice() == null) { //only GETTING price to check if null, not setting it
-               System.out.println("before change" + foundAppetizer);
-               return foundAppetizer; //this is incorrect because it stops the code when the field is null, so rest of fields don't run
-           }
-           foundAppetizer.setPrice(requestBody.getPrice()); //price was NOT NULL so moved to this ELSE, which is where we set price
-           System.out.println("after change" + foundAppetizer);
+           if (optionalAppetizerById.isPresent()) { //isPresent ensures we are entering object that exists, if the ID (ID we found above) exists, it will be plugged in here
+               AppetizerModel foundAppetizer = optionalAppetizerById.get();
+               if (requestBody.getPrice() == null) { //only GETTING price to check if null, not setting it
+                   System.out.println("before change" + foundAppetizer);
+                   return foundAppetizer; //this is incorrect because it stops the code when the field is null, so rest of fields don't run
+               }
+               foundAppetizer.setPrice(requestBody.getPrice()); //price was NOT NULL so moved to this ELSE, which is where we set price
+               System.out.println("after change" + foundAppetizer);
 
-           if (requestBody.getFlavor() == null) {//only GETTING flavor to check if null, not setting it
-               System.out.println("before change" + foundAppetizer);
+               if (requestBody.getFlavor() == null) {//only GETTING flavor to check if null, not setting it
+                   System.out.println("before change" + foundAppetizer);
+                   return foundAppetizer;
+               }
+               foundAppetizer.setFlavor(requestBody.getFlavor());//flavor was NOT NULL so moved to this ELSE, which is where we set price
+               System.out.println("after change" + foundAppetizer);
+
+               if (requestBody.getSize() == null) {//only GETTING size to check if null, not setting it
+                   System.out.println("before change" + foundAppetizer);
+                   return foundAppetizer;
+               }
+               foundAppetizer.setSize(requestBody.getSize());//size was NOT NULL so moved to this ELSE, which is where we set price
+               System.out.println("after change" + foundAppetizer);
+
+               if (requestBody.getPairedMeal() == null) {//only GETTING pairedMeal to check if null, not setting it
+                   System.out.println("before change" + foundAppetizer);
+                   return foundAppetizer;
+               }
+               foundAppetizer.setPairedMeal(requestBody.getPairedMeal());//pairedMeal was NOT NULL so moved to this ELSE, which is where we set price
+               System.out.println("after change" + foundAppetizer);
                return foundAppetizer;
            }
-           foundAppetizer.setFlavor(requestBody.getFlavor());//flavor was NOT NULL so moved to this ELSE, which is where we set price
-           System.out.println("after change" + foundAppetizer);
-
-           if (requestBody.getSize() == null) {//only GETTING size to check if null, not setting it
-               System.out.println("before change" + foundAppetizer);
-               return foundAppetizer;
-           }
-           foundAppetizer.setSize(requestBody.getSize());//size was NOT NULL so moved to this ELSE, which is where we set price
-           System.out.println("after change" + foundAppetizer);
-
-           if (requestBody.getPairedMeal() == null) {//only GETTING pairedMeal to check if null, not setting it
-               System.out.println("before change" + foundAppetizer);
-               return foundAppetizer;
-           }
-           foundAppetizer.setPairedMeal(requestBody.getPairedMeal());//pairedMeal was NOT NULL so moved to this ELSE, which is where we set price
-           System.out.println("after change" + foundAppetizer);
-           return foundAppetizer;
-       }
-       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND);
        // throwing exception if no item by id exists
    }
 }

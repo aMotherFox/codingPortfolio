@@ -1,32 +1,30 @@
 package com.my.FoodTruckApp;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static com.my.FoodTruckApp.AppetizerService.testingDependancyInjectionMethod;
 
 @RestController //API CALL, have to go to POSTMAN and call this API; recieving the API calls is the main job of the controller; creates endpoints with URLS
+@RequiredArgsConstructor //looks for all fields but only uses final (required) fields
 public class AppetizerController {
 
-    @Autowired
-    private AppetizerService appetizerService; //if you want an instance of the service, we ask Spring for it through the private variable, we can use this to tell spring to INJECT it
+//    @Autowired
+    private final AppetizerService appetizerService; //if you want an instance of the service, we ask Spring for it through the private variable, we can use this to tell spring to INJECT it
     //will look through all the variables and see if they have a DEPENDENY on the service
 //    AppetizerModel appetizer1 = new AppetizerModel(1, "small", "spicy", "dinner", 4);
 //    AppetizerModel appetizer2 = new AppetizerModel(2, "medium", "sweet", "breakfast", 6);
 //    ArrayList<AppetizerModel> appetizers = new ArrayList<>(Arrays.asList(appetizer1, appetizer2));
 
-
-    @GetMapping("/dependency-injection")
-    public String testingDependancyInjection() {
-        String testing1 = testingDependancyInjectionMethod();
-        return testing1;
-    }
+//    public AppetizerController(AppetizerService appetizerService) {
+//        this.appetizerService = appetizerService;
+//    }
 
     @GetMapping("/appetizers") //GET ALL APPS IN LIST
     public ArrayList<AppetizerModel> getListOfAppetizers() {
@@ -61,8 +59,8 @@ public class AppetizerController {
 //
 //    //------------------------get appetizer by ID-------------------------------------------
     @GetMapping("/appetizers/{id}")
-    public Optional<AppetizerModel> getAppById(@PathVariable Integer id) {
-        return appetizerService.getAppById(id);
+    public AppetizerModel getAppById(@PathVariable Integer id) {
+        return appetizerService.getAppById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
 //    @GetMapping("/appetizers/{id}")
