@@ -1,10 +1,8 @@
 package com.my.FoodTruckApp.entree;
 
-import com.my.FoodTruckApp.appetizer.Appetizer;
-import com.my.FoodTruckApp.appetizer.AppetizerRequestBody;
-import com.my.FoodTruckApp.appetizer.AppetizerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
@@ -27,19 +25,46 @@ public class EntreeController {
     public Entree createEntree(@RequestBody EntreeRequestBody entreeRequestBody) {
         return entreeService.createEntree(entreeRequestBody); //entreeRequestBody is the raw JSON we input on PostMan
     }
+
     //------------------------get entree by ID-------------------------------------------
     @GetMapping("/entrees/{id}")
     public Entree getEntreeById(@PathVariable Integer id) {
         return entreeService.getEntreeById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+
     //------------------------PUTMAPPING must enter all fields-------------------------------------------
     @PutMapping("/entrees/{id}")
     public Entree changeObject(@RequestBody Entree requestBody, @PathVariable Integer id) {
         return entreeService.changeObject(requestBody, id);
     }
+
     //------------------------PATCHMAPPING one or multiple fields-------------------------------------------
     @PatchMapping("/entrees/{id}")
     public Entree changeField(@RequestBody Entree requestBody, @PathVariable Integer id) {
         return entreeService.changeField(requestBody, id);
     }
+
+    //------------------------DELETE-------------------------------------------
+    @DeleteMapping("/entrees/{id}")
+    public void deleteEntreeById(@PathVariable Integer id) {
+        entreeService.deleteEntreeById(id); //calling deleteEntreeById from our dependency entreeService
+    }
+//    public ResponseEntity<Integer> deleteEntreeById(@PathVariable Integer id) {
+//        return ResponseEntity.ok(id);
+//    }
+//    public String deleteEntreeById(@PathVariable Integer id) {
+//        return entreeService.deleteEntreeById(id);
+//        /*
+//        public ResponseEntity<Long> deleteEntreeById(@PathVariable Long id) {
+//        String isRemoved = entreeSer
+//        }
+//         */
+//
+//      //ResponseEntity represents a whole HTTP response - it has a status code, header, and body
+        //must return from the endpoint
+//      //ResponseEntity.noContent().build(); means code was correctly ran but no content found because it was deleted
+
+    // CRUD repository is a Spring Data interface for generic CRUD operations on a repository of a specific type
+    //CRUD repository has methods deleteById and deleteAll
+//    }
 }

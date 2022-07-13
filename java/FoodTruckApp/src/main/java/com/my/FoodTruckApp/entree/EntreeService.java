@@ -1,5 +1,4 @@
 package com.my.FoodTruckApp.entree;
-import com.my.FoodTruckApp.appetizer.Appetizer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -121,5 +120,14 @@ public class EntreeService {
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         // throwing exception if no item by id exists
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------
+//    public String deleteEntreeById(@PathVariable Integer id) {
+//        entreeRepository.deleteById(id);
+//        return null;
+//    }
+    public void deleteEntreeById(@PathVariable Integer id) {
+        ArrayList<Entree> entrees = entreeRepository.getAllEntrees(); //getting all entrees from the repo and putting it in arrayList
+        entrees.removeIf(entree -> entree.getId().equals(id)); //if the entree id entered matches the id of an entree on our list, remove it
     }
 }
