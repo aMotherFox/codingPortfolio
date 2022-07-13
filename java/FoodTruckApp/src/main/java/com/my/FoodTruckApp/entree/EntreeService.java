@@ -72,12 +72,15 @@ public class EntreeService {
             } if (requestBody.getSize() == null) {
                 System.out.println("The size is null");
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-            }
+            } //TODO: can be done in one loop
+            //should recieve whole entree every time
+            //if __ is null, OR if ___ is null, OR if ___ is null, etc, throw exception
             return foundEntree; //if app existed AND all field requirements were met
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         // throwing exception if no item by id exists
     }
+    //---------------------------------------------------------------------------------------------------------------------------------
     public Entree changeField(@RequestBody Entree requestBody, @PathVariable Integer id) {
         ArrayList<Entree> entrees = entreeRepository.getAllEntrees();
         Optional<Entree> optionalEntreeById = entrees.stream().filter(entree -> entree.getId().equals(id)).findFirst();
@@ -120,6 +123,7 @@ public class EntreeService {
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         // throwing exception if no item by id exists
+        //TODO: fix from stopping early
     }
     //---------------------------------------------------------------------------------------------------------------------------------
 //    public String deleteEntreeById(@PathVariable Integer id) {
@@ -129,5 +133,6 @@ public class EntreeService {
     public void deleteEntreeById(@PathVariable Integer id) {
         ArrayList<Entree> entrees = entreeRepository.getAllEntrees(); //getting all entrees from the repo and putting it in arrayList
         entrees.removeIf(entree -> entree.getId().equals(id)); //if the entree id entered matches the id of an entree on our list, remove it
+        //removeIf() is an ArrayList method that removes elements that pass through the filter, in this case by id
     }
 }

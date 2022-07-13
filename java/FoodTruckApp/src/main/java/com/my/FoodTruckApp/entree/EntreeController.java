@@ -9,16 +9,20 @@ import java.util.ArrayList;
 
 
 @RestController //API CALL, have to go to POSTMAN and call this API; recieving the API calls is the main job of the controller; creates endpoints with URLS
-@RequiredArgsConstructor //looks for all fields but only uses final (required) fields
+@RequiredArgsConstructor //looks for all fields but only uses final (required) fields, NEEDED FOR DEPENDENCY INJECTION
 public class EntreeController {
 
     private final EntreeService entreeService; //if you want an instance of the service, we ask Spring for it through the private variable, we can use this to tell spring to INJECT it
     //will look through all the variables and see if they have a DEPENDENCY on the service
 
     @GetMapping("/entrees") //GET ALL ENTREES IN LIST
-    public ArrayList<Entree> getListOfEntrees() {
-        return entreeService.getListOfEntrees(); //getting instance of the service and calling the method
-    }
+    public ResponseEntity<ArrayList<Entree>> getListOfEntrees() {
+        ArrayList<Entree> entrees = entreeService.getListOfEntrees();
+        return new ResponseEntity<>(entrees, HttpStatus.OK); //getting instance of the service and calling the method
+    } //this API isn't returning an ArrayList, it is returning a HTTP response whose BODY is anarraylist of entrees
+    //ALL APIs return HTTP response aka response entity ALWAYS
+    //returning HHTP response who's body has data, spring is already making the HTTP status
+    //spring HANDLES the response entity, whether we manually do it or not you ARE returning a HTTP status
 
     //------------------------create an entree through POST and add to list-------------------------------------------
     @PostMapping("/entrees")
@@ -46,8 +50,12 @@ public class EntreeController {
 
     //------------------------DELETE-------------------------------------------
     @DeleteMapping("/entrees/{id}")
-    public void deleteEntreeById(@PathVariable Integer id) {
+//    public void deleteEntreeById(@PathVariable Integer id) {
+//        entreeService.deleteEntreeById(id); //calling deleteEntreeById from our dependency entreeService
+//    }
+    public String deleteEntreeById(@PathVariable Integer id) {
         entreeService.deleteEntreeById(id); //calling deleteEntreeById from our dependency entreeService
+        return "we have deleted something!";
     }
 //    public ResponseEntity<Integer> deleteEntreeById(@PathVariable Integer id) {
 //        return ResponseEntity.ok(id);
@@ -63,8 +71,11 @@ public class EntreeController {
 //      //ResponseEntity represents a whole HTTP response - it has a status code, header, and body
         //must return from the endpoint
 //      //ResponseEntity.noContent().build(); means code was correctly ran but no content found because it was deleted
+    //
 
     // CRUD repository is a Spring Data interface for generic CRUD operations on a repository of a specific type
     //CRUD repository has methods deleteById and deleteAll
+    //JPA repository is built on top of CRUD
+    //it can do things in the database and that's what it's used for
 //    }
 }
