@@ -7,9 +7,7 @@ import com.my.FoodTruckApp.entree.EntreeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -50,6 +48,13 @@ public class OrderController {
         ArrayList<Appetizer> appetizers = orderService.getListOfAppetizers();
         return new ResponseEntity<>(appetizers, HttpStatus.OK);
     }
+    //------------------------create order-----------------------------------------------------------------------------------------------------------
+    @PostMapping("/orders")
+    public Order createOrder(@RequestBody OrderRequestBody orderRequestBody, @PathVariable Integer id) {
+        return orderService.createOrder(orderRequestBody);
+    }
+
+
 //    @GetMapping("/orders")
 //    public String getListOfAppsAndEntrees() {
 //        return "getting apps and entrees";

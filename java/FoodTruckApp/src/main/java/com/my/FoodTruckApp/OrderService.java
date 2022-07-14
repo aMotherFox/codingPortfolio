@@ -9,6 +9,7 @@ import com.my.FoodTruckApp.entree.EntreeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -59,5 +60,19 @@ public class OrderService {
         ArrayList<Entree> entrees = orderRepository.getAllEntrees();
         System.out.println("These are the entrees: " + entrees);
         return entrees;
+    }
+    //--------------------------------------------create new order and add to list------------------------------------------------------------------------------------
+    public Order createOrder(@RequestBody OrderRequestBody orderRequestBody) {
+        ArrayList<Order> orders = orderRepository.getAllOrders();
+        System.out.println("Creating a new order using the request body: " + orderRequestBody);
+        Integer id = orders.get(orders.size() - 1).getId() + 1;
+
+        Order order = new Order(
+                id,
+                orderRequestBody.getOrderedAppetizerNew(),
+                orderRequestBody.getOrderedEntreeNew()
+        );
+        orders.add(order);
+        return order;
     }
 }
