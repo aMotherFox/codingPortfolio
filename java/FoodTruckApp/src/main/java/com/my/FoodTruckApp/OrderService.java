@@ -41,11 +41,23 @@ public class OrderService {
         System.out.println("There are the orders: " + orders);
         return orders;
     }
-    //--------------------------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------get order by ID------------------------------------------------------------------------------------
     public Optional<Order>  getOrderById(@PathVariable Integer id) {
         ArrayList<Order> orders = orderRepository.getAllOrders();
         System.out.println("order by id: " + id);
         Optional<Order> orderById = orders.stream().filter(order -> order.getId() == id).findFirst();
         return  orderById;
+    }
+    //--------------------------------------------get list of appetizers------------------------------------------------------------------------------------
+    public ArrayList<Appetizer> getListOfAppetizers() {
+        ArrayList<Appetizer> appetizers = orderRepository.getAllAppetizers();
+        System.out.println("These are the entrees: " + appetizers);
+        return appetizers;
+    }
+    //--------------------------------------------get list of entrees------------------------------------------------------------------------------------
+    public ArrayList<Entree> getListOfEntrees() {
+        ArrayList<Entree> entrees = orderRepository.getAllEntrees();
+        System.out.println("These are the entrees: " + entrees);
+        return entrees;
     }
 }

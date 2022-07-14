@@ -27,16 +27,28 @@ public class OrderController {
         return "Hello from order controller";
         //must make appetizer and entrees viewable and usable by this file
     }
-    //------------------------get list of orders-------------------------------------------
+    //------------------------get list of orders-----------------------------------------------------------------------------------------------------------
     @GetMapping("/orders")
     public ResponseEntity<ArrayList<Order>> getListOfOrders() {
         ArrayList<Order> orders = orderService.getListOfOrders();
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
-    //------------------------get order by ID-------------------------------------------
+    //------------------------get order by ID-----------------------------------------------------------------------------------------------------------
     @GetMapping("/orders/{id}")
     public Order getOrderById(@PathVariable Integer id) {
         return orderService.getOrderById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+    //--------------------------------------------get list of entrees------------------------------------------------------------------------------------
+    @GetMapping("/orders/entrees")
+    public ResponseEntity<ArrayList<Entree>> getListOfEntrees() {
+        ArrayList<Entree> entrees = orderService.getListOfEntrees();
+        return new ResponseEntity<>(entrees, HttpStatus.OK);
+    }
+    //--------------------------------------------get list of appetizers------------------------------------------------------------------------------------
+    @GetMapping("/orders/appetizers")
+    public ResponseEntity<ArrayList<Appetizer>> getListOfAppetizers() {
+        ArrayList<Appetizer> appetizers = orderService.getListOfAppetizers();
+        return new ResponseEntity<>(appetizers, HttpStatus.OK);
     }
 //    @GetMapping("/orders")
 //    public String getListOfAppsAndEntrees() {
