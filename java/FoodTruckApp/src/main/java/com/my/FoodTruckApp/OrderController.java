@@ -37,24 +37,34 @@ public class OrderController {
         return orderService.getOrderById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
     //--------------------------------------------get list of entrees------------------------------------------------------------------------------------
-    @GetMapping("/orders/entrees")
+    @GetMapping("/orders/{id}/entrees") //should be /entrees because we are returning entrees and should be in entree controller, new API URL is asking specifically for all entrees in THAT order by id
     public ResponseEntity<ArrayList<Entree>> getListOfEntrees() {
         ArrayList<Entree> entrees = orderService.getListOfEntrees();
         return new ResponseEntity<>(entrees, HttpStatus.OK);
-    }
+    } //TODO: change code to get entrees by order ID ^
     //--------------------------------------------get list of appetizers------------------------------------------------------------------------------------
-    @GetMapping("/orders/appetizers")
+    @GetMapping("/orders/{id}/appetizers") //convention of RESTFUL API you name them /MODELTYPE and you go from biggest to smallest; getting list of entrees vs !!getting all the entrees IN THE ORDER!!
     public ResponseEntity<ArrayList<Appetizer>> getListOfAppetizers() {
         ArrayList<Appetizer> appetizers = orderService.getListOfAppetizers();
         return new ResponseEntity<>(appetizers, HttpStatus.OK);
-    }
+    } //TODO: change code to get appetizers by order ID ^
     //------------------------create order-----------------------------------------------------------------------------------------------------------
     @PostMapping("/orders")
-    public Order createOrder(@RequestBody OrderRequestBody orderRequestBody, @PathVariable Integer id) {
+    public Order createOrder(@RequestBody OrderRequestBody orderRequestBody) {
         return orderService.createOrder(orderRequestBody);
     }
+    //------------------------update order(put)-----------------------------------------------------------------------------------------------------------
+    @PutMapping("/orders/{id}")
+    public Order changeObject(@RequestBody Order orderRequestBody, @PathVariable Integer id) {
+        return orderService.changeObject(orderRequestBody, id);
+    }
+    //------------------------update field(patch)-----------------------------------------------------------------------------------------------------------
+    @PatchMapping("/orders/{id}")
+    public Order changeField(@RequestBody Order orderRequestBody, @PathVariable Integer id) {
+        return orderService.changeField(orderRequestBody, id);
+    }
 
-
+    //if you are getting something by ID, it should be a PATH VARIABLE
 //    @GetMapping("/orders")
 //    public String getListOfAppsAndEntrees() {
 //        return "getting apps and entrees";

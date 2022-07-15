@@ -7,9 +7,11 @@ import com.my.FoodTruckApp.entree.Entree;
 import com.my.FoodTruckApp.entree.EntreeRepository;
 import com.my.FoodTruckApp.entree.EntreeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -74,5 +76,53 @@ public class OrderService {
         );
         orders.add(order);
         return order;
+        //IS NOT ADDING THE NEW APPETIZER OR ENTREE TO THE INDIVIDUAL LISTS!!!!
     }
+    //------------------------update order(put)-----------------------------------------------------------------------------------------------------------
+    public Order changeObject(@RequestBody Order orderRequestBody, @PathVariable Integer id) {
+        ArrayList<Order> orders = orderRepository.getAllOrders();
+        Optional<Order> optionalOrderById = orders.stream().filter(order -> order.getId().equals(id)).findFirst();
+
+        if (optionalOrderById.isPresent()) {
+            Order foundOrder = optionalOrderById.get();
+            foundOrder.setOrderedAppetizer(orderRequestBody.getOrderedAppetizer());
+            foundOrder.setOrderedEntree(orderRequestBody.getOrderedEntree());
+
+            if (orderRequestBody.getOrderedAppetizer() == null) {
+                System.out.println("appetizer is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            } if (orderRequestBody.getOrderedEntree() == null) {
+                System.out.println("entree is null");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            }
+            return foundOrder;
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }//if app && order isPresent true
+    //------------------------update field(patch)-----------------------------------------------------------------------------------------------------------
+    public Order changeField(@RequestBody Order orderRequestBody, @PathVariable Integer id) {
+        ArrayList<Order> orders = orderRepository.getAllOrders();
+        Optional<Order> optionalOrderById = orders.stream().filter(order -> order.getId().equals(id)).findFirst();
+
+        if (optionalOrderById.isPresent()) {
+            Order foundOrder = optionalOrderById.get();
+            if (orderRequestBody.getOrderedAppetizer() == null) {
+                System.out.println("app not changed" + foundOrder);
+                return foundOrder;
+            }
+            foundOrder.setOrderedAppetizer(orderRequestBody.getOrderedAppetizer());
+            System.out.println("app was changed" + foundOrder);
+
+            if (orderRequestBody.getOrderedEntree() == null) {
+                System.out.println("entree not changed" + foundOrder);
+                return foundOrder;
+            }
+            foundOrder.setOrderedEntree(orderRequestBody.getOrderedEntree());
+            System.out.println("entree was changed" + foundOrder);
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+//creating an order; need id, app, and entree
+
 }

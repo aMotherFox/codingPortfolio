@@ -14,4 +14,5 @@ public class Order {
     private Integer id;
     private Appetizer orderedAppetizer;
     private Entree orderedEntree;
+    //TODO: make app and entree to lists
 }
