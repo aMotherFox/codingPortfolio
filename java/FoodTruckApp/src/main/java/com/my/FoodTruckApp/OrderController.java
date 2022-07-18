@@ -54,6 +54,10 @@ public class OrderController {
         //you can only recieved one thing from the request body which is why all the ids cannot go in it
         return orderService.createOrder(orderRequestBody, id, id2, id3);
     }
+    // create 2 different APIs and methods; one for just ordering the apps, one for just order entrees, and one for final order aka receipt
+    //create BLANK order and use put and patch to insert apps and entrees into the order
+    //create LISTS in app & entree that you call
+
     //------------------------update order(put)-----------------------------------------------------------------------------------------------------------
 //    @PutMapping("/orders/{id}")
 //    public Order changeObject(@RequestBody Order orderRequestBody, @PathVariable Integer id) {

@@ -52,6 +52,14 @@ public class AppetizerController {
 //        return appetizer;
 //    } //code after API call is BUSINESS LOGIC; the logic that your write; everything inside method belongs in SERVICE
 //
+
+
+    //------------------------MAKE LIST OF ORDERED APPS------------------------------------------
+    @GetMapping("/appetizers/{id}/{id2}/{id3}")
+    public ArrayList<Appetizer> orderingListOfAppetizers(@PathVariable Integer id, @PathVariable Integer id2, @PathVariable Integer id3) {
+        return appetizerService.orderingListOfAppetizers(id, id2, id3);
+    }
+
 //    //------------------------get appetizer by ID-------------------------------------------
     @GetMapping("/appetizers/{id}")
     public Appetizer getAppById(@PathVariable Integer id) {
