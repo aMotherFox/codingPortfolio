@@ -25,13 +25,15 @@ public class OrderRepository {
     Entree entree2 = new Entree(2, "large", "sweet", "breakfast", 16);
     ArrayList<Entree> entrees = new ArrayList<>(Arrays.asList(entree1, entree2));
     //----------------------------------------------------------------------------------------------------------------------------------------
-    Order order1 = new Order(1, appetizer1, entree1);
-    Order order2 = new Order(2, appetizer2, entree2);
+    Order order1 = new Order(1, appetizers, entrees);
+    Order order2 = new Order(2, appetizers, entrees);
     ArrayList<Order> orders = new ArrayList<>(Arrays.asList(order1, order2));
 
-    public ArrayList<Appetizer> getAllAppetizers() { return appetizers;}
-    public ArrayList<Entree> getAllEntrees() { return entrees;}
-    public ArrayList<Order> getAllOrders() { return orders;}
+//    public ArrayList<Appetizer> getAllAppetizers() { return appetizers;}
+//    public ArrayList<Entree> getAllEntrees() { return entrees;}
+    public ArrayList<Order> getAllOrders() {
+        return orders;
+    }
 }
 
 //we are getting an object THROUGH the ID{id} of the appetizer and entree
