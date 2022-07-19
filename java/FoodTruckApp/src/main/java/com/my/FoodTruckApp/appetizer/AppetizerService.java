@@ -144,7 +144,7 @@ public class AppetizerService {
     }
 
     //------------------------MAKE LIST OF ORDERED APPS------------------------------------------
-    public ArrayList<Appetizer> orderingListOfAppetizers(@PathVariable Integer id, @PathVariable Integer id2, @PathVariable Integer id3) {
+    public ArrayList<Appetizer> orderingListOfAppetizers(Integer id,Integer id2, Integer id3) {
         ArrayList<Appetizer> appetizers = appetizerRepository.getAllAppetizers(); //getting all of our appetizers
         Optional<Appetizer> optionalAppetizerById = appetizers.stream().filter(appetizer -> appetizer.getId().equals(id)).findFirst(); //finding app by ID
         System.out.println("Can I take your appetizer order: " + optionalAppetizerById);
@@ -165,6 +165,7 @@ public class AppetizerService {
             } else if (appetizer.getId() == id3) {
                 orderedApps.add(appetizer);
             }
+
 //        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             System.out.println("this is your ordered list" + orderedApps);
             return orderedApps;
