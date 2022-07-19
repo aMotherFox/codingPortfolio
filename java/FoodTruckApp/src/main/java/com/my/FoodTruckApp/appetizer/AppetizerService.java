@@ -173,3 +173,10 @@ public class AppetizerService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 }
+
+/*
+Databases run on their own servers so the port number will be different, it's whole purpose is so hold onto data, IF the database or server gets turned off/on, the data will still be there
+APPLICATIONS (full stack application, full stack is whenever you do all part of the application)
+backend apps ALWAYS need a database
+an application is anything that runs code is an application (ui, backend, database)
+ */
