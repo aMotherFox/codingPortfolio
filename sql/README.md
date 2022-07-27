@@ -51,6 +51,8 @@ createdb lunaraeve #makes a database, in this case lunaraeve like the PC user, d
 \c -- changes which database we are in
 \dt --shows all tables
 cntrl c (^c) -- cancels line of code
+ \d+ table_name --shows constraints of the table
+
 -- *************everything above is specifically postgres**********************
 
 -- ***** CREATE DATABASE ******
@@ -96,7 +98,7 @@ ALTER TABLE table_name DROP COLUMN column_name; -- HOW WE DELETE A COLUMN
 -- ***** add new column to existing table ******
 ALTER TABLE table_name ADD field DATATYPE NOT NULL/NULL; (example: ALTER TABLE person ADD ID INT NOT NULL;) -- HOW WE ADD A NEW COLUMN TO AN EXISTING TABLE
 -- ***** rename column ******
-ALTER TBLE table_name RENAME COLUMN old_name TO new_name;
+ALTER TABLE table_name RENAME COLUMN old_name TO new_name;
 -- example: ALTER TABLE person RENAME COLUMN is_happy TO is_hungry;
 -- ***** rename column ******
 ALTER TABLE table_name RENAME TO new_table_name; --How to rename the entire table
