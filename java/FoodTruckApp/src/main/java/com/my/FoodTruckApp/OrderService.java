@@ -26,6 +26,7 @@ public class OrderService {
     private final EntreeRepository entreeRepository; //we only have to instantiate this once
     private final AppetizerRepository appetizerRepository; //these are picked up by the @RequiredArgsConstructor
     private final OrderRepository orderRepository;
+    private final JdbcRepository jdbcRepository;
     // -----------------------------------------------------------------------------------------------------------------------------
 
 //    public String getListOfAppsAndEntrees() {
