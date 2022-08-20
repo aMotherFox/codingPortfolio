@@ -10,9 +10,6 @@ public class FoodTruckAppApplication {
 		SpringApplication.run(FoodTruckAppApplication.class, args);
 
 		System.out.println("We are making a food truck!");
-		// size, flavor, pairedMeal, price
-//		AppetizerModel myAppetizer = new AppetizerModel(1, "small", "spicy", "dinner", 4);
-//		System.out.println(myAppetizer);
 	}
 
 }

@@ -1,0 +1,14 @@
+#spring.datasource.url=jdbc:postgresql://localhost:8080/food_truck
+#spring.datasource.username=""
+#spring.datasource.password=""
+#logging.level.root=INFO
+
+spring.datasource.url: jdbc:postgresql://localhost:8080/food_truck?useSSL=false
+spring:
+  datasource:
+    username: lunaraeve
+    password: Bucky2Rocky!
+
+
+#url: jdbc:postgresql://localhost:5432/food_truck?useSSL=false
+#logging.level.root: INFO

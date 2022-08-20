@@ -1,20 +1,14 @@
 package com.my.FoodTruckApp;
 
-import com.my.FoodTruckApp.appetizer.Appetizer;
 import com.my.FoodTruckApp.appetizer.AppetizerRepository;
 import com.my.FoodTruckApp.appetizer.AppetizerService;
-import com.my.FoodTruckApp.entree.Entree;
 import com.my.FoodTruckApp.entree.EntreeRepository;
 import com.my.FoodTruckApp.entree.EntreeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 
 @Service //annotation that tells spring THIS IS OUR SERVICE
@@ -26,7 +20,7 @@ public class OrderService {
     private final EntreeRepository entreeRepository; //we only have to instantiate this once
     private final AppetizerRepository appetizerRepository; //these are picked up by the @RequiredArgsConstructor
     private final OrderRepository orderRepository;
-    private final JdbcRepository jdbcRepository;
+//    private final JdbcRepository jdbcRepository;
     // -----------------------------------------------------------------------------------------------------------------------------
 
 //    public String getListOfAppsAndEntrees() {
@@ -85,7 +79,19 @@ public class OrderService {
         return null;
         }
 //        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-    }
+
+
+    //--------------------------------------------call JDBC repository------------------------------------------------------------------------------------
+//    public Order callingJdbc() {
+//        String jdbcFile = JdbcRepository;
+//        return
+//    }
+//    public String returningJdbc() {
+//        String jdbcText = JdbcRepository.returningJdbc();
+//        System.out.println("JDBC repo + Order Service: " + jdbcText);
+//        return jdbcText;
+//    }
+}
 
 //creating an order; need id, app, and entree
 
