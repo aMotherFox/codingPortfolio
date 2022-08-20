@@ -3,11 +3,11 @@
 #spring.datasource.password=""
 #logging.level.root=INFO
 
-spring.datasource.url: jdbc:postgresql://localhost:8080/food_truck?useSSL=false
 spring:
   datasource:
+    url: jdbc:postgresql://localhost:5432/food_truck
     username: lunaraeve
-    password: Bucky2Rocky!
+    password:
 
 
 #url: jdbc:postgresql://localhost:5432/food_truck?useSSL=false

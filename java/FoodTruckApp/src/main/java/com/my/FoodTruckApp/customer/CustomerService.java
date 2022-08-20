@@ -15,8 +15,7 @@ import java.util.Optional;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
 
     //----------------- get list of customers -------------------------
@@ -38,7 +37,8 @@ public class CustomerService {
     // jdbcTemplate.execute() ??
     public String createNewCustomer(){
         String sql = "INSERT INTO customer(id, first_name,last_name) VALUES(DEFAULT, 'Bently','Pruitt')";
-        Integer rows = jdbcTemplate.update(sql);
+        System.out.println("--------------------INSIDE CREATENEWCUSTOMER" + sql);
+        Integer rows = jdbcTemplate.update(sql); //update vs execute
         if(rows > 0){
             System.out.println("A new row has been inserted!!!");
         }
