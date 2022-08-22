@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,22 +35,28 @@ public class CustomerService {
     }
     //-------------- create new customer -----------------------
 
-    // jdbcTemplate.execute() ??
-    public String createNewCustomer(){
-        String sql = "INSERT INTO customer(id, first_name,last_name) VALUES(DEFAULT, 'Bently','Pruitt')";
-        System.out.println("--------------------INSIDE CREATENEWCUSTOMER" + sql);
-        Integer rows = jdbcTemplate.update(sql); //update vs execute
-        if(rows > 0){
-            System.out.println("A new row has been inserted!!!");
-        }
-        return sql;
-    }
+    // HARDCODED VERSION!!! v
+//    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody){
+//        String sql = "INSERT INTO customer(id, first_name,last_name) VALUES(DEFAULT, 'Bently','Pruitt')";
+//        System.out.println("--------------------INSIDE CREATENEWCUSTOMER" + sql);
+//        Integer rows = jdbcTemplate.update(sql);
+//        if(rows > 0){
+//            System.out.println("A new row has been inserted!!! (HARDCODED)");
+//        }
+//        return sql;
+//    }
+    //
 
     //-------------- create new customer -----------------------
 
-//    public Optional<Customer> findCustomerById(@PathVariable Integer id) {
-//        System.out.println("------------INSIDE FINDCUSTOMERBYID-----------");
-//        Optional<Customer> customerById = Optional.ofNullable(customerRepository.findCustomerById());
-//        return customerById;
-//    }
+    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
+        String sql = "INSERT INTO customer(id, first_name,last_name) VALUES(DEFAULT, ?, ?)";
+        // ALSO WORKS : String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
+        Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
+        //we are taking the string passed into the request body and converting it to an object field, in this case first and last name
+        if(rows > 0) {
+            System.out.println("A new customer has been inserted (REQUEST BODY)");
+        }
+        return "CREATING A CUSTOMER WORKED";
+    }
 }

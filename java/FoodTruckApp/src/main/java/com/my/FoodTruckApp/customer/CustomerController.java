@@ -3,10 +3,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -35,10 +32,9 @@ public class CustomerController {
     }
     //-------------- create new customer -----------------------
     @PostMapping("/customers")
-    public String createNewCustomer(){
+    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody){
         System.out.println("creating a new customer");
-        customerService.createNewCustomer();
-        return "making a new customer";
+        return customerService.createNewCustomer(customerRequestBody); //customerRequestBody is the raw JSON we input on PostMan
     }
 
     //-------------- TESTING by ID -----------------------
