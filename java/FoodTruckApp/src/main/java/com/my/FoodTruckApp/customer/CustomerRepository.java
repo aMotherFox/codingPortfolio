@@ -27,6 +27,11 @@ public class CustomerRepository {
         return customers;
     }
 
+//    ArrayList<Customer> jdbcCustomers = new ArrayList<>();
+//    public ArrayList<Customer> gettingAllCustomers() {
+//
+//    }
+
 
     // Trying to get arraylist from DB, cannot check until postgresql is fixed
 //    public ArrayList<Customer> findAllCustomersInDb() {

@@ -1,12 +1,13 @@
 package com.my.FoodTruckApp.customer;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -59,4 +60,24 @@ public class CustomerService {
         }
         return "CREATING A CUSTOMER WORKED";
     }
+
+    //-------------- get all customers -----------------------
+    public String gettingAllCustomers() {
+        String sql = "SELECT * FROM customer WHERE id = 4";
+        System.out.println("SELECT * FROM customer WHERE id = 4");
+        Integer rows = jdbcTemplate.update(sql);
+        System.out.println("rows" + rows);
+        if(rows > 0) {
+//            Integer id = rows.getInt("id");
+//            String firstName = rows.getString("first_name");
+//            String lastName = rows.getString("last_name");
+            System.out.println(rows);
+        }
+//        String sql = "SELECT * FROM customer WHERE id > 0";
+//        Integer allCustomers = jdbcTemplate.update(sql);
+//        List<String> customerList = jdbcTemplate.queryForList(sql, String.class);
+//        System.out.println("getting customers in list: " + customerList);
+        return sql;
+    }
+
 }

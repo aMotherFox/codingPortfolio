@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,8 +17,6 @@ public class CustomerController {
     private final CustomerService customerService;  //getting an instance of the service, THIS IS THE DEPENDENCY INJECTION
 
     private final CustomerRepository customerRepository; //getting an instance of the service, THIS IS THE DEPENDENCY INJECTION
-
-
 
     //----------------- get list of customers -------------------------
     @GetMapping("/customer-list")
@@ -37,16 +36,10 @@ public class CustomerController {
         return customerService.createNewCustomer(customerRequestBody); //customerRequestBody is the raw JSON we input on PostMan
     }
 
-    //-------------- TESTING by ID -----------------------
-//    @GetMapping("/customers-test/{id}")
-//    public Optional<Customer> findCustomerById(@PathVariable Integer id) {
-//        System.out.println("Inside the test for ID");
-//        return customerService.findCustomerById(id) ;
-//    }
-//    @PostMapping("/customers")
-//    public void createNewCustomer() {
-//        System.out.println("creating a new customer");
-////        log.info("Creating a new customer");
-//        customerRepository.createNewCustomer();
-//    }
+    //-------------- get all customers -----------------------
+    @GetMapping("/customers")
+    public String gettingAllCustomers() {
+        System.out.println("customer controller gettingallcustomers");
+        return customerService.gettingAllCustomers();
+    }
 }
