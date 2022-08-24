@@ -62,28 +62,11 @@ public class CustomerService {
         return "CREATING A CUSTOMER WORKED";
     }
 
-    //-------------- get all customers -----------------------
-    public Customer gettingAllCustomers() {
+    //-------------- get customers by id -----------------------
+    public Customer gettingCustomersById(@PathVariable Integer id) {
         String sql = "SELECT * FROM customer WHERE id = ?";
-        Integer id = 4;
-
+        
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), id);
-
-//        String sql = "SELECT * FROM customer WHERE id = 4";
-//        System.out.println("SELECT * FROM customer WHERE id = 4");
-//        Integer rows = jdbcTemplate.queryForObject(sql, new Customer, );
-//        System.out.println("rows" + rows);
-//        if(rows > 0) {
-////            Integer id = rows.getInt("id");
-////            String firstName = rows.getString("first_name");
-////            String lastName = rows.getString("last_name");
-//            System.out.println(rows);
-//        }
-////        String sql = "SELECT * FROM customer WHERE id > 0";
-////        Integer allCustomers = jdbcTemplate.update(sql);
-////        List<String> customerList = jdbcTemplate.queryForList(sql, String.class);
-////        System.out.println("getting customers in list: " + customerList);
-//        return sql;
     }
 
 }

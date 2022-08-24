@@ -24,11 +24,6 @@ public class CustomerController {
         ArrayList<Customer> customers = (ArrayList<Customer>) customerService.listOfCustomers();
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
-    //-------------- get customer by ID -----------------------
-    @GetMapping("/customers/{id}")
-    public Optional<Customer> getCustomerById(@PathVariable Integer id) {
-        return customerService.getCustomerById(id);
-    }
     //-------------- create new customer -----------------------
     @PostMapping("/customers")
     public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody){
@@ -36,10 +31,10 @@ public class CustomerController {
         return customerService.createNewCustomer(customerRequestBody); //customerRequestBody is the raw JSON we input on PostMan
     }
 
-    //-------------- get all customers -----------------------
-    @GetMapping("/customers")
-    public Customer gettingAllCustomers() {
-        System.out.println("customer controller gettingallcustomers");
-        return customerService.gettingAllCustomers();
+    //-------------- get customer by ID -----------------------
+    @GetMapping("/customers/{id}")
+    public Customer gettingCustomersById(@PathVariable Integer id) {
+        System.out.println("getting customers by ID");
+        return customerService.gettingCustomersById(id);
     }
 }
