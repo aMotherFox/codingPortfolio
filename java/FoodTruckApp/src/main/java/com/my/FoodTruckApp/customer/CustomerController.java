@@ -38,7 +38,7 @@ public class CustomerController {
 
     //-------------- get all customers -----------------------
     @GetMapping("/customers")
-    public String gettingAllCustomers() {
+    public Customer gettingAllCustomers() {
         System.out.println("customer controller gettingallcustomers");
         return customerService.gettingAllCustomers();
     }
