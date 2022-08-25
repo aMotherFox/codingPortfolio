@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,8 @@ public class CustomerController {
     @GetMapping("/customers/{id}")
     public Customer gettingCustomersById(@PathVariable Integer id) {
         System.out.println("getting customers by ID");
+//        return customerService.gettingCustomersById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return customerService.gettingCustomersById(id);
+        //TODO: throw 404 NOT FOUND
     }
 }

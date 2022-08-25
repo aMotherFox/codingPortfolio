@@ -1,11 +1,14 @@
 package com.my.FoodTruckApp.customer;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -65,8 +68,15 @@ public class CustomerService {
     //-------------- get customers by id -----------------------
     public Customer gettingCustomersById(@PathVariable Integer id) {
         String sql = "SELECT * FROM customer WHERE id = ?";
-        
-        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), id);
+        try {
+            Customer customerById = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), id);
+            //queryForObject -> TRY
+            System.out.println("customer by ID" + customerById);
+            return customerById;
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            System.out.println("incorrect id");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
 }
