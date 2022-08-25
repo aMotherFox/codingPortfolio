@@ -1,12 +1,17 @@
 package com.my.FoodTruckApp.customer;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,19 +38,6 @@ public class CustomerService {
         Optional<Customer> customerById = customers.stream().filter(customer -> customer.getId() == id).findFirst();
         return customerById;
     }
-    //-------------- create new customer -----------------------
-
-    // HARDCODED VERSION!!! v
-//    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody){
-//        String sql = "INSERT INTO customer(id, first_name,last_name) VALUES(DEFAULT, 'Bently','Pruitt')";
-//        System.out.println("--------------------INSIDE CREATENEWCUSTOMER" + sql);
-//        Integer rows = jdbcTemplate.update(sql);
-//        if(rows > 0){
-//            System.out.println("A new row has been inserted!!! (HARDCODED)");
-//        }
-//        return sql;
-//    }
-    //
 
     //-------------- create new customer -----------------------
 
@@ -59,4 +51,21 @@ public class CustomerService {
         }
         return "CREATING A CUSTOMER WORKED";
     }
+
+    //-------------- get customers by id -----------------------
+    public Customer gettingCustomersById(@PathVariable Integer id) {
+        String sql = "SELECT * FROM customer WHERE id = ?";
+        try {
+            Customer customerById = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), id);
+            //queryForObject -> TRY
+            System.out.println("customer by ID" + customerById);
+            return customerById;
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            System.out.println("incorrect id");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //-------------- get ALL customers -----------------------
+
 }
