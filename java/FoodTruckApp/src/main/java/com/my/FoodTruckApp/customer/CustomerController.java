@@ -20,11 +20,11 @@ public class CustomerController {
     private final CustomerRepository customerRepository; //getting an instance of the service, THIS IS THE DEPENDENCY INJECTION
 
     //----------------- get list of customers -------------------------
-    @GetMapping("/customer-list")
-    public ResponseEntity<ArrayList<Customer>> listOfCustomers() {
-        ArrayList<Customer> customers = (ArrayList<Customer>) customerService.listOfCustomers();
-        return new ResponseEntity<>(customers, HttpStatus.OK);
-    }
+//    @GetMapping("/customer-list")
+//    public ResponseEntity<ArrayList<Customer>> listOfCustomers() {
+//        ArrayList<Customer> customers = (ArrayList<Customer>) customerService.listOfCustomers();
+//        return new ResponseEntity<>(customers, HttpStatus.OK);
+//    }
     //-------------- create new customer -----------------------
     @PostMapping("/customers")
     public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody){
@@ -41,4 +41,9 @@ public class CustomerController {
         //TODO: throw 404 NOT FOUND
     }
     //-------------- get ALL customers -----------------------
+    @GetMapping("/customers")
+    public List<Customer> gettingListOfCustomers() {
+        System.out.println("Getting list of customers");
+        return customerService.gettingListOfCustomers();
+    }
 }

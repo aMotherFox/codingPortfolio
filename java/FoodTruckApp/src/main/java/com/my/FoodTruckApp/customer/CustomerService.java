@@ -25,11 +25,11 @@ public class CustomerService {
 
 
     //----------------- get list of customers -------------------------
-    public List<Customer> listOfCustomers(){
-        List<Customer> customers = customerRepository.getAllCustomers();
-        System.out.println("this is ALL!! the Customers" +  customers);
-        return customers;
-    }
+//    public List<Customer> listOfCustomers(){
+//        List<Customer> customers = customerRepository.getAllCustomers();
+//        System.out.println("this is ALL!! the Customers" +  customers);
+//        return customers;
+//    }
 
     //----------------- get customer by ID -------------------------
     public Optional<Customer> getCustomerById(@PathVariable Integer id) {
@@ -67,5 +67,10 @@ public class CustomerService {
     }
 
     //-------------- get ALL customers -----------------------
+    public List<Customer> gettingListOfCustomers() {
+        String sql = "SELECT * FROM CUSTOMER";
+        List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
+        return customers;
+    }
 
 }
