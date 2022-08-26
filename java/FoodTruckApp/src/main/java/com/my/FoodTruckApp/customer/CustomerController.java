@@ -12,24 +12,18 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@Slf4j //makes use of loggers possible
+@Slf4j
 public class CustomerController {
 
-    private final CustomerService customerService;  //getting an instance of the service, THIS IS THE DEPENDENCY INJECTION
+    private final CustomerService customerService;
 
-    //-------------- create new customer -----------------------
     @PostMapping("/customers")
     public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody){
-        System.out.println("creating a new customer");
-        return customerService.createNewCustomer(customerRequestBody); //customerRequestBody is the raw JSON we input on PostMan
+        return customerService.createNewCustomer(customerRequestBody);
     }
 
-    //-------------- get customer by ID -----------------------
     @GetMapping("/customers/{id}")
     public Customer gettingCustomersById(@PathVariable Integer id) {
-        System.out.println("getting customers by ID");
-//        return customerService.gettingCustomersById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return customerService.gettingCustomersById(id);
-        //TODO: throw 404 NOT FOUND
     }
 }

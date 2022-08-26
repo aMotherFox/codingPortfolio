@@ -1,4 +1,4 @@
-package com.my.FoodTruckApp;
+package com.my.FoodTruckApp.order;
 
 import com.my.FoodTruckApp.appetizer.AppetizerService;
 import com.my.FoodTruckApp.entree.EntreeService;
