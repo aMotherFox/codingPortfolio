@@ -41,4 +41,10 @@ public class CustomerService {
         }
     }
 
+    public List<Customer> gettingListOfCustomers() {
+        String sql = "SELECT * FROM CUSTOMER";
+        List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
+        return customers;
+    }
+
 }
