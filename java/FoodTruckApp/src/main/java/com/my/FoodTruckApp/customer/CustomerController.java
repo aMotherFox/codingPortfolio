@@ -17,14 +17,7 @@ public class CustomerController {
 
     private final CustomerService customerService;  //getting an instance of the service, THIS IS THE DEPENDENCY INJECTION
 
-    private final CustomerRepository customerRepository; //getting an instance of the service, THIS IS THE DEPENDENCY INJECTION
 
-    //----------------- get list of customers -------------------------
-//    @GetMapping("/customer-list")
-//    public ResponseEntity<ArrayList<Customer>> listOfCustomers() {
-//        ArrayList<Customer> customers = (ArrayList<Customer>) customerService.listOfCustomers();
-//        return new ResponseEntity<>(customers, HttpStatus.OK);
-//    }
     //-------------- create new customer -----------------------
     @PostMapping("/customers")
     public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody){
@@ -46,4 +39,5 @@ public class CustomerController {
         System.out.println("Getting list of customers");
         return customerService.gettingListOfCustomers();
     }
+
 }
