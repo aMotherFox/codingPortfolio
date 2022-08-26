@@ -1,10 +1,8 @@
-package com.my.FoodTruckApp;
+package com.my.FoodTruckApp.order;
 
 import com.my.FoodTruckApp.appetizer.Appetizer;
-import com.my.FoodTruckApp.appetizer.AppetizerService;
 import com.my.FoodTruckApp.entree.Entree;
-import com.my.FoodTruckApp.entree.EntreeService;
-import lombok.RequiredArgsConstructor;
+import com.my.FoodTruckApp.order.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
