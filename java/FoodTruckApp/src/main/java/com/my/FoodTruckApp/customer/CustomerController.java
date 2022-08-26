@@ -32,4 +32,9 @@ public class CustomerController {
         return customerService.gettingCustomersById(id);
         //TODO: throw 404 NOT FOUND
     }
+
+    @GetMapping("/customers")
+    public List<Customer> gettingListOfCustomers() {
+        return customerService.gettingListOfCustomers();
+    }
 }
