@@ -45,15 +45,4 @@ public class CustomerService {
         }
     }
 
-    //-------------- get ALL customers -----------------------
-    public List<Customer> gettingListOfCustomers() {
-        String sql = "SELECT * FROM CUSTOMER";
-        List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
-        return customers;
-    }
-    //-------------- delete customer -----------------------
-//    public String deleteCustomerById(Integer id) {
-//        String sql = "SELECT * FROM customer WHERE id = ?";
-//    }
-
 }

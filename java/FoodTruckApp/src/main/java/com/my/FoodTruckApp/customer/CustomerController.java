@@ -32,16 +32,4 @@ public class CustomerController {
         return customerService.gettingCustomersById(id);
         //TODO: throw 404 NOT FOUND
     }
-    //-------------- get ALL customers -----------------------
-    @GetMapping("/customers")
-    public List<Customer> gettingListOfCustomers() {
-        System.out.println("Getting list of customers");
-        return customerService.gettingListOfCustomers();
-    }
-    //-------------- delete customer -----------------------
-//    @DeleteMapping("/customers/{id}")
-//    public String deleteCustomerById(@PathVariable Integer id) {
-//        customerService.deleteCustomerById(id);
-//        return "we have deleted a customer";
-//    }
 }
