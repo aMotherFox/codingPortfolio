@@ -21,7 +21,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
 
-    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
+    public Customer createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
         return customerRepository.createNewCustomer(customerRequestBody);
     }
 
