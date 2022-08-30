@@ -18,33 +18,19 @@ import java.util.List;
 @Slf4j
 public class CustomerService {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final CustomerRepository customerRepository;
 
 
     public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
-        String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
-        Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
-        if(rows > 0) {
-            log.info("A new customer has successfully been inserted");
-        }
-        return "CREATING A CUSTOMER WORKED";
+        return customerRepository.createNewCustomer(customerRequestBody);
     }
 
     public Customer gettingCustomersById(@PathVariable Integer id) {
-        String sql = "SELECT * FROM customer WHERE id = ?";
-        try {
-            Customer customerById = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), id);
-            return customerById;
-        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
-            log.error("No customer with id: " + id + " was found");
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No customer with id: " + id + " was found");
-        }
+        return customerRepository.gettingCustomersById(id);
     }
 
     public List<Customer> gettingListOfCustomers() {
-        String sql = "SELECT * FROM CUSTOMER";
-        List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
-        return customers;
+        return customerRepository.gettingListOfCustomers();
     }
 
 }
