@@ -21,11 +21,11 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
 
-    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
+    public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
         return customerRepository.createNewCustomer(customerRequestBody);
     }
 
-    public Customer gettingCustomersById(@PathVariable Integer id) {
+    public Customer gettingCustomersById(Integer id) {
         return customerRepository.gettingCustomersById(id);
     }
 

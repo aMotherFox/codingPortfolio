@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -20,13 +21,16 @@ public class CustomerRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public String createNewCustomer(@RequestBody CustomerRequestBody customerRequestBody) {
+    public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
         String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
         Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
+        String sqlNewCustomer = "SELECT * FROM customer WHERE first_name = ? AND last_name = ?";
+        Customer newCustomer = jdbcTemplate.queryForObject(sqlNewCustomer, new BeanPropertyRowMapper<>(Customer.class),
+                customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
         if(rows > 0) {
-            log.info("A new customer has successfully been inserted");
+            log.info("A new customer has successfully been inserted" + newCustomer);
         }
-        return "CREATING A CUSTOMER WORKED";
+        return newCustomer;
     }
 
     public Customer gettingCustomersById(@PathVariable Integer id) {
