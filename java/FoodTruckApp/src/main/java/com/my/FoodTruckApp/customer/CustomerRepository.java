@@ -22,18 +22,13 @@ public class CustomerRepository {
     private final JdbcTemplate jdbcTemplate;
 
     public Customer createNewCustomer(CustomerRequestBody customerRequestBody) {
-        String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?)";
-        Integer rows = jdbcTemplate.update(sql, customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
-        String sqlNewCustomer = "SELECT * FROM customer WHERE first_name = ? AND last_name = ?";
-        Customer newCustomer = jdbcTemplate.queryForObject(sqlNewCustomer, new BeanPropertyRowMapper<>(Customer.class),
+        String sql = "INSERT INTO customer(first_name,last_name) VALUES(?, ?) RETURNING *";
+        Customer newCustomer = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class),
                 customerRequestBody.getCustomerFirstName(), customerRequestBody.getCustomerLastName());
-        if(rows > 0) {
-            log.info("A new customer has successfully been inserted" + newCustomer);
-        }
         return newCustomer;
-    }
+    } //NOTE FOR FUTURE REFERENCE: do not use this way to create/return new rows, use JPA
 
-    public Customer gettingCustomersById(@PathVariable Integer id) {
+    public Customer gettingCustomersById(Integer id) {
         String sql = "SELECT * FROM customer WHERE id = ?";
         try {
             Customer customerById = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), id);
