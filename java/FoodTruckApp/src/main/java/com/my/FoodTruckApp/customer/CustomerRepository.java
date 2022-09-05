@@ -44,4 +44,14 @@ public class CustomerRepository {
         List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
         return customers;
     }
+
+    public void deleteCustomerById(Integer id) {
+        String sql = "DELETE FROM customer WHERE id = ?";
+        try {
+            jdbcTemplate.update(sql, id);
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No customer with id: " + id + " was found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 }
