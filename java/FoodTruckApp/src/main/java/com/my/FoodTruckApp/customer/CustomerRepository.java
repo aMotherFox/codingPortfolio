@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -43,5 +44,17 @@ public class CustomerRepository {
         String sql = "SELECT * FROM CUSTOMER";
         List<Customer> customers = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
         return customers;
+    }
+
+    public void deleteCustomerById(Integer id) {
+        String sqlDelete = "DELETE FROM customer WHERE id = ?";
+        String sqlFind = "SELECT * FROM customer WHERE id = ?";
+        try {
+            jdbcTemplate.queryForObject(sqlFind, new BeanPropertyRowMapper<>(Customer.class), id);
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No customer with id: " + id + " was found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No customer with id: " + id + " was found");
+        }
+        jdbcTemplate.update(sqlDelete, id);
     }
 }
