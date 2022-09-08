@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class AppetizerRequestBody {
-    private Integer appId;
-    private String appName;
-    private Integer appPrice;
+    private Integer id;
+    private String name;
+    private Integer price;
 }

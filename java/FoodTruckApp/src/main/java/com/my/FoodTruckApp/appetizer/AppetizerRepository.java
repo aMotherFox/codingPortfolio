@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Repository
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class AppetizerRepository {
     public Appetizer createAppetizer(AppetizerRequestBody appRequestBody) {
         String sql = "INSERT INTO appetizer(name, price) VALUES(?, ?) RETURNING *";
         Appetizer newAppetizer = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Appetizer.class),
-                appRequestBody.getAppName(), appRequestBody.getAppPrice());
+                appRequestBody.getName(), appRequestBody.getPrice());
         return newAppetizer;
     }
 
