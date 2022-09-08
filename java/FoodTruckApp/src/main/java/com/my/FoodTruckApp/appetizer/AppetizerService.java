@@ -7,6 +7,7 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class AppetizerService {
     private final AppetizerRepository appetizerRepository;
+
     public ArrayList<Appetizer> getListOfAppetizers() {
         return appetizerRepository.getListOfAppetizers();
     }
