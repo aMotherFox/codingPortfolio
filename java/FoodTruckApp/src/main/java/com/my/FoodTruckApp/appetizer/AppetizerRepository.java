@@ -16,10 +16,10 @@ import java.util.ArrayList;
 public class AppetizerRepository {
 
     private final JdbcTemplate jdbcTemplate;
+
     public ArrayList<Appetizer> getListOfAppetizers() {
         String sql = "SELECT * FROM appetizer";
         ArrayList<Appetizer> appetizers = (ArrayList<Appetizer>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Appetizer.class));
-        System.out.println("These are the appetizers: " + appetizers);
         return appetizers;
     }
 
