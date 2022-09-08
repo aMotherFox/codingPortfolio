@@ -1,17 +1,56 @@
 package com.my.FoodTruckApp.appetizer;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @Repository
+@RequiredArgsConstructor
+@Slf4j
 public class AppetizerRepository {
-    Appetizer appetizer1 = new Appetizer(1, "small", "spicy", "dinner", 4);
-    Appetizer appetizer2 = new Appetizer(2, "medium", "sweet", "breakfast", 6);
-    ArrayList<Appetizer> appetizers = new ArrayList<>(Arrays.asList(appetizer1, appetizer2));
 
-    public ArrayList<Appetizer> getAllAppetizers() {
+    private final JdbcTemplate jdbcTemplate;
+    public ArrayList<Appetizer> getListOfAppetizers() {
+        String sql = "SELECT * FROM appetizer";
+        ArrayList<Appetizer> appetizers = (ArrayList<Appetizer>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Appetizer.class));
+        System.out.println("These are the appetizers: " + appetizers);
         return appetizers;
     }
+
+    public Appetizer createAppetizer(AppetizerRequestBody appRequestBody) {
+        String sql = "INSERT INTO appetizer(name, price) VALUES(?, ?) RETURNING *";
+        Appetizer newAppetizer = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Appetizer.class),
+                appRequestBody.getAppName(), appRequestBody.getAppPrice());
+        return newAppetizer;
+    }
+
+    public Appetizer getAppById(Integer id) {
+        String sql = "SELECT * FROM appetizer WHERE id = ?";
+        try {
+            Appetizer appById = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Appetizer.class), id);
+            return appById;
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No appetizer with id of: " + id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No appetizer with id of: " + id);
+        }
+    }
+
+    public void deleteAppetizerById(Integer id) {
+        String sqlFind = "SELECT * FROM appetizer WHERE id = ?";
+        String sqlDelete = "DELETE FROM appetizer WHERE id = ?";
+        try {
+            jdbcTemplate.queryForObject(sqlFind, new BeanPropertyRowMapper<>(Appetizer.class), id);
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No appetizer with id: " + id + " was found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No appetizer with id: " + id + " was found");
+        }
+        jdbcTemplate.update(sqlDelete, id);
+    }
+
 }

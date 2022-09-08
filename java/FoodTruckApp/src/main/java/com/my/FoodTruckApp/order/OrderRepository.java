@@ -15,8 +15,8 @@ public class OrderRepository {
 //    private final EntreeService entreeService; //getting an instance of the service, THIS IS THE DEPENDENCY INJECTION
 //    private final AppetizerService appetizerService; //spring will look through the variables and see if they have a DEPENDENCY on this service
 
-    Appetizer appetizer1 = new Appetizer(1, "small", "spicy", "dinner", 4);
-    Appetizer appetizer2 = new Appetizer(2, "medium", "sweet", "breakfast", 6);
+    Appetizer appetizer1 = new Appetizer(1, "hardcoded fries", 4);
+    Appetizer appetizer2 = new Appetizer(2, "hardcoded onion rings", 6);
     ArrayList<Appetizer> appetizers = new ArrayList<>(Arrays.asList(appetizer1, appetizer2));
     //----------------------------------------------------------------------------------------------------------------------------------------
     Entree entree1 = new Entree(1, "medium", "spicy", "dinner", 14);
