@@ -1,15 +1,54 @@
 package com.my.FoodTruckApp.entree;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @Repository
+@RequiredArgsConstructor
+@Slf4j
 public class EntreeRepository {
-    Entree entree1 = new Entree(1, "medium", "spicy", "dinner", 14);
-    Entree entree2 = new Entree(2, "large", "sweet", "breakfast", 16);
-    ArrayList<Entree> entrees = new ArrayList<>(Arrays.asList(entree1, entree2));
 
-    public ArrayList<Entree> getAllEntrees() {
+    private final JdbcTemplate jdbcTemplate;
+
+    public ArrayList<Entree> getListOfEntrees() {
+        String sql = "SELECT * FROM entree";
+        ArrayList<Entree> entrees = (ArrayList<Entree>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Entree.class));
         return entrees;
+    }
+
+    public Entree createEntree(EntreeRequestBody entreeRequestBody) {
+        String sql = "INSERT INTO entree(name, price) VALUES(?, ?) RETURNING *";
+        Entree newEntree = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Entree.class),
+                entreeRequestBody.getName(), entreeRequestBody.getPrice());
+        return newEntree;
+    }
+
+    public Entree getEntreeById(Integer id) {
+        String sql = "SELECT * FROM entree WHERE id = ?";
+        try {
+            Entree entreeById = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Entree.class), id);
+            return entreeById;
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No entree with an id of: " + id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No entree with id of: " + id);
+        }
+    }
+
+    public void deleteEntreeById(Integer id) {
+        String sqlFind = "SELECT * FROM entree WHERE id = ?";
+        String sqlDelete = "DELETE FROM entree WHERE id = ?";
+        try {
+            jdbcTemplate.queryForObject(sqlFind, new BeanPropertyRowMapper<>(Entree.class), id);
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No entree with id: " + id + " was found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No entree with id: " + id + " was found");
+        }
+        jdbcTemplate.update(sqlDelete, id);
     }
 }

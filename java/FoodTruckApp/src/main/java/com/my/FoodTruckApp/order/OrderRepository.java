@@ -19,8 +19,8 @@ public class OrderRepository {
     Appetizer appetizer2 = new Appetizer(2, "hardcoded onion rings", 6);
     ArrayList<Appetizer> appetizers = new ArrayList<>(Arrays.asList(appetizer1, appetizer2));
     //----------------------------------------------------------------------------------------------------------------------------------------
-    Entree entree1 = new Entree(1, "medium", "spicy", "dinner", 14);
-    Entree entree2 = new Entree(2, "large", "sweet", "breakfast", 16);
+    Entree entree1 = new Entree(1, "hardcoded burger", 14);
+    Entree entree2 = new Entree(2, "hardcoded spaghetti", 16);
     ArrayList<Entree> entrees = new ArrayList<>(Arrays.asList(entree1, entree2));
     //----------------------------------------------------------------------------------------------------------------------------------------
     Order order1 = new Order(1, appetizers, entrees);
