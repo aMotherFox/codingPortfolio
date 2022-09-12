@@ -1,17 +1,15 @@
 package com.my.FoodTruckApp.order;
 
-import com.my.FoodTruckApp.appetizer.Appetizer;
-import com.my.FoodTruckApp.entree.Entree;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.ArrayList;
 
-import java.util.List;
-
-@AllArgsConstructor//annotation does the all args constructor
-@NoArgsConstructor//annotation does the no args constructor
-@Data //has all the getters, setters, and toString built in
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class NewOrderRequestBody {
-    private List<Integer> entreeIds;
-    private List<Integer> appetizerIds;
+    private Integer customerId; //the ID of what customer has placed the order
+    private ArrayList<Integer> entreeIds;
+    private ArrayList<Integer> appetizerIds;
 }
