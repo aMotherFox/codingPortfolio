@@ -32,15 +32,31 @@ public class OrderRepository {
     }
 
     public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
+
+//        declare method createorder and recieve newOrderRequestBody;
+//        our id is auto incrementing so that is not entered, our requestbody fills customerId, entreeId, appetizerId
+//        our DB order only has id column and customer_id column, java order has id, customerId, entreeId, and appetizerId
+//        must create row for every entree and appetizer created becase DB column datatypes are not arraylist
+//        java will turn those rows into an arraylist
+//
+//        make a new order
+//            sql query to insert into customer, taking in customerId requestBody entry from postman
+//            jdbcTemp executes sql
+//        find the entrees for order
+//            iterate through entreeId and find entrees by ids
+//            entreeRepo has method already
+//        put entrees onto recipet (entrees_ordered table)
+//            can tell what order by orderId and which entrees by entreeIds
+//        find appetizers for the order
+//            iterate through appetizerIds and find appetizers via those ids
+//            using appetizer repo method
+//        put appetizers onto recipet recipet (appetizer_ordered table)
+//            can tell what order by orderId and which entrees by entreeIds
+
+
+
+
         String sql = "INSERT INTO new_order (customer_id) VALUES (?, ?, ?) RETURNING *";
-//        String orderedAppsSql = "SELECT appetizer.name, new_order.id FROM appetizer" +
-//                "JOIN appetizer_ordered ON appetizer.id = appetizer_ordered.appetizer_id" +
-//                "JOIN new_order ON new_order.id = appetizer_ordered.order_id" +
-//                "WHERE new_order.id = 1";
-//        String orderedEntreeSql = "SELECT entree.name, new_order.id FROM entree" +
-//                "JOIN entree_ordered ON entree.id = entree_ordered.entree_id" +
-//                "JOIN new_order ON new_order.id = entree.order_id" +
-//                "WHERE new_order.id = 1";
         Order newOrder = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Order.class),
         newOrderRequestBody.getCustomerId(), newOrderRequestBody.getEntreeIds(),
                 newOrderRequestBody.getAppetizerIds());
