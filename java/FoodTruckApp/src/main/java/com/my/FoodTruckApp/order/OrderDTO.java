@@ -10,8 +10,9 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class NewOrderRequestBody {
+public class OrderDTO {
+    private Integer id;
     private Integer customerId;
-    private Integer entreeIds;
-//    private Integer appetizerIds;
+    private Entree entreeOrders;
+//    private Appetizer appetizerOrders;
 }

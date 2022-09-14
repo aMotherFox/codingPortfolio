@@ -30,8 +30,10 @@ public class OrderService {
         return orders;
     }
 
-    public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
-        return orderRepository.createOrder(newOrderRequestBody);
+    public String createOrder(NewOrderRequestBody newOrderRequestBody) {
+        System.out.println("inside create new order SERVICE");
+        orderRepository.createOrder(newOrderRequestBody);
+        return "service";
     }
     //--------------------------------------------get order by ID------------------------------------------------------------------------------------
 //    public Optional<Order>  getOrderById(@PathVariable Integer id) {

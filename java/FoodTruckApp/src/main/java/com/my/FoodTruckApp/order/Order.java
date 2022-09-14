@@ -12,6 +12,4 @@ import java.util.ArrayList;
 public class Order {
     private Integer id;
     private Integer customerId;
-    private ArrayList<Entree> entreeOrders;
-    private ArrayList<Appetizer> appetizerOrders;
 }

@@ -31,36 +31,71 @@ public class OrderRepository {
         return orders;
     }
 
-    public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
+    public String createOrder(NewOrderRequestBody newOrderRequestBody) {
 
-//        declare method createorder and recieve newOrderRequestBody;
-//        our id is auto incrementing so that is not entered, our requestbody fills customerId, entreeId, appetizerId
-//        our DB order only has id column and customer_id column, java order has id, customerId, entreeId, and appetizerId
-//        must create row for every entree and appetizer created becase DB column datatypes are not arraylist
-//        java will turn those rows into an arraylist
-//
-//        make a new order
-//            sql query to insert into customer, taking in customerId requestBody entry from postman
-//            jdbcTemp executes sql
-//        find the entrees for order
-//            iterate through entreeId and find entrees by ids
-//            entreeRepo has method already
-//        put entrees onto recipet (entrees_ordered table)
-//            can tell what order by orderId and which entrees by entreeIds
-//        find appetizers for the order
-//            iterate through appetizerIds and find appetizers via those ids
-//            using appetizer repo method
-//        put appetizers onto recipet recipet (appetizer_ordered table)
-//            can tell what order by orderId and which entrees by entreeIds
-
-
-
-
-        String sql = "INSERT INTO new_order (customer_id) VALUES (?, ?, ?) RETURNING *";
+        //IF order created, we want to find the entrees
+        //AKA if row is inserted, iterate through the entreeIds array
+        //can tell row is inserted because it returns integer
+        String sql = "INSERT INTO new_order (customer_id) VALUES (?) RETURNING *"; //put back in  RETURNING * when done with String return
+        System.out.println("the createOrder sql: " + sql);
         Order newOrder = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Order.class),
-        newOrderRequestBody.getCustomerId(), newOrderRequestBody.getEntreeIds(),
-                newOrderRequestBody.getAppetizerIds());
-        return newOrder;
+                newOrderRequestBody.getCustomerId());
+        System.out.println("our new order: " + newOrder);
+        //IF row is inserted, take entreeIds from requestBody, and iterate through that array
+        //during our iteration, we can find entrees by id
+        //EntreeRepo has method already
+        Entree newEntree = entreeRepository.getEntreeById(newOrderRequestBody.getEntreeIds());
+        System.out.println("our new order's entree: " + newEntree);
+        //put entrees onto recipet (entrees_ordered table)
+        String entreeSql = "INSERT INTO entree_ordered (entree_id) VALUES (?)";
+        System.out.println("our new order's entree inserted into entree_ordered: " + entreeSql);
+        EntreeOrdered orderedEntreeReciept = jdbcTemplate.queryForObject(entreeSql, new BeanPropertyRowMapper<>(EntreeOrdered.class),
+                newOrder.getId(), newOrderRequestBody.getEntreeIds());
+        System.out.println("entree reciept: " + orderedEntreeReciept );
+        //can tell what order by orderId and which entrees by entreeIds
+        //find appetizers for the order
+        //iterate through appetizerIds and find appetizers via those ids
+        //using appetizer repo method
+        //put appetizers onto recipet recipet (appetizer_ordered table)
+        //can tell what order by orderId and which entrees by entreeIds
+
+//        String entreeSql = "?";
+//        System.out.println("the entree id: " + entreeSql);
+//        Entree orderedEntree = entreeRepository.getEntreeById(Integer.valueOf(entreeSql));
+//        System.out.println("the ordered entree: " + orderedEntree);
+//
+//        String appSql = "?";
+//        System.out.println("the app id: " + appSql);
+//        Appetizer orderedApp = appetizerRepository.getAppById(Integer.valueOf(appSql));
+//        System.out.println("the ordered app: " + orderedApp);
+
+//        Integer rows = jdbcTemplate.update(sql); //the returned integer from inserting a row
+//        System.out.println("rows" + rows);
+//        if(rows > 0) {
+//            //during our iteration, we can find entrees by id
+//            //EntreeRepo has method already
+//            String entreeSql = "?";
+//            System.out.println("the entree id: " + entreeSql);
+//            Entree orderedEntree = entreeRepository.getEntreeById(Integer.valueOf(entreeSql));
+//            System.out.println("the ordered entree: " + orderedEntree);
+//
+//            String appSql = "?";
+//            System.out.println("the app id: " + appSql);
+//            Appetizer orderedApp = appetizerRepository.getAppById(Integer.valueOf(appSql));
+//            System.out.println("the ordered app: " + orderedApp);
+//        }
+
+//        Integer rows = jdbcTemplate.update(sql); //the returned integer from inserting a row
+//        System.out.println("rows" + rows);
+//        if(rows > 0) {
+//            ArrayList<Entree> orderedEntreesSql = newOrderRequestBody.getEntreeIds();
+//            System.out.println("these are the ordered entrees from requestBody: " + orderedEntreesSql);
+//        }
+//        Order newOrder = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Order.class),
+//        newOrderRequestBody.getCustomerId(), newOrderRequestBody.getEntreeIds(),
+//                newOrderRequestBody.getAppetizerIds());
+//        return newOrder;
+        return "repo";
     }
 
 //    Order newOrder = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Order.class),
@@ -87,6 +122,3 @@ public class OrderRepository {
 //        return orders;
 //    }
 }
-
-//we are getting an object THROUGH the ID{id} of the appetizer and entree
-//return ust be object, input must be integer
