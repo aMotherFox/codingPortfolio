@@ -15,6 +15,7 @@ import com.my.FoodTruckApp.entree.EntreeService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class OrderRepository {
     private final AppetizerRepository appetizerRepository;
 
     public ArrayList<Order> getListOfOrders() {
-        String sql = "SELECT * FROM new_order ";
+        String sql = "SELECT * FROM \"order\" ";
         ArrayList<Order> orders = (ArrayList<Order>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
         return orders;
     }
@@ -36,7 +37,7 @@ public class OrderRepository {
         //IF order created, we want to find the entrees
         //AKA if row is inserted, iterate through the entreeIds array
         //can tell row is inserted because it returns integer
-        String sql = "INSERT INTO \"new_order\" (customer_id) VALUES (?) RETURNING *"; //put back in  RETURNING * when done with String return
+        String sql = "INSERT INTO \"order\" (customer_id) VALUES (?) RETURNING *"; //put back in  RETURNING * when done with String return
         System.out.println("the createOrder sql: " + sql);
         Order newOrder = jdbcTemplate.queryForObject(
                 sql,
@@ -47,19 +48,35 @@ public class OrderRepository {
         //IF row is inserted, take entreeIds from requestBody, and iterate through that array
         //during our iteration, we can find entrees by id
         //EntreeRepo has method already
-        Entree newEntree = entreeRepository.getEntreeById(newOrderRequestBody.getEntreeIds());
-        System.out.println("our new order's entree: " + newEntree);
-        //put entrees onto recipet (entrees_ordered table)
-        //can tell what order by orderId and which entrees by entreeIds
-        String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING *";
-        System.out.println("our new order's entree inserted into entree_ordered: " + entreeSql);
-        EntreeOrdered orderedEntreeReciept = jdbcTemplate.queryForObject(
-                entreeSql,
-                new BeanPropertyRowMapper<>(EntreeOrdered.class),
-                newOrder.getId(),
-                newOrderRequestBody.getEntreeIds()
-        );
-        System.out.println("entree reciept: " + orderedEntreeReciept );
+        List<Integer> entreeIdList = newOrderRequestBody.getEntreeIds();
+        entreeIdList.forEach(entree -> {
+            Entree newEntree = entreeRepository.getEntreeById(entree);
+            System.out.println("our new order's entree: " + newEntree);
+            //put entrees onto recipet (entrees_ordered table)
+            //can tell what order by orderId and which entrees by entreeIds
+            String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING *";
+            System.out.println("our new order's entree inserted into entree_ordered: " + entreeSql);
+            EntreeOrdered orderedEntreeReciept = jdbcTemplate.queryForObject(
+                    entreeSql,
+                    new BeanPropertyRowMapper<>(EntreeOrdered.class),
+                    newOrder.getId(),
+                    newOrderRequestBody.getEntreeIds()
+            );
+            System.out.println("entree reciept: " + orderedEntreeReciept );
+        });
+//        Entree newEntree = entreeRepository.getEntreeById(newOrderRequestBody.getEntreeIds());
+//        System.out.println("our new order's entree: " + newEntree);
+//        //put entrees onto recipet (entrees_ordered table)
+//        //can tell what order by orderId and which entrees by entreeIds
+//        String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING *";
+//        System.out.println("our new order's entree inserted into entree_ordered: " + entreeSql);
+//        EntreeOrdered orderedEntreeReciept = jdbcTemplate.queryForObject(
+//                entreeSql,
+//                new BeanPropertyRowMapper<>(EntreeOrdered.class),
+//                newOrder.getId(),
+//                newOrderRequestBody.getEntreeIds()
+//        );
+//        System.out.println("entree reciept: " + orderedEntreeReciept );
         //find appetizers for the order
         //iterate through appetizerIds and find appetizers via those ids
         //using appetizer repo method
