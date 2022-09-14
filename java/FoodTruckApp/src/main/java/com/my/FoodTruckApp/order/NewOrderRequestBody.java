@@ -14,5 +14,5 @@ import java.util.List;
 public class NewOrderRequestBody {
     private Integer customerId;
     private List<Integer> entreeIds;
-//    private Integer appetizerIds;
+    private List<Integer> appetizerIds;
 }

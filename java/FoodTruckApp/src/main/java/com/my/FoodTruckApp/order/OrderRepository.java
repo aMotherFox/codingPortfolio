@@ -67,10 +67,26 @@ public class OrderRepository {
         });
 
         //find appetizers for the order
+        List<Integer> appetizerIdList = newOrderRequestBody.getAppetizerIds();
+        System.out.println("our list of apps: " + appetizerIdList);
         //iterate through appetizerIds and find appetizers via those ids
-        //using appetizer repo method
-        //put appetizers onto recipet recipet (appetizer_ordered table)
-        //can tell what order by orderId and which entrees by entreeIds
+        appetizerIdList.forEach(appetizer -> {
+            //using appetizer repo method
+            Appetizer newAppetizer = appetizerRepository.getAppById(appetizer);
+            System.out.println("our new order's app: " + newAppetizer);
+            //put appetizers onto recipet recipet (appetizer_ordered table)
+            //can tell what order by orderId and which appetizers by appetizerIds
+            String appSql = "INSERT INTO appetizer_ordered (order_id, appetizer_id) VALUES (?, ?) RETURNING *";
+            System.out.println("our new appetizer being inserted into app_ordered table: " + appSql);
+            AppetizerOrdered orderedAppetizerReciept = jdbcTemplate.queryForObject(
+                    appSql,
+                    new BeanPropertyRowMapper<>(AppetizerOrdered.class),
+                    newOrder.getId(),
+                    newAppetizer.getId()
+            );
+            System.out.println("app reciept: " + orderedAppetizerReciept);
+        });
+
 
         return "repo";
     }
