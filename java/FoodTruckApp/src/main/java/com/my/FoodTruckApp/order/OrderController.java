@@ -31,8 +31,12 @@ public class OrderController {
 //    //------------------------create order-----------------------------------------------------------------------------------------------------------
     @PostMapping("/orders")
     public Order createOrder(@RequestBody NewOrderRequestBody newOrderRequestBody) {
-        System.out.println("inside create new order CONTROLLER");
         return orderService.createOrder(newOrderRequestBody);
     }
+
+    //DTO makes it so only certain columns from database are returned
+    //i.e. database as name, username, email, phone number columns, you want to only return name & username for security reasons
+    //DTO connects with the network layer, not the database layer
+    //DTO to entity converter is in CONTROLLER level
 
 }

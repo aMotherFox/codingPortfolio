@@ -19,7 +19,7 @@ public class OrderDTO {
 //    public OrderDTO(Order order, OrderRepository orderRepository) {
 //        this.id = order.getId();
 //        this.customerId = order.getCustomerId();
-//        this.entreeOrders = entreeOrdered.getEntreeId();
-//        this.appetizerOrders = appetizerOrdered.getAppetizerId();
+//        this.entreeOrders = ;
+//        this.appetizerOrders = ;
 //    }
 }

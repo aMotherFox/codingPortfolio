@@ -26,12 +26,10 @@ public class OrderService {
 
     public ArrayList<Order> getListOfOrders() {
         ArrayList<Order> orders = orderRepository.getListOfOrders();
-        System.out.println("There are the orders: " + orders);
         return orders;
     }
 
     public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
-        System.out.println("inside create new order SERVICE");
         return orderRepository.createOrder(newOrderRequestBody);
     }
     //--------------------------------------------get order by ID------------------------------------------------------------------------------------
