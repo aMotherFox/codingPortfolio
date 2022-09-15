@@ -32,13 +32,12 @@ public class OrderRepository {
         return orders;
     }
 
-    public String createOrder(NewOrderRequestBody newOrderRequestBody) {
+    public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
 
         //IF order created, we want to find the entrees
         //AKA if row is inserted, iterate through the entreeIds array
         //can tell row is inserted because it returns integer
-        String sql = "INSERT INTO \"order\" (customer_id) VALUES (?) RETURNING *"; //put back in  RETURNING * when done with String return
-        System.out.println("the createOrder sql: " + sql);
+        String sql = "INSERT INTO \"order\" (customer_id) VALUES (?) RETURNING *";
         Order newOrder = jdbcTemplate.queryForObject(
                 sql,
                 new BeanPropertyRowMapper<>(Order.class),
@@ -48,47 +47,78 @@ public class OrderRepository {
         //IF row is inserted, take entreeIds from requestBody, and iterate through that array
         //during our iteration, we can find entrees by id
         //EntreeRepo has method already
+
         List<Integer> entreeIdList = newOrderRequestBody.getEntreeIds();
-        System.out.println("our list of entrees: " + entreeIdList);
-        entreeIdList.forEach(entree -> {
-            Entree newEntree = entreeRepository.getEntreeById(entree);
-            System.out.println("our new order's entree: " + newEntree);
+        System.out.println("entreeIdList: " + entreeIdList);
+        List<Entree> listOfOrderedEntrees = new ArrayList<>();
+        System.out.println("listOfOrderedEntrees: " + listOfOrderedEntrees);
+
+        entreeIdList.forEach(entreeId -> {
+            Entree newEntree = entreeRepository.getEntreeById(entreeId);
+            System.out.println("newEntree: " + newEntree);
+            listOfOrderedEntrees.add(newEntree);
+            System.out.println("listOfOrderedEntrees AFTER ADDING: " + listOfOrderedEntrees);
             //put entrees onto recipet (entrees_ordered table)
             //can tell what order by orderId and which entrees by entreeIds
             String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING *";
-            System.out.println("our new order's entree inserted into entree_ordered: " + entreeSql);
+            System.out.println("entreeSql: " + entreeSql);
             EntreeOrdered orderedEntreeReciept = jdbcTemplate.queryForObject(
                     entreeSql,
                     new BeanPropertyRowMapper<>(EntreeOrdered.class),
                     newOrder.getId(),
                     newEntree.getId()
             );
-            System.out.println("entree reciept: " + orderedEntreeReciept );
+            System.out.println("orderedEntreeReciept: " + orderedEntreeReciept );
+
         });
+        System.out.println("listOfOrderedEntrees AFTER ALL ITERATIONS: " + listOfOrderedEntrees);
+//        List<Entree> listOfOrderedEntrees = new ArrayList<>();
+//        listOfOrderedEntrees.add();
+
+//        List<Integer> entreeIdList = newOrderRequestBody.getEntreeIds();
+//        entreeIdList.forEach(entree -> {
+//            Entree newEntree = entreeRepository.getEntreeById(entree);
+//            System.out.println("entree object: " + newEntree);
+////            List<Entree> listOfOrderedEntrees = newEntree.collect
+//            //put entrees onto recipet (entrees_ordered table)
+//            //can tell what order by orderId and which entrees by entreeIds
+//            String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING *";
+//            EntreeOrdered orderedEntreeReciept = jdbcTemplate.queryForObject(
+//                    entreeSql,
+//                    new BeanPropertyRowMapper<>(EntreeOrdered.class),
+//                    newOrder.getId(),
+//                    newEntree.getId()
+//            ) ;//THIS IS RETURNING INDIVIDUAL OBJECTS WITH EACH ITERATION- MUST PUT ALL ITERATIONS INTO A LIST
+//            System.out.println("entree reciept: " + orderedEntreeReciept );
+//        });
+        //Print out the reciept to give to the customer at checkout
+        //We want to print out ONE reciept, not a reciept for every item they ordered
+        //each iteration returns an object
+        //FOR EACH iteration, ADD OBJECT TO LIST
+
+
+
 
         //find appetizers for the order
         List<Integer> appetizerIdList = newOrderRequestBody.getAppetizerIds();
-        System.out.println("our list of apps: " + appetizerIdList);
         //iterate through appetizerIds and find appetizers via those ids
         appetizerIdList.forEach(appetizer -> {
             //using appetizer repo method
             Appetizer newAppetizer = appetizerRepository.getAppById(appetizer);
-            System.out.println("our new order's app: " + newAppetizer);
             //put appetizers onto recipet recipet (appetizer_ordered table)
             //can tell what order by orderId and which appetizers by appetizerIds
             String appSql = "INSERT INTO appetizer_ordered (order_id, appetizer_id) VALUES (?, ?) RETURNING *";
-            System.out.println("our new appetizer being inserted into app_ordered table: " + appSql);
             AppetizerOrdered orderedAppetizerReciept = jdbcTemplate.queryForObject(
                     appSql,
                     new BeanPropertyRowMapper<>(AppetizerOrdered.class),
                     newOrder.getId(),
                     newAppetizer.getId()
-            );
+            ); //THIS IS RETURNING INDIVIDUAL OBJECTS WITH EACH ITERATION- MUST PUT ALL ITERATIONS INTO A LIST
             System.out.println("app reciept: " + orderedAppetizerReciept);
         });
 
 
-        return "repo";
+        return newOrder;
     }
 
 

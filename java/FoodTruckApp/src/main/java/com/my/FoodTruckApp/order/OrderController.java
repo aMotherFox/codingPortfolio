@@ -30,10 +30,9 @@ public class OrderController {
 //    }
 //    //------------------------create order-----------------------------------------------------------------------------------------------------------
     @PostMapping("/orders")
-    public String createOrder(@RequestBody NewOrderRequestBody newOrderRequestBody) {
+    public Order createOrder(@RequestBody NewOrderRequestBody newOrderRequestBody) {
         System.out.println("inside create new order CONTROLLER");
-        orderService.createOrder(newOrderRequestBody);
-        return "controller";
+        return orderService.createOrder(newOrderRequestBody);
     }
 
 }
