@@ -1,14 +1,14 @@
 package com.my.FoodTruckApp.order;
 
 import com.my.FoodTruckApp.appetizer.Appetizer;
+import com.my.FoodTruckApp.appetizer.AppetizerRepository;
 import com.my.FoodTruckApp.entree.Entree;
+import com.my.FoodTruckApp.entree.EntreeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import com.my.FoodTruckApp.appetizer.AppetizerRepository;
-import com.my.FoodTruckApp.entree.EntreeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class OrderRepository {
         return orders;
     }
 
-    public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
+    public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
 
         String sql = "INSERT INTO \"order\" (customer_id) VALUES (?) RETURNING *";
         Order newOrder = jdbcTemplate.queryForObject(
@@ -36,7 +36,6 @@ public class OrderRepository {
                 new BeanPropertyRowMapper<>(Order.class),
                 newOrderRequestBody.getCustomerId()
         );
-        System.out.println("our new order: " + newOrder);
 
         List<Integer> entreeIdList = newOrderRequestBody.getEntreeIds();
         List<Entree> listOfOrderedEntrees = new ArrayList<>();
@@ -44,15 +43,13 @@ public class OrderRepository {
             Entree newEntree = entreeRepository.getEntreeById(entreeId);
             listOfOrderedEntrees.add(newEntree);
             String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING *";
-            EntreeOrdered orderedEntreeReciept = jdbcTemplate.queryForObject(
+            jdbcTemplate.queryForObject(
                     entreeSql,
                     new BeanPropertyRowMapper<>(EntreeOrdered.class),
                     newOrder.getId(),
                     newEntree.getId()
             );
         });
-        System.out.println("listOfOrderedEntrees AFTER ALL ITERATIONS: " + listOfOrderedEntrees);
-
 
         List<Integer> appetizerIdList = newOrderRequestBody.getAppetizerIds();
         List<Appetizer> listOfOrderedAppetizers = new ArrayList<>();
@@ -60,16 +57,19 @@ public class OrderRepository {
             Appetizer newAppetizer = appetizerRepository.getAppById(appetizer);
             listOfOrderedAppetizers.add(newAppetizer);
             String appSql = "INSERT INTO appetizer_ordered (order_id, appetizer_id) VALUES (?, ?) RETURNING *";
-            AppetizerOrdered orderedAppetizerReciept = jdbcTemplate.queryForObject(
+            jdbcTemplate.queryForObject(
                     appSql,
                     new BeanPropertyRowMapper<>(AppetizerOrdered.class),
                     newOrder.getId(),
                     newAppetizer.getId()
             );
         });
-        System.out.println("listOfOrderedAppetizers AFTER ALL ITERATIONS: " + listOfOrderedAppetizers);
-        return newOrder;
-        //
+        return new OrderDTO(
+                newOrder.getId(),
+                newOrderRequestBody.getCustomerId(),
+                listOfOrderedEntrees,
+                listOfOrderedAppetizers
+        );
     }
 
 

@@ -5,7 +5,7 @@ import com.my.FoodTruckApp.entree.Entree;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @AllArgsConstructor
@@ -13,13 +13,7 @@ import java.util.List;
 @Data
 public class OrderDTO {
     private Integer id;
-    private List<Entree> entreeOrders;
-    private List<Appetizer> appetizerOrders;
-
-//    public OrderDTO(Order order, OrderRepository orderRepository) {
-//        this.id = order.getId();
-//        this.customerId = order.getCustomerId();
-//        this.entreeOrders = ;
-//        this.appetizerOrders = ;
-//    }
+    private Integer customerId;
+    private List<Entree> entreesOrdered;
+    private List<Appetizer> appetizersOrdered;
 }

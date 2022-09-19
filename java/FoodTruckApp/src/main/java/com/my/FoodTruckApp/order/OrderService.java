@@ -4,15 +4,10 @@ import com.my.FoodTruckApp.appetizer.AppetizerRepository;
 import com.my.FoodTruckApp.appetizer.AppetizerService;
 import com.my.FoodTruckApp.entree.EntreeRepository;
 import com.my.FoodTruckApp.entree.EntreeService;
-import com.my.FoodTruckApp.order.NewOrderRequestBody;
-import com.my.FoodTruckApp.order.Order;
-import com.my.FoodTruckApp.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +24,7 @@ public class OrderService {
         return orders;
     }
 
-    public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
+    public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
         return orderRepository.createOrder(newOrderRequestBody);
     }
     //--------------------------------------------get order by ID------------------------------------------------------------------------------------

@@ -3,10 +3,10 @@ package com.my.FoodTruckApp.order;
 import com.my.FoodTruckApp.appetizer.AppetizerService;
 import com.my.FoodTruckApp.entree.EntreeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,7 @@ public class OrderController {
     public ArrayList<Order> getListOfOrders() {
         return orderService.getListOfOrders();
     }
+
     //------------------------get order by ID-----------------------------------------------------------------------------------------------------------
 //    @GetMapping("/orders/{id}")
 //    public Order getOrderById(@PathVariable Integer id) {
@@ -30,7 +31,7 @@ public class OrderController {
 //    }
 //    //------------------------create order-----------------------------------------------------------------------------------------------------------
     @PostMapping("/orders")
-    public Order createOrder(@RequestBody NewOrderRequestBody newOrderRequestBody) {
+    public OrderDTO createOrder(@RequestBody NewOrderRequestBody newOrderRequestBody) {
         return orderService.createOrder(newOrderRequestBody);
     }
 
@@ -38,5 +39,21 @@ public class OrderController {
     //i.e. database as name, username, email, phone number columns, you want to only return name & username for security reasons
     //DTO connects with the network layer, not the database layer
     //DTO to entity converter is in CONTROLLER level
+
+    //DTO = data transfer object
+    //order is a class (PROPER DEFINITION)
+    //class is the empty template for an object
+    //object is an instance of a class
+    //model another word for class, models have FIELDS
+    //every class that you want to instanciate should be a model
+    //entity is a model, specifically usually a model that is representation of a table
+    //will not always be completely identical to the table (i.e firstName in java vs first_name in database)
+    //pojo = Plain Old Java Object
+    //pojo is a model
+    //used to have to do mapping yourself
+    //pojo was a step to instanciate objects you had to map yourself
+    //pojo isn't used very much, now we use DTO
+    //DTOs used mostly for creating a model that is not an entity;
+    //when you have an entity tht doesn't have all the fields you want,
 
 }
