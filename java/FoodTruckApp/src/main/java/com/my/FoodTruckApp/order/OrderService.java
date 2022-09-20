@@ -1,13 +1,16 @@
 package com.my.FoodTruckApp.order;
 
+import com.my.FoodTruckApp.appetizer.Appetizer;
 import com.my.FoodTruckApp.appetizer.AppetizerRepository;
 import com.my.FoodTruckApp.appetizer.AppetizerService;
+import com.my.FoodTruckApp.entree.Entree;
 import com.my.FoodTruckApp.entree.EntreeRepository;
 import com.my.FoodTruckApp.entree.EntreeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +28,46 @@ public class OrderService {
     }
 
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
-        return orderRepository.createOrder(newOrderRequestBody);
+        return createOrderDTO(newOrderRequestBody);
+    }
+
+    public List<Entree> createEntreeReciept(NewOrderRequestBody newOrderRequestBody) {
+
+        List<Integer> entreeIdList = newOrderRequestBody.getEntreeIds();
+        List<Entree> listOfOrderedEntrees = new ArrayList<>();
+        entreeIdList.forEach(entreeId -> {
+            Entree newEntree = entreeRepository.getEntreeById(entreeId);
+            listOfOrderedEntrees.add(newEntree);
+//            orderRepository.createEntreeReciept(newOrderRequestBody);
+        });
+        return listOfOrderedEntrees;
+    }
+
+    public List<Appetizer> createAppReciept(NewOrderRequestBody newOrderRequestBody) {
+
+        List<Integer> appetizerIdList = newOrderRequestBody.getAppetizerIds();
+        List<Appetizer> listOfOrderedAppetizers = new ArrayList<>();
+        appetizerIdList.forEach(appetizer -> {
+            Appetizer newAppetizer = appetizerRepository.getAppById(appetizer);
+            listOfOrderedAppetizers.add(newAppetizer);
+//            String appSql = "INSERT INTO appetizer_ordered (order_id, appetizer_id) VALUES (?, ?) RETURNING *";
+//            jdbcTemplate.queryForObject(
+//                    appSql,
+//                    new BeanPropertyRowMapper<>(AppetizerOrdered.class),
+//                    newOrder.getId(),
+//                    newAppetizer.getId()
+//            );
+        });
+        return listOfOrderedAppetizers;
+    }
+
+    public OrderDTO createOrderDTO(NewOrderRequestBody newOrderRequestBody) {
+        return new OrderDTO(
+                newOrderRequestBody.getOrderId(),
+                newOrderRequestBody.getCustomerId(),
+                createEntreeReciept(newOrderRequestBody),
+                createAppReciept(newOrderRequestBody)
+        );
     }
     //--------------------------------------------get order by ID------------------------------------------------------------------------------------
 //    public Optional<Order>  getOrderById(@PathVariable Integer id) {
