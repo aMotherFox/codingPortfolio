@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 @Repository
@@ -54,23 +55,3 @@ public class CustomerRepository {
     }
 }
 
-
-//make a carry out bag for the order
-    //OrderDTO field id to spit out created order's id
-//put all ordered entrees into carry out bag
-    //OrderDTO field entreeOrders to spit out list of entrees ordered (OBJECTS, NOT IDs)
-//put all ordered apps into carry out bag
-    //OrderDTO field appetizerOrders to spit out list of apps ordered (OBJECTS, NOT IDs)
-//Give carry out bag to customer
-    //return looks like:
-    //{
-    //    id: PK,
-    //    entrees: List<Entree>
-    //    appetizers: List<Appetizer>
-    //}
-
-//{
-//        id: PK,
-//        entrees: List<Entree>
-//    appetizers: List<Appetizer>
-//}
