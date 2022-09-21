@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class NewOrderRequestBody {
-    private Integer orderId;
     private Integer customerId;
     private List<Integer> entreeIds;
     private List<Integer> appetizerIds;

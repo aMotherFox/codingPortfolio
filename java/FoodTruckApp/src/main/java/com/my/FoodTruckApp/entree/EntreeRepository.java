@@ -1,4 +1,6 @@
 package com.my.FoodTruckApp.entree;
+
+import com.my.FoodTruckApp.order.EntreeOrdered;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -7,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.ArrayList;
 
 @Repository
@@ -50,5 +53,11 @@ public class EntreeRepository {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No entree with id: " + id + " was found");
         }
         jdbcTemplate.update(sqlDelete, id);
+    }
+
+    public EntreeOrdered createEntreeOrdered(Integer orderId, Integer entreeId) {
+        log.info("Created a entree_ordered row with entreeId: " + entreeId + ", and orderId: " + orderId);
+        String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?) RETURNING *";
+        return jdbcTemplate.queryForObject(entreeSql, new BeanPropertyRowMapper<>(EntreeOrdered.class), orderId, entreeId);
     }
 }
