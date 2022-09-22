@@ -21,11 +21,6 @@ public class OrderController {
         return orderService.getListOfOrders();
     }
 
-    //------------------------get order by ID-----------------------------------------------------------------------------------------------------------
-//    @GetMapping("/orders/{id}")
-//    public Order getOrderById(@PathVariable Integer id) {
-//        return orderService.getOrderById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//    }
     @PostMapping("/orders")
     public OrderDTO createOrder(@RequestBody NewOrderRequestBody newOrderRequestBody) {
         log.info("Creating an order with newOrderRequestBody: " + newOrderRequestBody);

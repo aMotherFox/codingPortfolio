@@ -1,6 +1,5 @@
 package com.my.FoodTruckApp.entree;
 
-import com.my.FoodTruckApp.order.EntreeOrdered;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;

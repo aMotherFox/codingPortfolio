@@ -22,8 +22,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     public ArrayList<Order> getListOfOrders() {
-        ArrayList<Order> orders = orderRepository.getListOfOrders();
-        return orders;
+        return orderRepository.getListOfOrders();
     }
 
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {

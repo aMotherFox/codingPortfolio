@@ -17,8 +17,7 @@ public class OrderRepository {
 
     public ArrayList<Order> getListOfOrders() {
         String sql = "SELECT * FROM \"order\" ";
-        ArrayList<Order> orders = (ArrayList<Order>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
-        return orders;
+        return (ArrayList<Order>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
     }
 
     public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
