@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 @Repository
@@ -53,3 +54,4 @@ public class CustomerRepository {
         jdbcTemplate.update(sqlDelete, id);
     }
 }
+

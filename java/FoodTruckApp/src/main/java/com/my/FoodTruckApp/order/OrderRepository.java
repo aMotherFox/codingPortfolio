@@ -1,38 +1,37 @@
 package com.my.FoodTruckApp.order;
 
-import com.my.FoodTruckApp.appetizer.Appetizer;
-import com.my.FoodTruckApp.entree.Entree;
-import com.my.FoodTruckApp.order.Order;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @Repository
-//@RequiredArgsConstructor //necessary for the dependency injection to the repository
+@RequiredArgsConstructor
+@Slf4j
 public class OrderRepository {
 
-//    private final EntreeService entreeService; //getting an instance of the service, THIS IS THE DEPENDENCY INJECTION
-//    private final AppetizerService appetizerService; //spring will look through the variables and see if they have a DEPENDENCY on this service
+    private final JdbcTemplate jdbcTemplate;
 
-    Appetizer appetizer1 = new Appetizer(1, "hardcoded fries", 4);
-    Appetizer appetizer2 = new Appetizer(2, "hardcoded onion rings", 6);
-    ArrayList<Appetizer> appetizers = new ArrayList<>(Arrays.asList(appetizer1, appetizer2));
-    //----------------------------------------------------------------------------------------------------------------------------------------
-    Entree entree1 = new Entree(1, "hardcoded burger", 14);
-    Entree entree2 = new Entree(2, "hardcoded spaghetti", 16);
-    ArrayList<Entree> entrees = new ArrayList<>(Arrays.asList(entree1, entree2));
-    //----------------------------------------------------------------------------------------------------------------------------------------
-    Order order1 = new Order(1, appetizers, entrees);
-    Order order2 = new Order(2, appetizers, entrees);
-    ArrayList<Order> orders = new ArrayList<>(Arrays.asList(order1, order2));
+    public ArrayList<Order> getListOfOrders() {
+        String sql = "SELECT * FROM \"order\" ";
+        return (ArrayList<Order>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
+    }
 
-//    public ArrayList<Appetizer> getAllAppetizers() { return appetizers;}
-//    public ArrayList<Entree> getAllEntrees() { return entrees;}
-    public ArrayList<Order> getAllOrders() {
-        return orders;
+    public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
+
+        String sql = "INSERT INTO \"order\" (customer_id) VALUES (?) RETURNING *";
+        Order newOrder = jdbcTemplate.queryForObject(
+                sql,
+                new BeanPropertyRowMapper<>(Order.class),
+                newOrderRequestBody.getCustomerId()
+        );
+        log.info("Successfully created order: " + newOrder);
+        return newOrder;
     }
 }
 
-//we are getting an object THROUGH the ID{id} of the appetizer and entree
-//return ust be object, input must be integer
+
+
