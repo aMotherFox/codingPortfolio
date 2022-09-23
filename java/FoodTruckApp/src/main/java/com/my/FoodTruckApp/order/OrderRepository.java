@@ -31,6 +31,17 @@ public class OrderRepository {
         log.info("Successfully created order: " + newOrder);
         return newOrder;
     }
+
+    public Order getOrderById(Integer id) {
+        String sql = "SELECT * FROM \"order\" WHERE id = ?";
+
+        return jdbcTemplate.queryForObject(
+                sql,
+                new BeanPropertyRowMapper<>(Order.class),
+                id
+        );
+    }
+
 }
 
 

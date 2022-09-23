@@ -89,4 +89,24 @@ public class EntreeRepository {
 
         return namedParameterJdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Entree.class));
     }
+
+    public String findEntreeThroughEntreeOrdered(Integer id) {
+        //id is the id of the order
+        //it is the same as order_id
+        //select from the entree_ordered table where order_id = id
+        //target the entree_id from the selected order
+        //select from entree table where id = entree_id from the returned entree above
+//        String sql = "SELECT * FROM entree_ordered WHERE order_id = ?";
+        String sql = "SELECT entree_id FROM entree_ordered WHERE order_id = ?";
+        jdbcTemplate.query();
+//        try {
+//            Entree entreeById = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Entree.class), id); //WRONG
+//            //this is returning the object, I want to just get the integer and then query in the entree table
+//            System.out.println("entreeById: " + entreeById);
+//            return "entree was found";
+//        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+//            log.error("No entree with an id of: " + id);
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No entree with id of: " + id);
+//        }
+    }
 }
