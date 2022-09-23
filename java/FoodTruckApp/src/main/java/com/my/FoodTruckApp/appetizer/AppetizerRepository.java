@@ -87,7 +87,6 @@ public class AppetizerRepository {
         MapSqlParameterSource parameters = new MapSqlParameterSource();
         parameters.addValue("ids", appetizerIds);
 
-        List<Appetizer> appetizers = namedParameterJdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Appetizer.class));
-        return appetizers;
+        return namedParameterJdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Appetizer.class));
     }
 }

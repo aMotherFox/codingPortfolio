@@ -61,7 +61,7 @@ public class EntreeRepository {
         jdbcTemplate.update(sqlDelete, id);
     }
 
-    public void createEntreesOrder(Integer orderId, List<Integer> entreeId) {
+    public void createEntreesOrder(Integer orderId, List<Integer> entreeIds) {
 
         String entreeSql = "INSERT INTO entree_ordered (order_id, entree_id) VALUES (?, ?)";
         jdbcTemplate.batchUpdate(
@@ -70,12 +70,12 @@ public class EntreeRepository {
                     @Override
                     public void setValues(PreparedStatement ps, int i) throws SQLException {
                         ps.setInt(1, orderId);
-                        ps.setInt(2, entreeId.get(i));
+                        ps.setInt(2, entreeIds.get(i));
                     }
 
                     @Override
                     public int getBatchSize() {
-                        return entreeId.size();
+                        return entreeIds.size();
                     }
                 }
         );
@@ -87,7 +87,6 @@ public class EntreeRepository {
         MapSqlParameterSource parameters = new MapSqlParameterSource();
         parameters.addValue("ids", entreeIds);
 
-        List<Entree> entrees = namedParameterJdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Entree.class));
-        return entrees;
+        return namedParameterJdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Entree.class));
     }
 }
