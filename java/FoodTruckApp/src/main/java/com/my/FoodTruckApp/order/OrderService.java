@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,15 +27,11 @@ public class OrderService {
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
         Order newOrder = orderRepository.createOrder(newOrderRequestBody);
 
-        List<Entree> entrees = newOrderRequestBody.getEntreeIds().stream().map(entreeID -> {
-            entreeRepository.createEntreeOrdered(newOrder.getId(), entreeID);
-            return entreeRepository.getEntreeById(entreeID);
-        }).collect(Collectors.toList());
+        entreeRepository.createEntreesOrder(newOrder.getId(), newOrderRequestBody.getEntreeIds());
+        List<Entree> entrees = entreeRepository.findAllByIds(newOrderRequestBody.getEntreeIds());
 
-        List<Appetizer> appetizers = newOrderRequestBody.getAppetizerIds().stream().map(appetizerID -> {
-            appetizerRepository.createAppetizerOrdered(newOrder.getId(), appetizerID);
-            return appetizerRepository.getAppById(appetizerID);
-        }).collect(Collectors.toList());
+        appetizerRepository.createAppetizersOrder(newOrder.getId(), newOrderRequestBody.getAppetizerIds());
+        List<Appetizer> appetizers = appetizerRepository.findAllByIds(newOrderRequestBody.getAppetizerIds());
 
         return new OrderDTO(
                 newOrder.getId(),
