@@ -97,8 +97,18 @@ public class EntreeRepository {
         //target the entree_id from the selected order
         //select from entree table where id = entree_id from the returned entree above
 //        String sql = "SELECT * FROM entree_ordered WHERE order_id = ?";
-        String sql = "SELECT entree_id FROM entree_ordered WHERE order_id = ?";
-        jdbcTemplate.query();
+        String sql = "SELECT entree.*, \"order\".id" +
+                " FROM entree" +
+                " JOIN entree_ordered ON entree.id = entree_ordered.entree_id" +
+                " JOIN \"order\" ON \"order\".id = entree_ordered.order_id" +
+                " WHERE \"order\".id = ?";
+        Entree foundEntree = jdbcTemplate.queryForObject(
+                sql,
+                new BeanPropertyRowMapper<>(Entree.class),
+                id
+
+        );
+        System.out.println("found Entree" + foundEntree);
 //        try {
 //            Entree entreeById = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Entree.class), id); //WRONG
 //            //this is returning the object, I want to just get the integer and then query in the entree table
@@ -108,5 +118,31 @@ public class EntreeRepository {
 //            log.error("No entree with an id of: " + id);
 //            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No entree with id of: " + id);
 //        }
+
+
+        //ENTREES FROM SPECIFIC ORDER
+//        SELECT entree.*, "order".id
+//        FROM entree
+//        JOIN entree_ordered ON entree.id = entree_ordered.entree_id
+//        JOIN "order" ON "order".id = entree_ordered.order_id
+//        WHERE "order".id = ?;
+
+        //APPS FROM SPECIFIC ORDER
+//        SELECT appetizer.*, "order".id
+//        FROM appetizer
+//        JOIN appetizer_ordered ON appetizer.id = appetizer_ordered.appetizer_id
+//        JOIN "order" ON "order".id = appetizer_ordered.order_id
+//        WHERE "order".id = ?;
+
+        //ENTREES AND APPS FROM SPECIFIC ORDER
+//        SELECT "order".id, appetizer.*, entree.*
+//        FROM "order"
+//        JOIN appetizer_ordered ON appetizer_ordered.order_id = "order"."id"
+//        JOIN appetizer ON appetizer.id = appetizer_ordered.appetizer_id
+//        JOIN entree_ordered ON entree_ordered.order_id = "order"."id"
+//        JOIN entree ON entree.id = entree_ordered.entree_id
+//        WHERE "order".id = ?;
+
+        return "findEntreeThroughEntreeOrdered REPO";
     }
 }
