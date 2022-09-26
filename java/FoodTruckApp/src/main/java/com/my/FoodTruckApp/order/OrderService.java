@@ -45,7 +45,9 @@ public class OrderService {
         Order orderById = orderRepository.getOrderById(id);
 
         List<Entree> entrees = entreeRepository.findEntreeThroughEntreeOrdered(id);
+        System.out.println("Entrees ORDER SERVICE: " + entrees);
         List<Appetizer> appetizers = appetizerRepository.findAppetizerThroughAppetizerOrdered(id);
+        System.out.println("Apps ORDER SERVICE: " + appetizers);
 
         return new OrderDTO(
                 orderById.getId(),

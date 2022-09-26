@@ -2,9 +2,12 @@ package com.my.FoodTruckApp.order;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 
@@ -35,11 +38,17 @@ public class OrderRepository {
     public Order getOrderById(Integer id) {
         String sql = "SELECT * FROM \"order\" WHERE id = ?";
 
-        return jdbcTemplate.queryForObject(
-                sql,
-                new BeanPropertyRowMapper<>(Order.class),
-                id
-        );
+        try {
+            Order orderById = jdbcTemplate.queryForObject(
+                    sql,
+                    new BeanPropertyRowMapper<>(Order.class),
+                    id
+            );
+            return orderById;
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            log.error("No order with an id of: " + id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No order with id of: " + id);
+        }
     }
 
 }
