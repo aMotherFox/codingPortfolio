@@ -41,24 +41,27 @@ public class OrderService {
         );
     }
 
-    public String getOrderById(Integer id) {
-        Order orderByid = orderRepository.getOrderById(id);
-        System.out.println("orderByid" + orderByid);
+    public OrderDTO getOrderById(Integer id) {
+        Order orderById = orderRepository.getOrderById(id);
 
-//        entreeRepository.getEntreeById(id); DOES NOT WORK BC IT IS ORDER ID, NOT ENTREE ID
-        //find out what order we have
-        //the id of the order is = to the order_id on entree_ordered and appetizer_ordered
-        //find entree
-        
-        //if id = order_id, return entree_id
-        //find entree by id (which is the entree_id)
-        //return that entree
-        //do it in a list
+        List<Entree> entrees = entreeRepository.findEntreeThroughEntreeOrdered(id);
+        List<Appetizer> appetizers = appetizerRepository.findAppetizerThroughAppetizerOrdered(id);
 
-        entreeRepository.findEntreeThroughEntreeOrdered(id);
-
-        return "Getting order by id IN SERVICE";
+        return new OrderDTO(
+                orderById.getId(),
+                orderById.getCustomerId(),
+                entrees,
+                appetizers
+        );
     }
+    //ENTREES AND APPS FROM SPECIFIC ORDER
+//        SELECT "order".id, appetizer.*, entree.*
+//        FROM "order"
+//        JOIN appetizer_ordered ON appetizer_ordered.order_id = "order"."id"
+//        JOIN appetizer ON appetizer.id = appetizer_ordered.appetizer_id
+//        JOIN entree_ordered ON entree_ordered.order_id = "order"."id"
+//        JOIN entree ON entree.id = entree_ordered.entree_id
+//        WHERE "order".id = ?;
 }
 
 

@@ -25,7 +25,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders/{id}")
-    public String getOrderById(@PathVariable Integer id) {
+    public OrderDTO getOrderById(@PathVariable Integer id) {
         log.info("Finding an order with PathVariable Integer id: " + id);
         return orderService.getOrderById(id);
     }
