@@ -56,14 +56,7 @@ public class OrderService {
                 appetizers
         );
     }
-    //ENTREES AND APPS FROM SPECIFIC ORDER
-//        SELECT "order".id, appetizer.*, entree.*
-//        FROM "order"
-//        JOIN appetizer_ordered ON appetizer_ordered.order_id = "order"."id"
-//        JOIN appetizer ON appetizer.id = appetizer_ordered.appetizer_id
-//        JOIN entree_ordered ON entree_ordered.order_id = "order"."id"
-//        JOIN entree ON entree.id = entree_ordered.entree_id
-//        WHERE "order".id = ?;
+
 }
 
 
