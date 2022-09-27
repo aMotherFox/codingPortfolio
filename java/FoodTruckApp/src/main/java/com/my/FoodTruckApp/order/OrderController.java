@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -12,9 +14,8 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping("/orders")
-    public String getAllOrders() {
-        orderService.getAllOrders();
-        return "get all orders CONTROLLER";
+    public List<OrderDTO> getAllOrders() {
+        return orderService.getAllOrders();
     }
 
     @PostMapping("/orders")

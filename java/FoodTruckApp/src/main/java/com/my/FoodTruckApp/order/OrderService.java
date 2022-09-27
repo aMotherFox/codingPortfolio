@@ -19,38 +19,18 @@ public class OrderService {
     private final AppetizerRepository appetizerRepository;
     private final OrderRepository orderRepository;
 
-    public String getAllOrders() {
+    public List<OrderDTO> getAllOrders() {
         List<Order> orders = orderRepository.getAllOrders();
-        System.out.println("Orders LIST in service: " + orders); //getting list of all orders with id and customerId
-        //we want to return a list of ALL the orders
-        //must return as list of OrderDTO
-        //CANNOT just get a list of every entree and every appetizer
-        //find all orders
-        //ITERATE through list of orders
-//        List<OrderDTO> allOrders = orders.stream().map(order -> {
-//            List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
-//            return new OrderDTO(
-//                    order.getId(),
-//                    order.getCustomerId(),
-//                    entrees,
-//                    null
-//            ).collect(Collectors.toList());
-//        });
-        //for each iteration:
-        orders.forEach(order -> {
-            getOrderById(order.getId());
-        });
-        //find order ID
-        //find customer ID
-        //find all entrees
-//        List<Entree> entrees =
-        //find all appetizer
-        //return OrderDTO
-        //next iteration
-
-//        entreeRepository.getEntreesFromAllOrders();
-
-        return "get all orders SERVICE";
+        return orders.stream().map(order -> {
+            List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
+            List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
+            return new OrderDTO(
+                    order.getId(),
+                    order.getCustomerId(),
+                    entrees,
+                    appetizers
+            );
+        }).toList();
     }
 
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
