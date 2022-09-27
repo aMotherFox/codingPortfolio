@@ -24,10 +24,10 @@ public class OrderController {
         return orderService.createOrder(newOrderRequestBody);
     }
 
-    @GetMapping("/orders/{id}")
-    public OrderDTO getOrderById(@PathVariable Integer id) {
-        log.info("Finding an order with PathVariable Integer id: " + id);
-        return orderService.getOrderById(id);
+    @GetMapping("/orders/{orderId}")
+    public OrderDTO getOrderById(@PathVariable Integer orderId) {
+        log.info("Finding an order with PathVariable Integer id: " + orderId);
+        return orderService.getOrderById(orderId);
     }
 
 }

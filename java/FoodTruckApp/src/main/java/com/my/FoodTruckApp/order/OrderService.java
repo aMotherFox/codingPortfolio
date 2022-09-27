@@ -41,13 +41,13 @@ public class OrderService {
         );
     }
 
-    public OrderDTO getOrderById(Integer id) {
-        Order orderById = orderRepository.getOrderById(id);
+    public OrderDTO getOrderById(Integer orderId) {
+        Order orderById = orderRepository.getOrderById(orderId);
 
-        List<Entree> entrees = entreeRepository.findEntreeThroughEntreeOrdered(id);
-        System.out.println("Entrees ORDER SERVICE: " + entrees);
-        List<Appetizer> appetizers = appetizerRepository.findAppetizerThroughAppetizerOrdered(id);
-        System.out.println("Apps ORDER SERVICE: " + appetizers);
+        List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(orderId);
+        log.info("Our entrees from the order by id: " + orderId + " entrees: " + entrees);
+        List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(orderId);
+        log.info("Our appetizers from the order by id: " + orderId + " appetizers: " + appetizers);
 
         return new OrderDTO(
                 orderById.getId(),

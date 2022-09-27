@@ -90,15 +90,14 @@ public class EntreeRepository {
         return namedParameterJdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Entree.class));
     }
 
-    public List<Entree> findEntreeThroughEntreeOrdered(Integer id) {
+    public List<Entree> findAllEntreesByOrderId(Integer orderId) {
 
         String sql = "SELECT entree.* " +
                 " FROM entree" +
                 " JOIN entree_ordered ON entree.id = entree_ordered.entree_id" +
-                " JOIN \"order\" ON \"order\".id = entree_ordered.order_id" +
-                " WHERE \"order\".id = ?";
+                " WHERE entree_ordered.order_id = ?";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Entree.class), id);
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Entree.class), orderId);
 
     }
 }
