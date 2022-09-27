@@ -92,7 +92,7 @@ public class EntreeRepository {
 
     public List<Entree> findEntreeThroughEntreeOrdered(Integer id) {
 
-        String sql = "SELECT entree.*, \"order\".id" +
+        String sql = "SELECT entree.* " +
                 " FROM entree" +
                 " JOIN entree_ordered ON entree.id = entree_ordered.entree_id" +
                 " JOIN \"order\" ON \"order\".id = entree_ordered.order_id" +

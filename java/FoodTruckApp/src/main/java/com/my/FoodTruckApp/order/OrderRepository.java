@@ -44,6 +44,7 @@ public class OrderRepository {
                     new BeanPropertyRowMapper<>(Order.class),
                     id
             );
+            log.info("selecting order by id: " + id + "order: " + orderById);
             return orderById;
         } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
             log.error("No order with an id of: " + id);

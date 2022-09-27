@@ -92,7 +92,7 @@ public class AppetizerRepository {
 
     public List<Appetizer> findAppetizerThroughAppetizerOrdered(Integer id) {
 
-        String sql = "SELECT appetizer.*, \"order\".id" +
+        String sql = "SELECT appetizer.* " +
                 " FROM appetizer" +
                 " JOIN appetizer_ordered ON appetizer.id = appetizer_ordered.appetizer_id" +
                 " JOIN \"order\" ON \"order\".id = appetizer_ordered.order_id" +
@@ -100,5 +100,4 @@ public class AppetizerRepository {
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Appetizer.class), id);
     }
-
 }
