@@ -2,10 +2,7 @@ package com.my.FoodTruckApp.order;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -27,5 +24,10 @@ public class OrderController {
         return orderService.createOrder(newOrderRequestBody);
     }
 
+    @GetMapping("/orders/{orderId}")
+    public OrderDTO getOrderById(@PathVariable Integer orderId) {
+        log.info("Finding an order with PathVariable Integer id: " + orderId);
+        return orderService.getOrderById(orderId);
+    }
 
 }

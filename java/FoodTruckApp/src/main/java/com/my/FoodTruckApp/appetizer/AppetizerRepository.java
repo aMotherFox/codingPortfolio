@@ -89,4 +89,14 @@ public class AppetizerRepository {
 
         return namedParameterJdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Appetizer.class));
     }
+
+    public List<Appetizer> findAllAppetizersByOrderId(Integer orderId) {
+
+        String sql = "SELECT appetizer.* " +
+                " FROM appetizer" +
+                " JOIN appetizer_ordered ON appetizer.id = appetizer_ordered.appetizer_id" +
+                " WHERE appetizer_ordered.order_id = ?";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Appetizer.class), orderId);
+    }
 }
