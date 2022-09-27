@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -18,9 +18,9 @@ public class OrderRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public ArrayList<Order> getListOfOrders() {
+    public List<Order> getAllOrders() {
         String sql = "SELECT * FROM \"order\" ";
-        return (ArrayList<Order>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
     }
 
     public Order createOrder(NewOrderRequestBody newOrderRequestBody) {

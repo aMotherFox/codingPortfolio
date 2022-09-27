@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -14,8 +12,9 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping("/orders")
-    public ArrayList<Order> getListOfOrders() {
-        return orderService.getListOfOrders();
+    public String getAllOrders() {
+        orderService.getAllOrders();
+        return "get all orders CONTROLLER";
     }
 
     @PostMapping("/orders")

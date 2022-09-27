@@ -100,4 +100,14 @@ public class EntreeRepository {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Entree.class), orderId);
 
     }
+
+    public void getEntreesFromAllOrders() {
+
+        String sql = "SELECT entree.* " +
+                "FROM entree " +
+                "JOIN entree_ordered ON entree.id = entree_ordered.entree_id " +
+                "JOIN \"order\" ON \"order\".id = entree_ordered.order_id";
+        List<Entree> entrees = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Entree.class));
+        System.out.println("entrees: " + entrees);
+    }
 }

@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,8 +19,25 @@ public class OrderService {
     private final AppetizerRepository appetizerRepository;
     private final OrderRepository orderRepository;
 
-    public ArrayList<Order> getListOfOrders() {
-        return orderRepository.getListOfOrders();
+    public String getAllOrders() {
+        List<Order> orders = orderRepository.getAllOrders();
+        System.out.println("Orders LIST in service: " + orders);
+        //we want to return a list of ALL the orders
+        //must return as list of OrderDTO
+        //CANNOT just get a list of every entree and every appetizer
+        //find all orders
+        //ITERATE through list of orders
+        //for each iteration:
+        //find order ID
+        //find customer ID
+        //find all entrees
+        //find all appetizer
+        //return OrderDTO
+        //next iteration
+
+        entreeRepository.getEntreesFromAllOrders();
+
+        return "get all orders SERVICE";
     }
 
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
