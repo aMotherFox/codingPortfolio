@@ -21,16 +21,26 @@ public class OrderService {
 
     public List<OrderDTO> getAllOrders() {
         List<Order> orders = orderRepository.getAllOrders();
-        return orders.stream().map(order -> {
-            List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
-            List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
+
+        List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
+        List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
+
+        return orders.stream().map(order -> { // N + 1 issue, could be ANY number of orders
+//            List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
+//            List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
+            //WE DO NOT WANT THE ENTREES AND APPS IN THE ITERATION
+            //get ALL entrees and apps
+            //we can find the entrees by entree_ordered table
+            //order_id in entree_ordered table = order's id
+            //once we find the entrees, THEN we assign it to THAT order
+
             return new OrderDTO(
                     order.getId(),
                     order.getCustomerId(),
                     entrees,
                     appetizers
             );
-        }).toList();
+        }).toList(); //on the return of the map, not the return of the DTO
     }
 
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
