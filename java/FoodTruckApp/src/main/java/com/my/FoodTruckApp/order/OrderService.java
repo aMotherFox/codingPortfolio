@@ -22,23 +22,42 @@ public class OrderService {
     public List<OrderDTO> getAllOrders() {
         List<Order> orders = orderRepository.getAllOrders();
 
-        List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
-        List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
+//        List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
+//        List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
+        //find all entrees
+        //put into list
+
+        List<Entree> entrees = entreeRepository.getListOfEntrees();
+        System.out.println("entrees: " + entrees);
+        //must check each entree
+        //find on entree_ordered table
+        //entree's id = entree_id
+        //find coressponding order_id
+        //separate by order_id
+        //return these orders
+        //put into new lists by order_id
+        entrees.stream().map(entree -> {
+            entreeRepository.findEntreesThroughEntreeOrderedTable(entree.getId());
+        });
+
+//        List<Appetizer> appetizers = appetizerRepository.getListOfAppetizers();
+//        System.out.println("appetizers: " + appetizers);
 
         return orders.stream().map(order -> { // N + 1 issue, could be ANY number of orders
 //            List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
 //            List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
-            //WE DO NOT WANT THE ENTREES AND APPS IN THE ITERATION
-            //get ALL entrees and apps
-            //we can find the entrees by entree_ordered table
-            //order_id in entree_ordered table = order's id
-            //once we find the entrees, THEN we assign it to THAT order
+            //BATCH queries - set parameters that could easily be swapped
+            //finding all entrees/apps by orderId should be BATCH
+            //WATCH OUT FOR SQL STATMENTS IN OPEN ENDED LOOPS!! N + 1 ISSUE
+            //list of all entrees; map from entree_ordered table to find the id of the order it belongs to
+            //insert into order that way
+            //get lists first and then map through list and assign to correct order
 
             return new OrderDTO(
                     order.getId(),
                     order.getCustomerId(),
                     entrees,
-                    appetizers
+                    null
             );
         }).toList(); //on the return of the map, not the return of the DTO
     }

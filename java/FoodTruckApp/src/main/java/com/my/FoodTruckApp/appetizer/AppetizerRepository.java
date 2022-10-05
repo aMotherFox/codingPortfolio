@@ -99,4 +99,6 @@ public class AppetizerRepository {
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Appetizer.class), orderId);
     }
+
+    //BATCH findAllAppetizersByOrderId
 }

@@ -101,4 +101,37 @@ public class EntreeRepository {
 
     }
 
+
+    public String findEntreesThroughEntreeOrderedTable(Integer entreeId) {
+
+//        String sql = "SELECT entree.*, \"order\".* " +
+//                "FROM entree JOIN entree_ordered ON entree.id = entree_ordered.entree_id " +
+//                "JOIN \"order\" ON \"order\".id = entree_ordered.order_id;"; //returns all ordered entrees and which order ordered it
+        String sql = "SELECT entree.*, \"order\".* " +
+                "FROM entree " +
+                "JOIN entree_ordered ON entree.id = entree_ordered.entree_id " +
+                "JOIN \"order\" ON \"order\".id = entree_ordered.order_id " +
+                "WHERE entree.id = ?";
+
+//        SELECT entree.*, "order".*
+//        FROM entree
+//        JOIN entree_ordered ON entree.id = entree_ordered.entree_id
+//        JOIN "order" ON "order".id = entree_ordered.order_id
+//        WHERE entree.id = ?;
+//select all from entree and order, matching entree to entree_ordered, matching entree_ordered to order, where entree id meets param
+        //if we are iterating through the id of the list of entrees, we will get all order ids
+        //put into list depending on the order_id e.g. all order_ids = 1 go into list, etc
+
+//        String sql = "SELECT  entree.*, \"order\".id " +
+//                "FROM entree " +
+//                "JOIN entree_ordered ON entree.id = entree_ordered.entree_id " +
+//                "JOIN \"order\" ON \"order\".id = entree_ordered.order_id"; //does not work for orders made more than once by a customer
+
+        return "inside findEntreesThroughEntreeOrderedTable on entreeRepo";
+    }
+
+    public String findEntreeOrderedForEachEntree(Integer entreeId) {
+        String sql = "SELECT entree_ordered.* "
+        return "we are finding entree_ordered by entree";
+    }
 }
