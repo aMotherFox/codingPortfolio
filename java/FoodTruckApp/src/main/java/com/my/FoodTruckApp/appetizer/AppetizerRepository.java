@@ -100,5 +100,16 @@ public class AppetizerRepository {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Appetizer.class), orderId);
     }
 
-    //BATCH findAllAppetizersByOrderId
+    public List<Appetizer> findAll() {
+        String sql = "SELECT * FROM appetizer";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Appetizer.class));
+    }
+
+    public List<AppetizerOrdered> findAllAppetizerOrders() {
+        String sql = "SELECT * FROM appetizer_ordered";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(AppetizerOrdered.class));
+    }
+
 }

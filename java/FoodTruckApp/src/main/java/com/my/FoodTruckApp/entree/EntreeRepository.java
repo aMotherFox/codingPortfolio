@@ -82,6 +82,10 @@ public class EntreeRepository {
     }
 
     public List<Entree> findAllByIds(List<Integer> entreeIds) {
+        if (entreeIds.isEmpty()) {
+            return List.of();
+        }
+
         String sql = "SELECT * FROM entree WHERE id IN (:ids)";
 
         MapSqlParameterSource parameters = new MapSqlParameterSource();
@@ -101,37 +105,37 @@ public class EntreeRepository {
 
     }
 
+    public List<Entree> findAll() {
+        String sql = "SELECT * FROM entree";
 
-    public String findEntreesThroughEntreeOrderedTable(Integer entreeId) {
-
-//        String sql = "SELECT entree.*, \"order\".* " +
-//                "FROM entree JOIN entree_ordered ON entree.id = entree_ordered.entree_id " +
-//                "JOIN \"order\" ON \"order\".id = entree_ordered.order_id;"; //returns all ordered entrees and which order ordered it
-        String sql = "SELECT entree.*, \"order\".* " +
-                "FROM entree " +
-                "JOIN entree_ordered ON entree.id = entree_ordered.entree_id " +
-                "JOIN \"order\" ON \"order\".id = entree_ordered.order_id " +
-                "WHERE entree.id = ?";
-
-//        SELECT entree.*, "order".*
-//        FROM entree
-//        JOIN entree_ordered ON entree.id = entree_ordered.entree_id
-//        JOIN "order" ON "order".id = entree_ordered.order_id
-//        WHERE entree.id = ?;
-//select all from entree and order, matching entree to entree_ordered, matching entree_ordered to order, where entree id meets param
-        //if we are iterating through the id of the list of entrees, we will get all order ids
-        //put into list depending on the order_id e.g. all order_ids = 1 go into list, etc
-
-//        String sql = "SELECT  entree.*, \"order\".id " +
-//                "FROM entree " +
-//                "JOIN entree_ordered ON entree.id = entree_ordered.entree_id " +
-//                "JOIN \"order\" ON \"order\".id = entree_ordered.order_id"; //does not work for orders made more than once by a customer
-
-        return "inside findEntreesThroughEntreeOrderedTable on entreeRepo";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Entree.class));
     }
 
-    public String findEntreeOrderedForEachEntree(Integer entreeId) {
-        String sql = "SELECT entree_ordered.* "
-        return "we are finding entree_ordered by entree";
+    public List<EntreeOrdered> findAllEntreeOrders() {
+        String sql = "SELECT * FROM entree_ordered";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(EntreeOrdered.class));
     }
+
+    public List<EntreeAndOrderId> findAllByOrderIds(List<Integer> orderIds) {
+        log.info("Finding ALL entrees by orderIds: " + orderIds);
+        String sql = "SELECT entree.*, entree_ordered.order_id " +
+                "FROM entree_ordered " +
+                "JOIN entree on entree.id = entree_ordered.entree_id " +
+                "WHERE order_id IN (:orderIds) ";
+
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("orderIds", orderIds);
+
+        List<EntreeAndOrderId> entreeAndOrderIds = namedParameterJdbcTemplate.query(
+                sql,
+                parameters,
+                new BeanPropertyRowMapper<>(EntreeAndOrderId.class)
+        );
+        log.info("Found all of the following entrees with order ids: " + entreeAndOrderIds);
+        return entreeAndOrderIds;
+    }
+
 }
+
+

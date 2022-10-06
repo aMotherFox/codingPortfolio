@@ -1,14 +1,17 @@
 package com.my.FoodTruckApp.order;
 
 import com.my.FoodTruckApp.appetizer.Appetizer;
+import com.my.FoodTruckApp.appetizer.AppetizerOrdered;
 import com.my.FoodTruckApp.appetizer.AppetizerRepository;
 import com.my.FoodTruckApp.entree.Entree;
+import com.my.FoodTruckApp.entree.EntreeAndOrderId;
 import com.my.FoodTruckApp.entree.EntreeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,47 +22,47 @@ public class OrderService {
     private final AppetizerRepository appetizerRepository;
     private final OrderRepository orderRepository;
 
-    public List<OrderDTO> getAllOrders() {
-        List<Order> orders = orderRepository.getAllOrders();
+    public List<OrderDTO> findAllOrder() {
+        List<Order> orders = orderRepository.findAllOrders();
 
-//        List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
-//        List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
-        //find all entrees
-        //put into list
+        List<AppetizerOrdered> appetizerOrders = appetizerRepository.findAllAppetizerOrders();
+        List<Appetizer> allAppetizers = appetizerRepository.findAll();
 
-        List<Entree> entrees = entreeRepository.getListOfEntrees();
-        System.out.println("entrees: " + entrees);
-        //must check each entree
-        //find on entree_ordered table
-        //entree's id = entree_id
-        //find coressponding order_id
-        //separate by order_id
-        //return these orders
-        //put into new lists by order_id
-        entrees.stream().map(entree -> {
-            entreeRepository.findEntreesThroughEntreeOrderedTable(entree.getId());
-        });
+        List<Integer> orderIds = orders.stream().map(order -> order.getId()).toList();
+        List<EntreeAndOrderId> entreeAndOrderIds = entreeRepository.findAllByOrderIds(orderIds);
 
-//        List<Appetizer> appetizers = appetizerRepository.getListOfAppetizers();
-//        System.out.println("appetizers: " + appetizers);
+        List<OrderDTO> orderDtos = orders.stream().map(order -> {
 
-        return orders.stream().map(order -> { // N + 1 issue, could be ANY number of orders
-//            List<Entree> entrees = entreeRepository.findAllEntreesByOrderId(order.getId());
-//            List<Appetizer> appetizers = appetizerRepository.findAllAppetizersByOrderId(order.getId());
-            //BATCH queries - set parameters that could easily be swapped
-            //finding all entrees/apps by orderId should be BATCH
-            //WATCH OUT FOR SQL STATMENTS IN OPEN ENDED LOOPS!! N + 1 ISSUE
-            //list of all entrees; map from entree_ordered table to find the id of the order it belongs to
-            //insert into order that way
-            //get lists first and then map through list and assign to correct order
+            List<AppetizerOrdered> appetizerOrdersForThisOrder = appetizerOrders.stream()
+                    .filter(appetizerOrdered -> appetizerOrdered.getOrderId() == order.getId())
+                    .toList();
+
+            List<Appetizer> appetizers = appetizerOrdersForThisOrder.stream().map(appetizerOrder -> {
+                Optional<Appetizer> appetizerForThisOrder = allAppetizers.stream()
+                        .filter(appetizer -> appetizer.getId() == appetizerOrder.getAppetizerId())
+                        .findFirst();
+                return appetizerForThisOrder.get();
+            }).toList();
+
+            List<EntreeAndOrderId> entreeAndOrderIdsForTHISOrder = entreeAndOrderIds.stream()
+                    .filter(entreeAndOrderId -> entreeAndOrderId.getOrderId() == order.getId())
+                    .toList();
+
+            List<Entree> entrees = entreeAndOrderIdsForTHISOrder.stream().map(entreeAndOrderId -> new Entree(
+                    entreeAndOrderId.getId(),
+                    entreeAndOrderId.getName(),
+                    entreeAndOrderId.getPrice()
+            )).toList();
 
             return new OrderDTO(
                     order.getId(),
                     order.getCustomerId(),
                     entrees,
-                    null
+                    appetizers
             );
-        }).toList(); //on the return of the map, not the return of the DTO
+        }).toList();
+
+        return orderDtos;
     }
 
     public OrderDTO createOrder(NewOrderRequestBody newOrderRequestBody) {
@@ -95,6 +98,10 @@ public class OrderService {
         );
     }
 
+
+    public void deleteOrderById(Integer orderId) {
+        orderRepository.deleteOrderById(orderId);
+    }
 }
 
 
