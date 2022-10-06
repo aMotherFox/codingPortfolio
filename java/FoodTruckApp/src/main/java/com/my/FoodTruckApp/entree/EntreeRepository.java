@@ -82,6 +82,10 @@ public class EntreeRepository {
     }
 
     public List<Entree> findAllByIds(List<Integer> entreeIds) {
+        if (entreeIds.isEmpty()) {
+            return List.of();
+        }
+
         String sql = "SELECT * FROM entree WHERE id IN (:ids)";
 
         MapSqlParameterSource parameters = new MapSqlParameterSource();
@@ -100,4 +104,38 @@ public class EntreeRepository {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Entree.class), orderId);
 
     }
+
+    public List<Entree> findAll() {
+        String sql = "SELECT * FROM entree";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Entree.class));
+    }
+
+    public List<EntreeOrdered> findAllEntreeOrders() {
+        String sql = "SELECT * FROM entree_ordered";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(EntreeOrdered.class));
+    }
+
+    public List<EntreeAndOrderId> findAllByOrderIds(List<Integer> orderIds) {
+        log.info("Finding ALL entrees by orderIds: " + orderIds);
+        String sql = "SELECT entree.*, entree_ordered.order_id " +
+                "FROM entree_ordered " +
+                "JOIN entree on entree.id = entree_ordered.entree_id " +
+                "WHERE order_id IN (:orderIds) ";
+
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("orderIds", orderIds);
+
+        List<EntreeAndOrderId> entreeAndOrderIds = namedParameterJdbcTemplate.query(
+                sql,
+                parameters,
+                new BeanPropertyRowMapper<>(EntreeAndOrderId.class)
+        );
+        log.info("Found all of the following entrees with order ids: " + entreeAndOrderIds);
+        return entreeAndOrderIds;
+    }
+
 }
+
+

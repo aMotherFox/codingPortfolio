@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,8 +14,9 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping("/orders")
-    public ArrayList<Order> getListOfOrders() {
-        return orderService.getListOfOrders();
+    public List<OrderDTO> findAllOrders() {
+        log.info("Finding all orders");
+        return orderService.findAllOrder();
     }
 
     @PostMapping("/orders")
@@ -29,5 +30,6 @@ public class OrderController {
         log.info("Finding an order with PathVariable Integer id: " + orderId);
         return orderService.getOrderById(orderId);
     }
+    
 
 }

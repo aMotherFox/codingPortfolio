@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -18,9 +18,15 @@ public class OrderRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public ArrayList<Order> getListOfOrders() {
-        String sql = "SELECT * FROM \"order\" ";
-        return (ArrayList<Order>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
+//    public List<Order> getAllOrders() {
+//        String sql = "SELECT * FROM \"order\" ";
+//        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
+//    }
+
+    public List<Order> findAllOrders() {
+        String sql = "SELECT * FROM \"order\"";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
     }
 
     public Order createOrder(NewOrderRequestBody newOrderRequestBody) {
@@ -51,6 +57,7 @@ public class OrderRepository {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No order with id of: " + id);
         }
     }
+
 
 }
 
