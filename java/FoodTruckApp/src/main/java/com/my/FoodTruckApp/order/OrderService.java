@@ -99,9 +99,6 @@ public class OrderService {
     }
 
 
-    public void deleteOrderById(Integer orderId) {
-        orderRepository.deleteOrderById(orderId);
-    }
 }
 
 

@@ -58,41 +58,6 @@ public class OrderRepository {
         }
     }
 
-    public void deleteOrderById(Integer orderId) {
-        String sql = "DELETE FROM \"order\" WHERE id = ?";
-
-
-        //No results were returned by the query, does not work
-//        try {
-//            Order orderToBeDeletedById = jdbcTemplate.queryForObject(
-//                    sql,
-//                    new BeanPropertyRowMapper<>(Order.class),
-//                    orderId
-//            );
-//            log.info("deleting order by id: " + orderId + "order: " + orderToBeDeletedById);
-//        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
-//            log.error("No order with an id of: " + orderId);
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No order with id of: " + orderId);
-//        }
-        String sqlFind = "SELECT * FROM \"order\" WHERE id = ?";
-        String sqlDelete = "DELETE FROM \"order\" WHERE id = ?";
-        try {
-            jdbcTemplate.queryForObject(sqlFind, new BeanPropertyRowMapper<>(Order.class), orderId);
-        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
-            log.error("No entree with id: " + orderId + " was found");
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No entree with id: " + orderId + " was found");
-        }
-        jdbcTemplate.update(sqlDelete, orderId);
-        //does NOT delete from entree_ordered or appetizer_ordered
-//        DELETE FROM "order" WHERE "id" IN (
-//                (SELECT "id" FROM "order" WHERE "id" = 46)
-//        UNION
-//                (SELECT order_id FROM appetizer_ordered WHERE order_id = 46)
-//        UNION
-//                (SELECT order_id FROM entree_ordered WHERE order_id = 46)
-//        )
-        //possible??
-    }
 
 }
 
