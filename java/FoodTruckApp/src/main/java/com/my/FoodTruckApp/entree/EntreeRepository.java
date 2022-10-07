@@ -136,6 +136,12 @@ public class EntreeRepository {
         return entreeAndOrderIds;
     }
 
+    public void deleteAllByOrderId(Integer orderId) {
+        String sql = "DELETE FROM entree_ordered WHERE order_id = ?";
+
+        jdbcTemplate.update(sql, orderId);
+    }
+    
 }
 
 

@@ -30,6 +30,10 @@ public class OrderController {
         log.info("Finding an order with PathVariable Integer id: " + orderId);
         return orderService.getOrderById(orderId);
     }
-    
+
+    @DeleteMapping("/orders/{id}")
+    public void deleteOrderById(@PathVariable Integer id) {
+        orderService.deleteOrderById(id);
+    }
 
 }

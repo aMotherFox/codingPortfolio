@@ -18,11 +18,6 @@ public class OrderRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-//    public List<Order> getAllOrders() {
-//        String sql = "SELECT * FROM \"order\" ";
-//        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Order.class));
-//    }
-
     public List<Order> findAllOrders() {
         String sql = "SELECT * FROM \"order\"";
 
@@ -58,6 +53,11 @@ public class OrderRepository {
         }
     }
 
+    public void deleteById(Integer orderId) {
+        String sql = "DELETE FROM \"order\" WHERE id = ?";
+
+        jdbcTemplate.update(sql, orderId);
+    }
 
 }
 
